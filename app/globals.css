@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* black nav button */
+
+body {
+  overflow: none;
+}
+
+.fancy-button-text-container {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.fancy-button-text-container span {
+  display: inline-block;
+  white-space: pre;
+  transition: transform 0.5s ease;
+}
+
+.fancy-button-text-container span:last-child {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  left: 0;
+}
+
+/* nav link  */
+
+.nav-link {
+  text-decoration: none;
+  margin: 0 10px;
+  color: black;
+  transition: color 0.5s ease;
+}
+
+.nav-link:hover {
+  color: #fb5457;
+}
