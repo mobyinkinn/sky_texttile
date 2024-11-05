@@ -71,35 +71,33 @@ export default function Yarns() {
         >
           Introduction to Garments
         </Typography>
-        <Typography fontSize={{ md: "1rem", xs: "0.7rem" }}>
+        <Typography fontSize={{ md: "1rem", xs: "0.7rem" }} textAlign={"center"}>
           SKY Primwear is a state-of-the-art garment manufacturing unit,
           equipped with cutting-edge machinery and staffed by highly trained
           professionals dedicated to delivering superior quality at every stage
           of production. Our facility operates with a meticulously designed
           workflow, ensuring efficiency and precision in every garment we
-          produce.
-          <br />
-          Capacity of Garment unit is 4 lakh garments per month.
+          produce, with a capacity of 4 lakh garments per month.
           <br />
           The garmenting process at SKY Primwear begins with the selection of
-          high-quality fabrics. These are inspected at various quality control
+          high-quality fabrics, which are inspected at various quality control
           checkpoints to ensure they meet our strict standards before moving
           into the cutting phase. From there, the fabric is processed through
-          advanced sewing machines, operated by skilled workers trained to
-          handle everything from basic stitching to intricate designs. Each
-          stage of production, including cutting, sewing, and finishing,
-          undergoes rigorous quality checks to ensure consistency and
-          flawlessness.
+          advanced sewing machines operated by skilled workers trained to handle
+          everything from basic stitching to intricate designs. Each stage of
+          production, including cutting, sewing, and finishing, undergoes
+          rigorous quality checks to ensure consistency and flawlessness.
           <br />
           After the garments are finished, they pass through a final quality
           control checkpoint before being packed and dispatched to our clients.
           We pride ourselves on our ability to cater to a diverse range of
           garment types, including innerwear, casual wear, loungewear,
-          sleepwear, thermals, athleisure, outerwear, and fashion styles.
-          <br />
-          With a focus on precision, durability, and style, SKY Primwear
-          delivers garments that meet the highest standards of craftsmanship,
-          making us a trusted partner in the global fashion industry.
+          sleepwear, thermals, athleisure, outerwear, and fashion styles. As one
+          of the best t-shirt manufacturing companies in Ahmedabad, Gujarat,
+          India, and Asia and among the best shirt manufacturers in Ahmedabad,
+          Gujarat, India, and Asia, SKY Primwear delivers garments that meet the
+          highest standards of craftsmanship, making us a trusted partner in the
+          global fashion industry
         </Typography>
       </Stack>
       <Stack

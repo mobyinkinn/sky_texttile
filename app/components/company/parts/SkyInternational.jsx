@@ -217,7 +217,8 @@ export default function SkyTextiles() {
           premium garments closer to you than ever before. You can now find ONE
           SKY apparel on all major platforms including Myntra, Amazon, Flipkart,
           Ajio, Limeroad, and Nykaa, making it easier than ever to shop your
-          favorite styles.
+          favorite styles. As a part of the best textile industry in Ahmedabad,
+          we are committed to delivering quality and style in every piece
         </Typography>
       </Stack>
       <Stack
@@ -267,9 +268,10 @@ export default function SkyTextiles() {
           providing ONE SKY garments to retailers across India. From trendy
           outfits to timeless classics, we’re delivering high-quality clothing
           nationwide, bringing the ONE SKY brand to every corner of the country.
-          Whether you’re shopping for yourself or stocking your retail shelves,
-          ONE SKY is your go-to for fashionable, top-tier garments. Let’s make
-          this journey unforgettable, together!
+          As a leader in textile infrastructure, whether you’re shopping for
+          yourself or stocking your retail shelves, ONE SKY is your go-to for
+          fashionable, top-tier garments. Let’s make this journey unforgettable,
+          together
         </Typography>
 
         <Stack

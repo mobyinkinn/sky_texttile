@@ -132,11 +132,12 @@ export default function Overview() {
           textAlign={"center"}
         >
           At Sky Group, sustainability is more than a commitment—it’s at the
-          heart of everything we do. As a aspired leader in the textile and
+          heart of everything we do. As an aspired leader in the textile and
           garment manufacturing industry, we are dedicated to driving positive
           environmental and social impact through every stage of our value
           chain. Our approach blends innovation, efficiency, and ethical
-          practices, with a focus on creating a better tomorrow.
+          practices, focusing on creating a better tomorrow. We are proud to be
+          recognized for producing the best sustainable textiles in Gujarat.
         </Typography>
 
         <Box

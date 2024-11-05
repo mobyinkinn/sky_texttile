@@ -31,12 +31,15 @@ export default function Our() {
         Our <span style={{ color: "#FB5457" }}>Infrastructure</span>
       </Typography>
       <Typography>
-        We are India's only composite manufacturing plant having
-        state-of-the-art manufacturing facilities right from Fiber to Made-ups..
-        We are equipped with highly advanced and modern machineries like
-        Knitting, Singeing, Inspection, Processing, Cutting, Embroidery,
-        Stitching & Packing facilities that helps us in delivering an impeccable
-        range.
+        We are India's only composite manufacturing plant with state-of-the-art
+        manufacturing facilities, right from fiber to made-ups. Equipped with
+        highly advanced and modern machinery, including knitting, singeing,
+        inspection, processing, cutting, embroidery, stitching, and packing
+        facilities, we deliver an impeccable range of products. Today, SKY
+        Textiles operates in Lathidad, manufacturing a wide range of knitted
+        fabrics for both Indian and international markets. Our textile
+        infrastructure in Ahmedabad, Gujarat, India, and Asia is recognized for
+        delivering the best quality textile infrastructure in the region.
       </Typography>
       <Typography>
         Today SKY textiles has Unit at Lathidad manufacturing a wide range of

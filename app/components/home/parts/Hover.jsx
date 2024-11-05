@@ -208,7 +208,7 @@ const Hover = () => {
             >
               <Image
                 src={logo.img}
-                alt={`${index + 1}`}
+                alt={""}
                 fill
                 objectFit="contain"
                 className="original-image"
@@ -216,7 +216,7 @@ const Hover = () => {
 
               <Image
                 src={hoverImages[index]}
-                alt={`${index + 1}`}
+                alt={""}
                 fill
                 objectFit="cover"
                 className="hover-image"
@@ -274,7 +274,7 @@ const Hover = () => {
             >
               <Image
                 src={logo.img}
-                alt={`${index + 1}`}
+                alt={""}
                 fill
                 objectFit="contain"
                 className="original-image"

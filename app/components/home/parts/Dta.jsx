@@ -30,9 +30,13 @@ export default function Dta() {
           <br />
           Transparency
         </Typography>
-        <Typography fontSize={{ md: "1.5rem", xs: "1.2rem" }} marginTop={"10px"}>
-          Experience exceptional quality, reliable service, <br /> and full
-          transparency in every step we take for you.
+        <Typography
+          fontSize={{ md: "1.5rem", xs: "1.2rem" }}
+          marginTop={"10px"}
+        >
+          Experience exceptional quality, reliable service, <br/> and full
+          transparency in every step we take to bring you the best quality
+          textiles in the industry.
         </Typography>
       </Stack>
     </Stack>

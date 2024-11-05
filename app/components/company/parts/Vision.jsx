@@ -16,18 +16,21 @@ const data = [
     icon: icon1,
     head: "Quality",
     body: "Delivering uncompromised quality across yarns, textile fabrics, and garments, ensuring excellence at every stage of production.",
+    alt: "Quality textile products",
   },
   {
     id: 1,
     icon: icon2,
     head: "Service",
     body: "Delivering end-to-end textile solutions, from yarn to finished garments, with a commitment to quality, innovation, and customer satisfaction.",
+    alt: "Apparel production",
   },
   {
     id: 2,
     icon: icon3,
     head: "Transparency",
     body: "Building trust through complete transparency in every step of our process, ensuring clarity and confidence for our customers.",
+    alt: "Textile market",
   },
 ];
 
@@ -150,7 +153,8 @@ export default function Vision() {
               className="vision"
             >
               Delivering uncompromised quality across yarns, textile fabrics,
-              and garments, ensuring excellence at every stage of production.
+              and garments, we are proud to be among the best yarn suppliers,
+              ensuring excellence at every stage of production
             </Typography>
           </Box>
           <Box height={{ md: "90vh" }}>
@@ -169,7 +173,8 @@ export default function Vision() {
               className="mission"
             >
               Where comfort meets innovation, creating a seamless blend of
-              flexibility and style
+              flexibility and style, we proudly offer the best fabrics in
+              Gujarat.
             </Typography>
           </Box>
           <Box height={{ md: "90vh" }}>
@@ -216,7 +221,7 @@ export default function Vision() {
                 },
               }}
             >
-              <Image width={50} height={50} src={el.icon} alt="" />
+              <Image width={50} height={50} src={el.icon} alt={el.alt} />
               <Typography fontSize={"1.5rem"} fontWeight={"bold"}>
                 {el.head}
               </Typography>

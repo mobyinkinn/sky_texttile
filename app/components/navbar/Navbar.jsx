@@ -60,62 +60,62 @@ const navData = [
   {
     id: 0,
     name: "Company Profile",
-    route: "/textile-manufacturing-company",
+    route: "/company-profile",
     subRoutes: [
       {
         id: 0,
         head: "Sky Textiles.",
         data: "Fabrics & Processing",
         color: "#FFDFE6",
-        route: "/textile-manufacturing-company/sky-textiles",
+        route: "/company-profile/sky-textiles",
       },
       {
         id: 1,
         head: "SKY Primwear.",
         data: "Garmenting & Finishing",
         color: "#DFDFFD",
-        route: "/textile-manufacturing-company/sky-primware",
+        route: "/company-profile/sky-primware",
       },
       {
         id: 2,
         head: "SKY International.",
         data: "D2C and B2B Trading",
         color: "#DFD5E6",
-        route: "/textile-manufacturing-company/sky-international",
+        route: "/company-profile/sky-international",
       },
     ],
   },
   {
     id: 1,
     name: "Infrastructure",
-    route: "/quality-textile-infrastructure-ahmedabad-gujarat-india",
+    route: "/infrastructure",
     subRoutes: [],
   },
   {
     id: 2,
     name: "Product Range",
-    route: "/products/t-shirt-manufacturers-manufacturing-company",
+    route: "/products",
     subRoutes: [
       {
         id: 0,
         head: "Yarns",
         data: "Foundation for textile creation",
         color: "#FFDFE6",
-        route: "/products/t-shirt-manufacturers-manufacturing-company/yarns",
+        route: "/products/yarns",
       },
       {
         id: 1,
         head: "Fabrics",
         data: "Versatile textiles for design",
         color: "#DFDFFD",
-        route: "/products/t-shirt-manufacturers-manufacturing-company/fabrics",
+        route: "/products/fabrics",
       },
       {
         id: 2,
         head: "Garments",
         data: "Clothing for fashion",
         color: "#DFD5E6",
-        route: "/products/t-shirt-manufacturers-manufacturing-company/garments",
+        route: "/products/garments",
       },
     ],
   },
@@ -164,23 +164,21 @@ const navData = [
   {
     id: 6,
     name: "Get in Touch",
-    route: "/contact-us-tshirt-kidsWear-uniformDesign",
+    route: "/contact-us",
     subRoutes: [
       {
         id: 0,
         head: "Enquiry",
         data: "Your questions, our answers",
         color: "#FFDFE6",
-        route:
-          "/contact-us-tshirt-kidsWear-uniformDesign/contact-us-tshirt-kidsWear-uniformDesign",
+        route: "/contact-us/enquiry",
       },
       {
         id: 1,
         head: "Careers",
         data: "Opportunities for professional growth",
         color: "#DFDFFD",
-        route:
-          "/contact-us-tshirt-kidsWear-uniformDesign/career-textile-fabrics-weaving-gujarat-india-asia",
+        route: "/contact-us/careers",
       },
     ],
   },
@@ -231,7 +229,7 @@ export default function Navbar() {
         <Box width={"10vw"} height={"100%"} position={"relative"}>
           <Image
             src={logo}
-            alt=""
+            alt="Sky Textiles"
             fill
             objectFit="contain"
             style={{ cursor: "pointer" }}
@@ -326,9 +324,7 @@ export default function Navbar() {
             outline: "none",
             border: "none",
           }}
-          onClick={() =>
-            router.push("/contact-us-tshirt-kidsWear-uniformDesign")
-          }
+          onClick={() => router.push("/contact-us")}
           onMouseEnter={() => {
             setIsHovered(true);
           }}
@@ -381,7 +377,7 @@ export default function Navbar() {
         >
           <Image
             src={logo}
-            alt=""
+            alt="Sky Textiles"
             fill
             objectFit="contain"
             style={{ cursor: "pointer" }}
@@ -546,9 +542,7 @@ export default function Navbar() {
                         borderRadius: "2px",
                         marginTop: "10px",
                       }}
-                      onClick={() =>
-                        router.push("/contact-us-tshirt-kidsWear-uniformDesign")
-                      }
+                      onClick={() => router.push("/contact-us")}
                     >
                       Contact
                     </button>

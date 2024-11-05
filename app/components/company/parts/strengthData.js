@@ -9,7 +9,7 @@ export const data = [
   {
     id: 0,
     head: "Innovation",
-    data: "At SKY Textiles, innovation is fueled by the evolving needs of our customers, who seek unique, high-quality products that align with emerging trends and changing consumer preferences.",
+    data: "At SKY Textiles, innovation is driven by the evolving needs of our customers seeking unique, high-quality products that reflect best Gujarat textile innovations and align with emerging trends.",
     img: icon1,
   },
   {
@@ -27,13 +27,13 @@ export const data = [
   {
     id: 3,
     head: "Integration",
-    data: "We have built a strong presence across the entire textile and garment value chain, from yarns and fabrics to finished garments. This comprehensive integration allows us to oversee every stage of production, ensuring quality and consistency throughout.",
+    data: "We have built a strong presence across the entire textile and garment value chain, from yarns and fabrics to finished garments. This comprehensive integration allows us to oversee every stage of production, ensuring the best quality textiles and consistency throughout.",
     img: icon4,
   },
   {
     id: 4,
     head: "Range",
-    data: "Spanning a wide range of product categories, we have grown into a comprehensive one-stop shop for textile solutions. Our ability to cover the entire spectrum of textile needs, from raw materials to finished garments, allows us to offer tailored solutions for various industries.",
+    data: "Spanning a wide range of product categories, we have grown into a comprehensive one-stop shop for textile solutions. Our ability to cover the entire spectrum of textile needs, from raw materials to finished garments, allows us to offer tailored solutions for various industries. We provide a GSM Range of 120 GSM – 450 GSM, ensuring flexibility and quality to meet diverse requirements.",
     img: icon5,
   },
   {

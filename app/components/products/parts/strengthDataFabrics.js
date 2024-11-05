@@ -21,7 +21,7 @@ export const data = [
   {
     id: 2,
     head: "Finishing",
-    data: "Enhancing fabric quality with treatments for softness, durability, or special properties.",
+    data: "Enhancing fabric quality with treatments for softness, durability, or special properties is vital. As a premier finished fabrics manufacturing company, we ensure our products excel in performance and comfort.",
     img: icon3,
   },
   {

@@ -4,7 +4,6 @@ import yarns from "./assets/yarns.jpg";
 import fabric from "./assets/fabric.jpg";
 import garments from "./assets/garments.jpg";
 import { Typography } from "@mui/material";
-import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -116,14 +115,20 @@ export default function ProductAnimated() {
             >
               Yarn
             </Typography>
-            <Typography fontSize={{ md: "1.2rem", xs: "0.8rem" }}>
+            <Typography
+              fontSize={{ md: "1.2rem", xs: "0.8rem" }}
+              textAlign={"justify"}
+            >
               We produce high-quality cotton yarns using the latest technology
               and state-of-the-art Swiss and German machinery. Our yarns are
               spun with precision, ensuring consistent strength, softness, and
-              durability. With a focus on meeting global standards, producing
-              yarns that are suitable for various applications, including
-              knitting and weaving. Each batch undergoes rigorous testing,
-              guaranteeing the finest quality for our customers.
+              durability. With a focus on meeting global standards, we produce
+              yarns suitable for various applications, including knitting and
+              weaving. Each batch undergoes rigorous testing, guaranteeing the
+              finest quality for our customers. As one of the best yarn
+              suppliers in Ahmedabad, Gujarat, India, and Asia, we are committed
+              to delivering excellence and reliability in every product we
+              offer.
             </Typography>
           </Stack>
           <Stack
@@ -139,16 +144,23 @@ export default function ProductAnimated() {
             >
               Fabrics
             </Typography>
-            <Typography fontSize={{ md: "1.2rem", xs: "0.8rem" }}>
-              We manufactures a wide range of fabrics, utilizing advanced
+            <Typography
+              fontSize={{ md: "1.2rem", xs: "0.8rem" }}
+              textAlign={"justify"}
+            >
+              We manufacture a wide range of fabrics, utilizing advanced
               knitting and weaving techniques. Our fabrics are crafted from the
               finest yarns, ensuring excellent texture, durability, and comfort.
               We offer a variety of fabric types, catering to industries from
               fashion to home textiles. Our facility is equipped with the latest
               machinery, allowing us to produce fabrics that meet global
               standards for quality, appearance, and functionality. From basic
-              cotton to specialized blends, our fabrics are designed to exceed
-              customer expectations.
+              cotton to specialized blends, including sustainable fabrics in
+              Gujarat and multiple fabric blends, our fabrics are designed to
+              exceed customer expectations. As a leading provider of the best
+              fabrics in Ahmedabad, Gujarat, India, and Asia, we are recognized
+              as a best greige fabric manufacturing company and a finished
+              fabrics manufacturing company.
             </Typography>
           </Stack>
           <Stack
@@ -164,7 +176,10 @@ export default function ProductAnimated() {
             >
               Garments
             </Typography>
-            <Typography fontSize={{ md: "1.2rem", xs: "0.8rem" }}>
+            <Typography
+              fontSize={{ md: "1.2rem", xs: "0.8rem" }}
+              textAlign={"justify"}
+            >
               Our garment division produces high-quality apparel with a focus on
               precision and craftsmanship. From design to finished product, we
               ensure that every garment reflects our commitment to quality. Our
@@ -173,7 +188,10 @@ export default function ProductAnimated() {
               fashion standards. Our skilled team and modern equipment enable us
               to deliver a wide range of garments, from casual wear to
               specialized items, always prioritizing comfort, style, and
-              durability for our customers.
+              durability for our customers. As one of the best T-shirt
+              manufacturers in Ahmedabad, Gujarat, India, and Asia, we also
+              excel as shirt manufacturers in Ahmedabad, Gujarat, India, and
+              Asia.
             </Typography>
           </Stack>
         </Stack>

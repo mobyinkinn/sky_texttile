@@ -140,13 +140,13 @@ const PassionateData = [
   {
     id: 1,
     name: "Quality Assurance",
-    data: "We are dedicated to uncompromising quality, with rigorous control at every stage of production. Skilled technicians ensure consistency, durability, and flawless finishing in all our knitted garments.",
+    data: "We are dedicated to uncompromising quality, with rigorous control at every stage of production. Skilled technicians ensure consistency, durability, and flawless finishing in all our knitted garments. As the best quality textile infrastructure and manufacturing company in Ahmedabad, Gujarat, India, and Asia, we pride ourselves on offering Premium Quality Fabrics in Gujarat",
     img: curiosity,
   },
   {
     id: 2,
     name: "Product Range",
-    data: "SKY PRIMWEAR offers a diverse range of knitted apparel for men, women, and children, including stylish sweaters, cardigans, and dresses. Blending classic designs with modern aesthetics, our products provide timeless style and comfort for various occasions.",
+    data: "SKY PRIMWEAR offers a diverse range of knitted apparel for men, women, and children, including stylish sweaters, cardigans, and dresses. Blending classic designs with modern aesthetics, our products provide timeless style and comfort for various occasions. With a GSM Range of 120 GSM – 450 GSM in Gujarat, we ensure the best textile products in Gujarat. Additionally, we are recognized as the best cotton mill , delivering high-quality fabrics for all your clothing needs.",
     img: collab,
   },
 ];
@@ -233,12 +233,16 @@ export default function SkyTextiles() {
           margin={"0 auto"}
         >
           Welcome to SKY PRIMWEAR, your trusted partner in premium knitted
-          clothing manufacturing! With a strong foundation in quality and
-          innovation, we proudly stand as an industry leader. Our unwavering
-          commitment to craftsmanship and precision has earned us a stellar
-          reputation for delivering top-tier knitted garments that meet the
-          highest standards. Serving a global clientele, we continue to set the
-          benchmark for excellence in the world of knitted fashion.
+          clothing manufacturing! As the best quality textile manufacturing and
+          infrastructure company in Ahmedabad, Gujarat, India, and Asia, we
+          proudly stand as an industry leader. Our strong foundation in quality
+          and innovation, combined with our status as one of the leading textile
+          manufacturers in Gujarat and the best T-shirt manufacturers in
+          Gujarat, reflects our unwavering commitment to craftsmanship and
+          precision. We have earned a stellar reputation as a finished fabrics
+          manufacturing company, delivering top-tier knitted garments that meet
+          the highest standards. Serving a global clientele, we continue to set
+          the benchmark for excellence in the world of knitted fashion.
         </Typography>
       </Stack>
       <Stack
@@ -292,7 +296,8 @@ export default function SkyTextiles() {
           offer 6,000 embroidery and 5,000 panel printing units daily. Our
           robust production capabilities ensure timely delivery and exceptional
           product standards, making us a trusted partner for all your garment
-          needs.
+          needs. We take pride in offering the best textile products in
+          Ahmedabad, Gujarat, India, and Asia.
         </Typography>
         <Stack
           direction={"row"}

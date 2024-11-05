@@ -17,7 +17,8 @@ export default function Pdt() {
         and sales. Our mission is to empower clients by helping them innovate
         and explore new opportunities in their product lines. Through close
         collaboration, we deliver unique products that build trust and delight
-        customers.
+        customers, making us a provider of the best textile products in
+        Ahmedabad, Gujarat, India, and Asia.
       </Typography>
     </Stack>
   );

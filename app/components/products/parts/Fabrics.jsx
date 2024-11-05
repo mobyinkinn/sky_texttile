@@ -96,12 +96,15 @@ export default function Yarns() {
           fontSize={{ md: "1rem", xs: "0.7rem" }}
           textAlign={"center"}
         >
-          Knitted Fabrics are textiles created by interlooping yarns in a series
-          of connected loops, producing a stretchy and flexible fabric. Knitted
+          Knitted fabrics are textiles created by interlooping yarns in a series
+          of connected loops, producing a stretchy and flexible material. These
           fabrics can be made by hand or machine, and their structure provides
           more elasticity compared to woven fabrics, making them ideal for
           garments requiring flexibility, such as t-shirts, sweaters, and
-          activewear.
+          activewear. At Sky Textiles, we pride ourselves on offering the best
+          fabrics in Ahmedabad, Gujarat, India, and Asia. We are recognized as a
+          leading best greige and finished fabric manufacturing company,
+          specializing in multiple fabric blends in Gujarat.
         </Typography>
       </Stack>
       <Stack
@@ -122,7 +125,7 @@ export default function Yarns() {
           textAlign={"center"}
           fontWeight={"bold"}
         >
-          Popular Yarns
+          Popular Fabrics
         </Typography>
         <Typography
           textAlign={"center"}

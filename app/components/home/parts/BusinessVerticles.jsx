@@ -352,8 +352,29 @@ export default function BusinessVerticles({ mapRef }) {
                   Versatile for diverse applications
                 </Typography>
               </Stack>
+              <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+                <Stack>
+                  <FaCircle
+                    color="#FB5457"
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                    }}
+                  />
+                </Stack>
+                <Typography
+                  fontSize={{
+                    lg: "1.2rem",
+                    md: "1rem",
+                    smm: "0.9rem",
+                    xs: "0.7rem",
+                  }}
+                >
+                  Best yarn suppliers
+                </Typography>
+              </Stack>
               <Box display={{ md: "none" }}>
-                <Image width={200} height={200} src={yarnImage} alt="" />
+                <Image width={200} height={200} src={yarnImage} alt="Yarn" />
               </Box>
             </Stack>
           </Stack>
@@ -620,11 +641,55 @@ export default function BusinessVerticles({ mapRef }) {
                 xs: "0.7rem",
               }}
             >
+              Best Multiple fabric blend
+            </Typography>
+          </Stack>
+          <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+            <Stack>
+              <FaCircle
+                color="#5857F9"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+            </Stack>
+
+            <Typography
+              fontSize={{
+                lg: "1.2rem",
+                md: "1rem",
+                smm: "0.9rem",
+                xs: "0.7rem",
+              }}
+            >
+              Best Fabrics in Gujarat
+            </Typography>
+          </Stack>
+          <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+            <Stack>
+              <FaCircle
+                color="#5857F9"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+            </Stack>
+
+            <Typography
+              fontSize={{
+                lg: "1.2rem",
+                md: "1rem",
+                smm: "0.9rem",
+                xs: "0.7rem",
+              }}
+            >
               Durable and stylish fabrics
             </Typography>
           </Stack>
           <Box display={{ md: "none" }}>
-            <Image width={200} height={200} src={fabricImage} alt="" />
+            <Image width={200} height={200} src={fabricImage} alt="Fabric" />
           </Box>
         </Stack>
       </Stack>
@@ -735,7 +800,51 @@ export default function BusinessVerticles({ mapRef }) {
                 xs: "0.7rem",
               }}
             >
+              Best T-shirt manufacturers
+            </Typography>
+          </Stack>
+          <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+            <Stack>
+              <FaCircle
+                color="#9C34F0"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+            </Stack>
+
+            <Typography
+              fontSize={{
+                lg: "1.2rem",
+                md: "1rem",
+                smm: "0.9rem",
+                xs: "0.7rem",
+              }}
+            >
               Durable, comfortable, and stylish
+            </Typography>
+          </Stack>
+          <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+            <Stack>
+              <FaCircle
+                color="#9C34F0"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+            </Stack>
+
+            <Typography
+              fontSize={{
+                lg: "1.2rem",
+                md: "1rem",
+                smm: "0.9rem",
+                xs: "0.7rem",
+              }}
+            >
+              Best Shirt manufacturers
             </Typography>
           </Stack>
           <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
@@ -782,8 +891,30 @@ export default function BusinessVerticles({ mapRef }) {
               Wide variety of fashion needs
             </Typography>
           </Stack>
+          <Stack direction={"row"} alignItems={"baseline"} gap={"10px"}>
+            <Stack>
+              <FaCircle
+                color="#9C34F0"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+            </Stack>
+
+            <Typography
+              fontSize={{
+                lg: "1.2rem",
+                md: "1rem",
+                smm: "0.9rem",
+                xs: "0.7rem",
+              }}
+            >
+              Best Garments manufacturers
+            </Typography>
+          </Stack>
           <Box display={{ md: "none" }}>
-            <Image width={200} height={200} src={garmentImage} alt="" />
+            <Image width={200} height={200} src={garmentImage} alt="Garments" />
           </Box>
         </Stack>
       </Stack>

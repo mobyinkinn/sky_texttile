@@ -177,15 +177,15 @@ const PassionateData = [
 const milestoneData = [
   {
     name: "Vision",
-    data: "To lead the industry with innovative, sustainable textile solutions, delivering exceptional quality and design while fostering a responsible, eco-friendly future for fashion and fabric production",
+    data: "Providing the best textile products in Ahmedabad, Gujarat, India, and Asia, we strive to be a leading global garment manufacturer known for innovation, sustainability, and superior quality",
   },
   {
     name: "Mission",
-    data: "To produce high-quality, sustainable textiles through innovation and ethical practices, exceeding customer expectations while minimizing environmental impact and supporting the growth of our communities and partners.",
+    data: "To produce the best textiles in the industry, we prioritize high-quality, sustainable fabrics through innovation and ethical practices, while supporting community growth and minimizing environmental impact.",
   },
   {
     name: "Values",
-    data: "Quality, Sustainability, Innovation, Integrity, Customer Focus, Collaboration, Responsibility.",
+    data: "With the best textile infrastructure, we emphasize quality, sustainability, innovation, integrity, customer focus, collaboration, and responsibility in all our practices",
   },
 ];
 
@@ -256,14 +256,14 @@ export default function SkyTextiles() {
           margin={"0 auto"}
         >
           We are thrilled to announce that SKY Textiles has emerged as a premier
-          fully vertical facility, offering a comprehensive, one-stop solution
-          for all your garment needs. From raw cotton to finished apparel, we
-          handle every stage of production, including design, development,
-          sourcing, industrial manufacturing, and sales. Our mission is to
-          empower our clients by helping them unlock new possibilities and
-          innovations in their product lines. Through close collaboration, we
-          craft unique, high-quality garments that inspire confidence and bring
-          delight to every customer.
+          fully vertical facility, providing a one-stop solution for all your
+          garment needs. From raw cotton to finished apparel, we handle every
+          stage of production, including design, sourcing, and industrial
+          manufacturing.As one of the Best Spinning Mills in Ahmedabad, Gujarat,
+          India, we offer the Best Fabrics in Gujarat, utilizing advanced
+          Textile Processing Techniques. Our facility features the Best Speed
+          Frame Process in Gujarat and a refined Raw Material Mixing Process,
+          ensuring top-notch quality and consistency.
         </Typography>
       </Stack>
       <Stack
