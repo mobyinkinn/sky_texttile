@@ -26,7 +26,7 @@ export default function Idea() {
         textAlign={"center"}
         display={{ md: "flex", xs: "none" }}
       >
-        Verticle Setup. Cotten Rich District. Compliances.
+        Verticle Setup. Cotton Rich District. Compliances.
       </Typography>
       <Stack direction={"row"} gap="50px" display={{ md: "flex", xs: "none" }}>
         <Box
@@ -106,7 +106,7 @@ export default function Idea() {
                 fontSize={"1.6rem"}
                 textAlign={"center"}
               >
-                Cotten Rich
+                Cotton Rich
               </Typography>
               <Typography textAlign={"center"} fontSize={"0.7rem"}>
                 Located in a cotton-rich district, SKY Textiles ensures access

@@ -13,7 +13,7 @@ import { useState } from "react";
 const rndContent = [
   {
     head1: "Verticle setup from ",
-    head2: "Cotten to Garment",
+    head2: "Cotton to Garment",
     data: "Our vertical setup streamlines the entire process from raw cotton to finished garments, ensuring complete control over quality and efficiency. This integrated approach allows us to deliver premium products while reducing lead times.",
   },
   {

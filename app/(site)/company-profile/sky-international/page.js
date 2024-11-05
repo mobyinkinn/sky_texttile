@@ -1,7 +1,7 @@
 import SkyTextiles from "@/app/components/company/parts/SkyInternational";
 export const metadata = {
   title:
-  "Best Ahmedabad, Gujarat, India & Asia Textile Manufacturing Company: SKY Textiles",
+  "Best Textile Manufacturing Company in Ahmedabad, Gujarat, India & Asia: Sky Textiles",
   description:
   "SKY Textiles delivers its clients with a ONE-STOP-SOLUTION that includes design, advancement, supplying, industrial production, and sales, enabling them to continue expanding new inventions and potential in our product.",
   keywords:
