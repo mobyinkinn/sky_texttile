@@ -285,7 +285,7 @@ export default function Navbar() {
                           key={element.id}
                           backgroundColor={element.color}
                           onClick={() => router.push(element.route)}
-                          width={`${100 / el.subRoutes.length}%`}
+                          width={`${100 / subRoutes.length}%`}
                           maxWidth={"30%"}
                           sx={{
                             margin: "20px 0",
