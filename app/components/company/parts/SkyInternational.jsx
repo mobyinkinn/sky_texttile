@@ -283,7 +283,7 @@ export default function SkyTextiles() {
         >
           <Box
             width={"25%"}
-            height={"30vh"}
+            height={"50vh"}
             // onMouseEnter={() => setContent(1)}
             borderRadius={"10px"}
             sx={{
@@ -294,7 +294,7 @@ export default function SkyTextiles() {
           ></Box>
           <Box
             width={"25%"}
-            height={"30vh"}
+            height={"50vh"}
             // onMouseEnter={() => setContent(0)}
             borderRadius={"10px"}
             sx={{
@@ -305,7 +305,7 @@ export default function SkyTextiles() {
           ></Box>
           <Box
             width={"25%"}
-            height={"30vh"}
+            height={"50vh"}
             // onMouseEnter={() => setContent(2)}
             borderRadius={"10px"}
             sx={{
@@ -316,7 +316,7 @@ export default function SkyTextiles() {
           ></Box>
           <Box
             width={"25%"}
-            height={"30vh"}
+            height={"50vh"}
             // onMouseEnter={() => setContent(2)}
             borderRadius={"10px"}
             sx={{
