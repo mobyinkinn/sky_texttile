@@ -3,6 +3,7 @@
 import { createTheme, Stack, ThemeProvider } from "@mui/material";
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import { AuthProvider } from "./components/admin/Login/Authcontext";
 
 // const poppins = Poppins({
 //   weight: ["400", "700"], // Add the weights you want to use
@@ -41,13 +42,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThemeProvider theme={theme}>
         <body>
-          <Stack
-            className={poppins.className}
-            overflow={"hidden"}
-            position={"relative"}
-          >
-            {children}
-          </Stack>
+          <AuthProvider>
+            <Stack
+              className={poppins.className}
+              overflow={"hidden"}
+              position={"relative"}
+            >
+              {children}
+            </Stack>
+          </AuthProvider>
         </body>
       </ThemeProvider>
     </html>

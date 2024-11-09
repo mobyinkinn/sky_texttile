@@ -23,7 +23,7 @@ import { useAuth } from "./Authcontext";
 
 const LoginPage = () => {
   const navigate = useRouter();
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -32,7 +32,7 @@ const [showPassword, setShowPassword] = useState(false);
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/");
+      navigate.push("/");
     } catch (error) {
       setError(error.message);
     }

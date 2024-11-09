@@ -157,7 +157,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/user/login",
+        "http://localhost:8000/api/v1/admin/login",
         {
           email,
           password,
@@ -179,27 +179,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const verifyUser = async (auth_page) => {
-    try {
+  // const verifyUser = async (auth_page) => {
+  //   try {
 
-      const token = localStorage.getItem("token");
-      console.log(auth)
-      const response = await axios.post(
-        "http://localhost:4000/api/user/verify-page",
-        { id: auth?.user?._id || auth?._id, auth_page },
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
-      );
-      return response?.data?.success;
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      return false;
-    }
-  };
+  //     const token = localStorage.getItem("token");
+  //     console.log(auth)
+  //     const response = await axios.post(
+  //       "http://localhost:4000/api/user/verify-page",
+  //       { id: auth?.user?._id || auth?._id, auth_page },
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     return response?.data?.success;
+  //   } catch (error) {
+  //     console.error("Error fetching data: ", error);
+  //     return false;
+  //   }
+  // };
 
   const logout = () => {
     setAuth(null);
@@ -212,7 +212,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, logout, isAuthenticated, auth, verifyUser }}
+      value={{ login, logout, isAuthenticated, auth }}
     >
       {children}
     </AuthContext.Provider>
