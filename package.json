@@ -18,6 +18,8 @@
     "axios": "^1.7.7",
     "emailjs-com": "^3.2.0",
     "gsap": "^3.12.5",
+    "jodit": "^4.2.41",
+    "jodit-react": "^4.1.2",
     "locomotive-scroll": "^4.1.4",
     "next": "14.2.8",
     "nodemailer": "^6.9.15",
