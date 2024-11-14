@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from "react";
+"use client";
+
 import { InnerContainerHead } from "@/app/styledComponents/admin/AdminHead";
 import {
   BlueButtonSmall,
@@ -14,18 +15,18 @@ import {
   Label,
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import JoditEditor from "jodit-react";
+import { placeholder } from "jodit/esm/plugins/placeholder/placeholder";
+import { useMemo, useRef, useState } from "react";
 import axios from "axios";
 
-export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
+export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const editor = useRef(null);
-  const [title, setTitle] = useState(blog?.title || "");
-  const [content, setContent] = useState(blog?.content || "");
-  const [slug, setSlug] = useState(blog?.slug || "");
-  const [image, setImage] = useState(blog?.image || null);
-  const [previewImage, setPreviewImage] = useState(blog?.image || null);
-  const [isImageChanged, setIsImageChanged] = useState(false);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [slug, setSlug] = useState("");
+  const [image, setImage] = useState(null);
 
   // JoditEditor configuration
   const config = useMemo(
@@ -39,76 +40,47 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
   // Handle image file change
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setIsImageChanged(true);
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreviewImage(imageUrl);
-    }
+    setImage(e.target.files[0]);
   };
 
-  // API call to update the blog data
-  const handleUpdateBlog = async () => {
-    const imageData = new FormData();
-
-    if (isImageChanged) {
-      imageData.append("image", image);
-    }
-
-    const formData = {
-      title,
-      slug,
-      content,
-    };
-
+  // API call to save the form data
+  const handleSubmit = async () => {
     try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("slug", slug);
+      formData.append("image", image);
+
       const response = await axios.post(
-        `http://localhost:8000/api/v1/blog/update/${blog._id}`,
+        "http://localhost:8000/api/v1/event/create",
         formData,
         {
-          headers: {},
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
-      let imageResponse;
-      if (isImageChanged) {
-        imageResponse = await axios.post(
-          `http://localhost:8000/api/v1/blog/update-image/${blog._id}`,
-          imageData
-        );
-      }
 
-      if (response.status === 200) {
-        alert("Blog updated successfully!");
+      if (response.data.statusCode === 200) {
+        alert("Event added successfully!");
+        setViewForm(false);
         fetchDepartments();
-        setEditModalOpen(false);
       } else {
-        alert("Failed to update the blog.");
-      }
-
-      if (isImageChanged) {
-        if (imageResponse.status === 200) {
-          fetchDepartments();
-          setEditModalOpen(false);
-        } else {
-          alert("Failed to update the image.");
-        }
+        alert("Failed to add Event. Please try again.");
       }
     } catch (error) {
-      console.error("Error updating blog:", error);
-      alert("An error occurred while updating the blog.");
-    }
-
-    if (isImageChanged) {
-      setIsImageChanged(false);
+      console.error("Error adding department:", error);
+      alert("An error occurred. Please check the console for details.");
     }
   };
 
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
-        <InnerContainerHead>Edit Blog</InnerContainerHead>
+        <InnerContainerHead>Add Department</InnerContainerHead>
         <InnerContainerHeadSection column>
+          {/* Title Input */}
           <Stack direction={"row"}>
             <InputSection width={"50%"}>
               <Label width={"100px"}>Title</Label>
@@ -119,6 +91,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
               />
             </InputSection>
 
+            {/* Slug Input */}
             <InputSection width={"50%"}>
               <Label width={"100px"}>Slug</Label>
               <TextInput
@@ -128,19 +101,13 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
               />
             </InputSection>
           </Stack>
-
+          {/* Image Upload */}
           <InputSection>
             <Label width={"100px"}>Image</Label>
             <TextInput type="file" onChange={handleImageChange} />
           </InputSection>
-          {previewImage && (
-            <img
-              src={previewImage}
-              alt="Preview"
-              style={{ width: "100px", height: "100px", marginTop: "10px" }}
-            />
-          )}
 
+          {/* Content Editor */}
           <InputSection>
             <Label width={"100px"}>Content</Label>
             <JoditEditor
@@ -148,17 +115,16 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
               value={content}
               config={config}
               tabIndex={1}
-              onChange={(newContent) => setContent(newContent)}
+              onBlur={(newContent) => setContent(newContent)}
             />
           </InputSection>
 
+          {/* Action Buttons */}
           <InputSection>
             <Label></Label>
             <Stack direction={"row"} gap={"10px"}>
-              <GreenButtonSmall onClick={handleUpdateBlog}>
-                Update
-              </GreenButtonSmall>{" "}
-              <BlueButtonSmall onClick={() => setEditModalOpen(false)}>
+              <GreenButtonSmall onClick={handleSubmit}>Save</GreenButtonSmall>
+              <BlueButtonSmall onClick={() => setViewForm(false)}>
                 Cancel
               </BlueButtonSmall>
             </Stack>

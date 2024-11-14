@@ -250,7 +250,6 @@
 //   );
 // }
 
-
 "use client";
 
 import {
@@ -299,8 +298,8 @@ export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
-const [editModalOpen, setEditModalOpen] = useState(false);
-const [currentBlog, setCurrentBlog] = useState(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null);
 
   // Fetch departments data from API
   const fetchDepartments = async () => {
@@ -332,7 +331,7 @@ const [currentBlog, setCurrentBlog] = useState(null);
 
       if (response.data.statusCode === 200) {
         // alert(`Blog ${isBlocked ? "unblocked" : "blocked"} successfully!`);
-        fetchDepartments(); 
+        fetchDepartments();
       } else {
         alert("Failed to update the blog status.");
       }
@@ -341,31 +340,37 @@ const [currentBlog, setCurrentBlog] = useState(null);
       alert("An error occurred. Please check the console for details.");
     }
   };
-const handleDeleteBlog = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
+  const handleDeleteBlog = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this blog?"
+    );
     if (!confirmDelete) {
       return;
     }
 
     try {
-      const response = await axios.delete(`http://localhost:8000/api/v1/blog/delete/${id}`);
+      const response = await axios.delete(
+        `http://localhost:8000/api/v1/blog/delete/${id}`
+      );
 
       if (response.data.statusCode === 200) {
         alert("Blog deleted successfully!");
-        fetchDepartments(); 
+        fetchDepartments();
       } else {
         alert("Failed to delete the blog.");
       }
     } catch (error) {
       console.error("Error deleting blog:", error);
-      alert("An error occurred while deleting the blog. Please check the console for details.");
+      alert(
+        "An error occurred while deleting the blog. Please check the console for details."
+      );
     }
   };
 
- const handleEditClick = (blog) => {
-   setCurrentBlog(blog);
-   setEditModalOpen(true);
- };
+  const handleEditClick = (blog) => {
+    setCurrentBlog(blog);
+    setEditModalOpen(true);
+  };
 
   // Handle input changes
   const handleUpdateBlog = async () => {
@@ -378,7 +383,7 @@ const handleDeleteBlog = async (id) => {
     }
 
     try {
-      const response = await axios.put(
+      const response = await axios.post(
         `http://localhost:8000/api/v1/blog/update/${currentBlog._id}`,
         formData
       );

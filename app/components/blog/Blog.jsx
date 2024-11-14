@@ -7,7 +7,7 @@ import conference from "./assets/conference.png";
 import location from "./assets/location.png";
 import Image from "next/image";
 
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 
@@ -36,11 +36,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Events() {
-  
   const router = useRouter();
-const [data, setData] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   // const data = [
   //   {
   //     Title:
@@ -249,6 +248,8 @@ const [error, setError] = useState(null);
   useEffect(() => {
     fetchData();
   }, []);
+
+  console.log(data);
   return (
     <Stack>
       <Navbar />
@@ -362,7 +363,7 @@ const [error, setError] = useState(null);
                   transform: "scale(1.04)",
                 },
               }}
-              onClick={() => router.push(`/blog${d.route}`)}
+              onClick={() => router.push(`/blog/${d.slug}`)}
             >
               View More
             </Button>

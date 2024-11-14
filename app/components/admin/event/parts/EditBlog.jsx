@@ -64,7 +64,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/v1/blog/update/${blog._id}`,
+        `http://localhost:8000/api/v1/event/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -73,17 +73,17 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `http://localhost:8000/api/v1/blog/update-image/${blog._id}`,
+          `http://localhost:8000/api/v1/event/update-image/${blog._id}`,
           imageData
         );
       }
 
       if (response.status === 200) {
-        alert("Blog updated successfully!");
+        alert("Event updated successfully!");
         fetchDepartments();
         setEditModalOpen(false);
       } else {
-        alert("Failed to update the blog.");
+        alert("Failed to update the event.");
       }
 
       if (isImageChanged) {
@@ -95,8 +95,8 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
         }
       }
     } catch (error) {
-      console.error("Error updating blog:", error);
-      alert("An error occurred while updating the blog.");
+      console.error("Error updating event:", error);
+      alert("An error occurred while updating the event.");
     }
 
     if (isImageChanged) {
@@ -107,7 +107,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
-        <InnerContainerHead>Edit Blog</InnerContainerHead>
+        <InnerContainerHead>Edit Event</InnerContainerHead>
         <InnerContainerHeadSection column>
           <Stack direction={"row"}>
             <InputSection width={"50%"}>
