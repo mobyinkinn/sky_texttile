@@ -19,75 +19,111 @@ import { Box, Stack } from "@mui/material";
 import JoditEditor from "jodit-react";
 import { placeholder } from "jodit/esm/plugins/placeholder/placeholder";
 import { useMemo, useRef, useState } from "react";
+import axios from "axios";
 
-const menu = [
-  "Departments",
-  "Doctors",
-  "Appointments",
-  "Academics",
-  "Download Files",
-  "Academics Notices",
-  "Tpa Logo",
-  "Events",
-  "Testimonials",
-  "Award Accreditation",
-  "Enquiries",
-  "Contact",
-  "Videos",
-  "Latest Openings",
-  "Careers",
-  "Health Plans",
-  "Health Tips",
-];
-
-const cms = ["Menus", "Pages", "Posts", "Templates", "Site Settings"];
-
-const donations = ["Donation to", "Doners"];
-
-export default function AddDepartment({ setViewForm }) {
+export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const editor = useRef(null);
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [slug, setSlug] = useState("");
+  const [image, setImage] = useState(null);
+
+  // JoditEditor configuration
   const config = useMemo(
     () => ({
       readonly: false,
       placeholder: "Start typing...",
-      language: "en", // Set default language
+      language: "en",
     }),
     []
   );
 
+  // Handle image file change
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  // API call to save the form data
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("slug", slug);
+      formData.append("image", image);
+
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/blog/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.statusCode === 200) {
+        alert("Blog added successfully!");
+        setViewForm(false);
+        fetchDepartments();
+      } else {
+        alert("Failed to add Blog. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error adding department:", error);
+      alert("An error occurred. Please check the console for details.");
+    }
+  };
+
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
-        <InnerContainerHead>New User</InnerContainerHead>
+        <InnerContainerHead>Add Department</InnerContainerHead>
         <InnerContainerHeadSection column>
+          {/* Title Input */}
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Title</Label>
+              <TextInput
+                placeholder="Enter Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </InputSection>
+
+            {/* Slug Input */}
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Slug</Label>
+              <TextInput
+                placeholder="Enter Slug"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          {/* Image Upload */}
           <InputSection>
-            <Label>Name</Label>
-            <TextInput placeholder="Enter Name" />
+            <Label width={"100px"}>Image</Label>
+            <TextInput type="file" onChange={handleImageChange} />
           </InputSection>
+
+          {/* Content Editor */}
           <InputSection>
-            <Label>Image</Label>
-            <TextInput placeholder="Enter Username" type="file" />
-          </InputSection>
-          <InputSection>
-            <Label>Banner Image</Label>
-            <TextInput placeholder="Enter Password" type="file" />
-          </InputSection>
-          <InputSection>
-            <Label>Content</Label>
+            <Label width={"100px"}>Content</Label>
             <JoditEditor
               ref={editor}
               value={content}
               config={config}
               tabIndex={1}
               onBlur={(newContent) => setContent(newContent)}
-              onChange={(newContent) => {}}
             />
           </InputSection>
+
+          {/* Action Buttons */}
           <InputSection>
             <Label></Label>
             <Stack direction={"row"} gap={"10px"}>
-              <GreenButtonSmall>Save</GreenButtonSmall>
+              <GreenButtonSmall onClick={handleSubmit}>Save</GreenButtonSmall>
               <BlueButtonSmall onClick={() => setViewForm(false)}>
                 Cancel
               </BlueButtonSmall>

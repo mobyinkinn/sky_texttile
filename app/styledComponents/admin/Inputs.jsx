@@ -23,14 +23,14 @@ const TextInput = styled.input((props) => ({
 }));
 
 const Label = styled.span((props) => ({
-  width: "200px",
+  width: props.width || "200px",
   padding: "5px 10px",
   color: "#717171",
   textAlign: "right",
 }));
 
 const InputSection = styled.div((props) => ({
-  width: "100%",
+  width: props.width || "100%",
   display: "flex",
   alignItems: props.alignItems || "center",
   margin: "5px 0",

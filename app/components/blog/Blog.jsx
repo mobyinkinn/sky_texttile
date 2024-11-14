@@ -32,200 +32,223 @@ import image18 from "./assets/blogs/18.jpg";
 import image19 from "./assets/blogs/19.jpg";
 import image20 from "./assets/blogs/20.jpg";
 import image21 from "./assets/blogs/21.jpg";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Events() {
+  
   const router = useRouter();
+const [data, setData] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+  // const data = [
+  //   {
+  //     Title:
+  //       "Best Single Jersey machines in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
+  //     route:
+  //       "/best-single-jersey-machines-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image1,
+  //     description:
+  //       "1st Founders Day marked with commitments, uniform policy, and annual event.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best greige fabric manufacturing company in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
+  //     route:
+  //       "/best-greige-fabric-manufacturing-company-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image2,
+  //     description:
+  //       "Independence Day celebration fostering patriotism and unity among our team.",
+  //   },
+  //   {
+  //     route:
+  //       "/finished-fabrics-manufacturing-company-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     Title:
+  //       "Finished fabrics manufacturing company in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
+  //     image: image3,
+  //     description:
+  //       "Joyful Ganesh Chaturthi celebration uniting our factory team in devotion.",
+  //   },
+  //   {
+  //     route:
+  //       "/best-garment-manufacturing-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     Title:
+  //       "Best Garment Manufacturing in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
+  //     image: image4,
+  //     description:
+  //       "Navratri celebration at our factory embraces Gujarat's culture, dance, and unity.",
+  //   },
+  //   {
+  //     route:
+  //       "/best-yarn-suppliers-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     Title:
+  //       "Best yarn suppliers in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
+  //     image: image5,
+  //     description:
+  //       "Sardar Patel Jayanti, National Unity Day, honors India’s first Deputy PM.",
+  //   },
+  //   {
+  //     Title:
+  //       "Textile Manufacturers and Textile Manufacturing Company in Ahmedabad, Gujarat: Sky Textiles",
+  //     route:
+  //       "/textile-manufacturers-and-textile-manufacturing-company-in-ahmedabad-gujarat-sky-textiles",
+  //     image: image6,
+  //     description:
+  //       "Vishwakarma Puja celebrates Lord Vishwakarma, the divine architect, creator.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Textile Products in Gujarat & Ahmedabad | Best Shirt Production – Sky Textiles",
+  //     route:
+  //       "/best-textile-products-in-gujarat-ahmedabad-best-shirt-production-sky-textiles",
+  //     image: image7,
+  //     description:
+  //       "/Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Textile and Fabric Industries in Ahmedabad and Gujarat:Sky Textiles",
+  //     route:
+  //       "/best-textile-and-fabric-industries-in-ahmedabad-and-gujarat-sky-textiles",
+  //     image: image8,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best T-Shirt Manufacturers in Ahmedabad and Gujarat: Sky Textiles",
+  //     route:
+  //       "/best-t-shirt-manufacturers-in-ahmedabad-and-gujarat-sky-textiles",
+  //     image: image9,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title: "Spinning Mills in Ahmedabad, Gujarat, and India: Sky Textiles",
+  //     route: "/spinning-mills-in-ahmedabad-gujarat-and-india-sky-textiles",
+  //     image: image10,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Textile Industry in Ahmedabad, Gujarat, India, and Asia: Skytextiles",
+  //     route:
+  //       "/best-textile-industry-in-ahmedabad-gujarat-india-and-asia-skytextiles",
+  //     image: image11,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Shirt Manufacturers in Ahmedabad, Gujarat, India, and Asia: Skytextiles",
+  //     route:
+  //       "/shirt-manufacturers-in-ahmedabad-gujarat-india-and-asia-skytextiles",
+  //     image: image12,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
 
-  const data = [
-    {
-      Title:
-        "Best Single Jersey machines in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
-      route:
-        "/best-single-jersey-machines-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image1,
-      description:
-        "1st Founders Day marked with commitments, uniform policy, and annual event.",
-    },
-    {
-      Title:
-        "Best greige fabric manufacturing company in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
-      route:
-        "/best-greige-fabric-manufacturing-company-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image2,
-      description:
-        "Independence Day celebration fostering patriotism and unity among our team.",
-    },
-    {
-      route:
-        "/finished-fabrics-manufacturing-company-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      Title:
-        "Finished fabrics manufacturing company in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
-      image: image3,
-      description:
-        "Joyful Ganesh Chaturthi celebration uniting our factory team in devotion.",
-    },
-    {
-      route:
-        "/best-garment-manufacturing-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      Title:
-        "Best Garment Manufacturing in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
-      image: image4,
-      description:
-        "Navratri celebration at our factory embraces Gujarat's culture, dance, and unity.",
-    },
-    {
-      route:
-        "/best-yarn-suppliers-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      Title:
-        "Best yarn suppliers in Ahmedabad, Gujarat, India and Asia: Sky Textiles",
-      image: image5,
-      description:
-        "Sardar Patel Jayanti, National Unity Day, honors India’s first Deputy PM.",
-    },
-    {
-      Title:
-        "Textile Manufacturers and Textile Manufacturing Company in Ahmedabad, Gujarat: Sky Textiles",
-      route:
-        "/textile-manufacturers-and-textile-manufacturing-company-in-ahmedabad-gujarat-sky-textiles",
-      image: image6,
-      description:
-        "Vishwakarma Puja celebrates Lord Vishwakarma, the divine architect, creator.",
-    },
-    {
-      Title:
-        "Best Textile Products in Gujarat & Ahmedabad | Best Shirt Production – Sky Textiles",
-      route:
-        "/best-textile-products-in-gujarat-ahmedabad-best-shirt-production-sky-textiles",
-      image: image7,
-      description:
-        "/Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Textile and Fabric Industries in Ahmedabad and Gujarat:Sky Textiles",
-      route:
-        "/best-textile-and-fabric-industries-in-ahmedabad-and-gujarat-sky-textiles",
-      image: image8,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best T-Shirt Manufacturers in Ahmedabad and Gujarat: Sky Textiles",
-      route:
-        "/best-t-shirt-manufacturers-in-ahmedabad-and-gujarat-sky-textiles",
-      image: image9,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title: "Spinning Mills in Ahmedabad, Gujarat, and India: Sky Textiles",
-      route: "/spinning-mills-in-ahmedabad-gujarat-and-india-sky-textiles",
-      image: image10,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Textile Industry in Ahmedabad, Gujarat, India, and Asia: Skytextiles",
-      route:
-        "/best-textile-industry-in-ahmedabad-gujarat-india-and-asia-skytextiles",
-      image: image11,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Shirt Manufacturers in Ahmedabad, Gujarat, India, and Asia: Skytextiles",
-      route:
-        "/shirt-manufacturers-in-ahmedabad-gujarat-india-and-asia-skytextiles",
-      image: image12,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
+  //   {
+  //     Title:
+  //       "Best Fabrics in Gujarat: Discover Skytextiles for Quality and Innovation",
+  //     route:
+  //       "/best-fabrics-in-gujarat-discover-skytextiles-for-quality-and-innovation",
+  //     image: image13,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
 
-    {
-      Title:
-        "Best Fabrics in Gujarat: Discover Skytextiles for Quality and Innovation",
-      route:
-        "/best-fabrics-in-gujarat-discover-skytextiles-for-quality-and-innovation",
-      image: image13,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
+  //   {
+  //     Title:
+  //       "Fabric Manufacturers in Ahmedabad, Gujarat, India, and Asia: A Hub for Quality Textiles",
+  //     route:
+  //       "/fabric-manufacturers-in-ahmedabad-gujarat-india-and-asia-a-hub-for-quality-textiles",
+  //     image: image14,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
 
-    {
-      Title:
-        "Fabric Manufacturers in Ahmedabad, Gujarat, India, and Asia: A Hub for Quality Textiles",
-      route:
-        "/fabric-manufacturers-in-ahmedabad-gujarat-india-and-asia-a-hub-for-quality-textiles",
-      image: image14,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
+  //   {
+  //     Title:
+  //       "Best Cotton Mill in India: Sky Textiles Leading the Way in Ahmedabad, Gujarat, and Asia",
+  //     route:
+  //       "/best-cotton-mill-in-india-sky-textiles-leading-the-way-in-ahmedabad-gujarat-and-asia",
+  //     image: image15,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title: "Best Rib Machines in Ahmedabad, Gujarat, India, and Asia",
+  //     route: "/best-rib-machines-in-ahmedabad-gujarat-india-and-asia",
+  //     image: image16,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Draw Frame Process in Ahmedabad ,Gujarat, india and asia : sky textiles",
+  //     route:
+  //       "/best-draw-frame-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image17,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Raw Material Mixing Process in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
+  //     route:
+  //       "/best-raw-material-mixing-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image18,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Speed Frame Process in Ahmedabad, Gujarat, India and Asia : sky textiles",
+  //     route:
+  //       "/best-speed-frame-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image19,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Sustainable textiles in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
+  //     route:
+  //       "/best-sustainable-textiles-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image20,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  //   {
+  //     Title:
+  //       "Best Fleece Machines and Multiple fabric blend in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
+  //     route:
+  //       "/best-fleece-machines-and-multiple-fabric-blend-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
+  //     image: image21,
+  //     description:
+  //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
+  //   },
+  // ];
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/v1/blog/get-all"
+      );
+      setData(response.data.message); // Assuming the response data is an array
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError("Failed to load data.");
+      setLoading(false);
+    }
+  };
 
-    {
-      Title:
-        "Best Cotton Mill in India: Sky Textiles Leading the Way in Ahmedabad, Gujarat, and Asia",
-      route:
-        "/best-cotton-mill-in-india-sky-textiles-leading-the-way-in-ahmedabad-gujarat-and-asia",
-      image: image15,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title: "Best Rib Machines in Ahmedabad, Gujarat, India, and Asia",
-      route: "/best-rib-machines-in-ahmedabad-gujarat-india-and-asia",
-      image: image16,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Draw Frame Process in Ahmedabad ,Gujarat, india and asia : sky textiles",
-      route:
-        "/best-draw-frame-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image17,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Raw Material Mixing Process in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
-      route:
-        "/best-raw-material-mixing-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image18,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Speed Frame Process in Ahmedabad, Gujarat, India and Asia : sky textiles",
-      route:
-        "/best-speed-frame-process-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image19,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Sustainable textiles in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
-      route:
-        "/best-sustainable-textiles-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image20,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-    {
-      Title:
-        "Best Fleece Machines and Multiple fabric blend in Ahmedabad, Gujarat, India and Asia : Sky Textiles",
-      route:
-        "/best-fleece-machines-and-multiple-fabric-blend-in-ahmedabad-gujarat-india-and-asia-sky-textiles",
-      image: image21,
-      description:
-        "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
-    },
-  ];
+  // useEffect to call the API when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Stack>
       <Navbar />
@@ -317,12 +340,12 @@ export default function Events() {
                 width="100%"
                 height="30vh"
                 sx={{
-                  backgroundImage: `url(${d.image.src})`,
+                  backgroundImage: `url(${d.image})`,
                   backgroundSize: "cover",
                   borderRadius: "5px",
                 }}
               ></Box>
-              <Typography fontSize={"1.2rem"}>{d.Title}</Typography>
+              <Typography fontSize={"1.2rem"}>{d.title}</Typography>
             </Stack>
             <Button
               sx={{
