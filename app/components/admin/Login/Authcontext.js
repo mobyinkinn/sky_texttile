@@ -163,15 +163,13 @@ export const AuthProvider = ({ children }) => {
           password,
         }
       );
-
       if (response.status === 200) {
         const data = response.data;
         setAuth(data); // Set the authenticated user data
-        localStorage.setItem("token", data.token); // Store token in localStorage for persistent login
-        localStorage.setItem("AuthPages", JSON.stringify(data.auth_page)); // Store token in localStorage for persistent login
         localStorage.setItem("UserData", JSON.stringify(data)); // Store token in localStorage for persistent login
       } else {
         throw new Error(response.data.message || "Login failed");
+        
       }
     } catch (error) {
       console.error("Login error:", error.message);

@@ -300,7 +300,10 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-
+const UserData = localStorage.getItem("UserData")
+const newUpdate = JSON.parse(UserData);
+const token = newUpdate?.data?.accessToken;
+console.log("token", token);
   // Fetch departments data from API
   const fetchDepartments = async () => {
     try {
@@ -371,7 +374,6 @@ export default function Departments() {
     setCurrentBlog(blog);
     setEditModalOpen(true);
   };
-
   // Handle input changes
   const handleUpdateBlog = async () => {
     const formData = new FormData();
@@ -411,11 +413,12 @@ export default function Departments() {
       <Stack direction={"row"}>
         <NavbarAdmin />
         <Stack width={"100%"} position={"relative"}>
+          {token?
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Departments</MainHead>
+              <MainHead>Blogs</MainHead>
               <StyledButton onClick={() => setViewForm(true)}>
-                Add Department
+                Add Blog
               </StyledButton>
             </Stack>
             {viewForm && (
@@ -425,12 +428,12 @@ export default function Departments() {
               />
             )}
             <InnerContainer>
-              <InnerContainerHead>Listing</InnerContainerHead>
+              {/* <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
                 <SearchInput placeholder="Search" />
                 <GreenButtonSmall>Go!</GreenButtonSmall>
                 <GrayButtonSmall>Reset</GrayButtonSmall>
-              </InnerContainerHeadSection>
+              </InnerContainerHeadSection> */}
               <TableContainer>
                 <Table
                   sx={{ minWidth: 650 }}
@@ -542,6 +545,8 @@ export default function Departments() {
               />
             )}
           </Container>
+          :("You need to login first Invalid Login")
+}
         </Stack>
       </Stack>
     </Stack>

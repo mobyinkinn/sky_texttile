@@ -32,7 +32,7 @@ const [showPassword, setShowPassword] = useState(false);
     e.preventDefault();
     try {
       await login(email, password);
-      navigate.push("/");
+      navigate.push("/admin/blog");
     } catch (error) {
       setError(error.message);
     }
@@ -61,7 +61,7 @@ const togglePasswordVisibility = () => {
         }}
       >
         <Typography variant="h5" color="#ff6b6b" mb={2}>
-          Log in to the Privily Admin Portal
+          Log in to the Sky-Textile Admin Portal
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField

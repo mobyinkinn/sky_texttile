@@ -9,130 +9,42 @@ import { useRouter } from "next/navigation";
 const navData = [
   {
     id: 0,
-    name: "User Management",
-    link: "/admin/adminuser",
+    name: "Blogs",
+    link: "/admin/blog",
     icon: ManageAccountsIcon,
   },
   {
     id: 1,
-    name: "Departments",
-    link: "/admin/department",
+    name: "Events",
+    link: "/admin/event",
     icon: ManageAccountsIcon,
   },
   {
     id: 2,
-    name: "Doctors",
-    link: "/admin/doctors",
+    name: "Seo Meta tags",
+    link: "/admin/seo-changes",
     icon: ManageAccountsIcon,
   },
   {
     id: 3,
-    name: "Appointments",
-    link: "/admin/appointments",
+    name: "Careers",
+    link: "/admin/careers",
     icon: ManageAccountsIcon,
   },
   {
     id: 4,
-    name: "Academics",
-    link: "/admin/academics",
+    name: "Opening Data",
+    link: "/admin/data",
     icon: ManageAccountsIcon,
   },
   {
     id: 5,
-    name: "Download Files",
+    name: "Contact Details",
 
-    link: "/admin/download_files",
+    link: "/admin/contact-data",
     icon: ManageAccountsIcon,
   },
-  {
-    id: 6,
-    name: "Academics Notices",
-    link: "/admin/academic_notices",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 7,
-    name: "Tpa Logo",
-    link: "/admin/tpa_index",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 8,
-    name: "Events",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 9,
-    name: "Testimonials",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 10,
-    name: "Award Accreditations",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 11,
-    name: "Enquiries",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 12,
-    name: "Contact",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 13,
-    name: "Videos",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 14,
-    name: "Latest Openings",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 15,
-    name: "Careers",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 16,
-    name: "Health Plans",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 17,
-    name: "Health Tips",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
-  {
-    id: 18,
-    name: "Logout",
-
-    link: "/admin/adminuser",
-    icon: ManageAccountsIcon,
-  },
+  
 ];
 
 export default function NavbarAdmin() {
