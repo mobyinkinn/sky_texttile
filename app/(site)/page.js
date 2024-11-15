@@ -17,15 +17,20 @@ const fetchData = async () => {
 
 const main = async () => {
   await fetchData();
-  console.log(data); // This will now log the fetched data
-};
-main();
 
-export const metadata = {
-  title: data?.title,
-  description: data?.description,
-  keywords: data?.keywords,
+  return {
+    title: data?.title,
+    description: data?.description,
+    keywords: data?.keywords,
+  };
 };
+export const metadata = await main();
+
+// export const metadata = {
+//   title: data?.title,
+//   description: data?.description,
+//   keywords: data?.keywords,
+// };
 
 export default function Index() {
   return (

@@ -1,6 +1,7 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import emailjs from "emailjs-com";
+import axios from "axios";
 
 const getTrasformStyles = (isHovered) => ({
   transform: `translateY(${isHovered ? "-100%" : "0"})`,
@@ -11,8 +12,40 @@ export default function Form({ setShowForm }) {
   const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [mobile, setMobile] = useState("");
   const [notice, setNotice] = useState("");
+  const [file, setFile] = useState("");
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+
+    // Append key-value pairs to FormData
+    form.append("FirstName", name);
+    form.append("LastName", lastName);
+    form.append("PhoneNumber", mobile);
+    form.append("Email", email);
+    form.append("Position", position);
+    form.append("NoticePeriod", notice);
+
+    if (file !== "") {
+      form.append("file", file); // Ensure 'file' is a File object
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/careersForm/fill-form",
+        form
+      );
+      setShowForm(false);
+      alert("Form submitted!!!");
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setShowForm(false);
+      alert("Something went wrong please try again!!!");
+    }
+  };
 
   const sendEmail = () => {
     const formData = {
@@ -75,6 +108,7 @@ export default function Form({ setShowForm }) {
         >
           <TextField
             variant="outlined"
+            required
             label="First name"
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
@@ -84,7 +118,10 @@ export default function Form({ setShowForm }) {
           />
           <TextField
             variant="outlined"
+            required
             label="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -100,6 +137,7 @@ export default function Form({ setShowForm }) {
         >
           <TextField
             variant="outlined"
+            required
             label="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -109,6 +147,7 @@ export default function Form({ setShowForm }) {
           />
           <TextField
             variant="outlined"
+            required
             label="Phone"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
@@ -127,6 +166,7 @@ export default function Form({ setShowForm }) {
         >
           <TextField
             variant="outlined"
+            required
             label="Position"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
@@ -136,9 +176,36 @@ export default function Form({ setShowForm }) {
           />
           <TextField
             variant="outlined"
+            required
             label="Notice Period"
             value={notice}
             onChange={(e) => setNotice(e.target.value)}
+            sx={{
+              width: { xll: "50%", smm: "50%", sm: "100%" },
+            }}
+          />
+        </Stack>
+        <Stack
+          direction={{ xll: "row", smm: "row", sm: "column" }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={{ xll: "20px", smm: "20px", sm: "10px" }}
+          sx={{
+            width: "100%",
+          }}
+        >
+          <Typography
+            sx={{
+              width: { xll: "50%", smm: "50%", sm: "100%" },
+              padding: "10px",
+            }}
+          >
+            Upload your resume{" "}
+          </Typography>
+          <TextField
+            variant="outlined"
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -174,7 +241,7 @@ export default function Form({ setShowForm }) {
             outline: "none",
             border: "none",
           }}
-          onClick={sendEmail}
+          onClick={handleSubmitForm}
           onMouseEnter={() => {
             setIsHovered(true);
           }}
