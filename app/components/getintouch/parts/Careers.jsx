@@ -11,10 +11,14 @@ import time from "./assets/time.png";
 import Form from "./FormCareer";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Careers() {
   const [showForm, setShowForm] = useState(false);
+  // const router = useRouter();
+  const [careerData, setData] = useState([]);
+
   const data = [
     {
       designation: "B2B Area Sales Manager",
@@ -45,6 +49,28 @@ export default function Careers() {
       Remote: "Botad, Gujarat",
     },
   ];
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/v1/careers/get-careers"
+      );
+      setData(response.data.message); // Assuming the response data is an array
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  // useEffect to call the API when the component mounts
+  useEffect(() => {
+    async function fetch() {
+      await fetchData();
+    }
+    fetch();
+  }, []);
+
+  // console.log(careerData);
+
   return (
     <Stack>
       <Navbar />
@@ -135,7 +161,7 @@ export default function Careers() {
         >
           Current Job Openings
         </Typography>
-        {data.map((d) => (
+        {careerData.map((d) => (
           <Stack
             margin={{ md: "30px 0", xs: "20px 0px" }}
             gap={"20px"}
@@ -146,7 +172,7 @@ export default function Careers() {
                 fontSize={{ lg: "1.8rem", smm: "1.6rem", xs: "1.4rem" }}
                 fontWeight={"bold"}
               >
-                {d.designation}
+                {d.title}
               </Typography>
               <Stack
                 direction={"Row"}
@@ -162,7 +188,7 @@ export default function Careers() {
                 <Image src={arrow} alt="" width={"20"} height={"20"} />
               </Stack>
             </Stack>
-            <Typography>{d.Description}</Typography>
+            <Typography>{d.description}</Typography>
             <Stack direction={"row"} justifyContent={"start"} gap={"20px"}>
               <Stack
                 direction={"row"}
@@ -177,7 +203,7 @@ export default function Careers() {
               >
                 <Image src={location} alt="" width={15} height={20} />
                 <Typography fontSize={{ smm: "20px", sm: "11px" }}>
-                  {d.Remote}
+                  {d.location}
                 </Typography>
               </Stack>
               <Stack

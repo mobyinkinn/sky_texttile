@@ -1,10 +1,10 @@
-import Yarns from "@/app/components/products/parts/Yarns";
+import Careers from "@/app/components/getintouch/parts/Careers";
 
 let data;
 const fetchData = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8000/api/v1/seo/getByPageName?pagename=yarns"
+      "http://localhost:8000/api/v1/seo/getByPageName?pagename=careers"
     );
     // setData(response.data.message); // Assuming the response data is an array
 
@@ -26,6 +26,6 @@ const main = async () => {
 };
 export const metadata = await main();
 
-export default function () {
-  return <Yarns />;
+export default function index() {
+  return <Careers />;
 }

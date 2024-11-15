@@ -1,12 +1,35 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 
 const getTrasformStyles = (isHovered) => ({
   transform: `translateY(${isHovered ? "-100%" : "0"})`,
 });
+const formData = {
+  FirstName: "",
+  LastName: "",
+  Email: "",
+  PhoneNumber: "",
+  CompanyName: "",
+  Category: "",
+  Message: "",
+};
 
 export default function Form() {
   const [isHovered, setIsHovered] = useState(false);
+  const [form, setForm] = useState(formData);
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/contact/form",
+        form
+      );
+      // console.log(response);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <Stack
       margin={{
@@ -51,6 +74,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="First name"
+            value={form.FirstName}
+            onChange={(e) => setForm({ ...form, FirstName: e.target.value })}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -58,6 +83,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="Last name"
+            value={form.LastName}
+            onChange={(e) => setForm({ ...form, LastName: e.target.value })}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -74,6 +101,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="Email address"
+            value={form.Email}
+            onChange={(e) => setForm({ ...form, Email: e.target.value })}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -81,6 +110,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="Phone"
+            value={form.PhoneNumber}
+            onChange={(e) => setForm({ ...form, PhoneNumber: e.target.value })}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -97,6 +128,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="Company name"
+            onChange={(e) => setForm({ ...form, CompanyName: e.target.value })}
+            value={form.CompanyName}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -104,6 +137,8 @@ export default function Form() {
           <TextField
             variant="outlined"
             label="Category"
+            onChange={(e) => setForm({ ...form, Category: e.target.value })}
+            value={form.Category}
             sx={{
               width: { xll: "50%", smm: "50%", sm: "100%" },
             }}
@@ -112,8 +147,9 @@ export default function Form() {
         <TextField
           multiline
           rows={4}
-          maxRows={4}
           label="Message"
+          value={form.Message}
+          onChange={(e) => setForm({ ...form, Message: e.target.value })}
           sx={{
             width: "100%",
           }}
@@ -138,6 +174,7 @@ export default function Form() {
         onMouseLeave={() => {
           setIsHovered(false);
         }}
+        onClick={(e) => handleSubmitForm(e)}
       >
         <span className="fancy-button-text-container">
           <span style={getTrasformStyles(isHovered)}>Contact</span>
