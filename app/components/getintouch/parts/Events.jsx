@@ -108,7 +108,7 @@ export default function Events() {
   //   },
   // ];
 
-  console.log(data);
+  // console.log(data);
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -117,7 +117,7 @@ export default function Events() {
       setData(response.data.message); // Assuming the response data is an array
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data: ", error);
       setError("Failed to load data.");
       setLoading(false);
     }
@@ -262,7 +262,11 @@ export default function Events() {
                   transform: "scale(1.04)",
                 },
               }}
-              onClick={() => router.push(d.route)}
+              onClick={() =>
+                router.push(
+                  `/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/${d.slug}`
+                )
+              }
             >
               View More
             </Button>
