@@ -317,8 +317,9 @@ export default function Departments() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/blog/get-all"
+        "http://localhost:8000/api/v1/seo/get-all"
       );
+      console.log(response);
       if (response.status === 200) {
         setDepartments(response.data.message);
       } else {
@@ -438,9 +439,9 @@ export default function Departments() {
             <Stack width={"100%"} position={"relative"}>
               <Container>
                 <Stack direction={"row"} justifyContent={"space-between"}>
-                  <MainHead>Blogs</MainHead>
+                  <MainHead>Metadata</MainHead>
                   <StyledButton onClick={() => setViewForm(true)}>
-                    Add Blog
+                    Add Metadata
                   </StyledButton>
                 </Stack>
                 {viewForm && (
@@ -465,9 +466,10 @@ export default function Departments() {
                       <TableHead>
                         <TableRow>
                           <TableCell>#</TableCell>
+                          <TableCell>Page</TableCell>
                           <TableCell>Title</TableCell>
-                          <TableCell>Image</TableCell>
-                          <TableCell>Slug</TableCell>
+                          <TableCell>Keyword</TableCell>
+                          <TableCell>Description</TableCell>
                           <TableCell>Status</TableCell>
                           <TableCell>Actions</TableCell>
                         </TableRow>
@@ -491,16 +493,12 @@ export default function Departments() {
                               }}
                             >
                               <TableCell>{index + 1}</TableCell>
-                              <TableCell>{department.title}</TableCell>
                               <TableCell>
-                                <Image
-                                  src={department.image || "/placeholder.jpg"}
-                                  alt={department.title}
-                                  width={50}
-                                  height={50}
-                                />
+                                {department.pagename || "Test data"}
                               </TableCell>
-                              <TableCell>{department.slug}</TableCell>
+                              <TableCell>{department.title}</TableCell>
+                              <TableCell>{department.keywords}</TableCell>
+                              <TableCell>{department.description}</TableCell>
                               <TableCell>
                                 <StatusLabel
                                   status={
@@ -512,7 +510,7 @@ export default function Departments() {
                               </TableCell>
                               <TableCell>
                                 <Stack direction={"row"} gap={"8px"}>
-                                  <GreenButtonSmall
+                                  {/* <GreenButtonSmall
                                     onClick={() =>
                                       handleToggleBlock(
                                         department._id,
@@ -537,7 +535,7 @@ export default function Departments() {
                                         }}
                                       />
                                     )}
-                                  </GreenButtonSmall>
+                                  </GreenButtonSmall> */}
                                   <YellowButtonSmall
                                     onClick={() => handleEditClick(department)}
                                   >
@@ -545,7 +543,7 @@ export default function Departments() {
                                       sx={{ width: "15px", height: "15px" }}
                                     />
                                   </YellowButtonSmall>
-                                  <RedButtonSmall
+                                  {/* <RedButtonSmall
                                     onClick={() =>
                                       handleDeleteBlog(department._id)
                                     }
@@ -553,7 +551,7 @@ export default function Departments() {
                                     <DeleteIcon
                                       sx={{ width: "15px", height: "15px" }}
                                     />
-                                  </RedButtonSmall>
+                                  </RedButtonSmall> */}
                                 </Stack>
                               </TableCell>
                             </TableRow>
