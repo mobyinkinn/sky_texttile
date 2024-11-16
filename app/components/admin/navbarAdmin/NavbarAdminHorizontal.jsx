@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import logo from "./assets/logo.png";
 import { NavText } from "@/app/styledComponents/admin/Text";
@@ -22,7 +22,15 @@ export default function NavbarAdminHorizontal() {
         border: "1px solid #ddd",
       }}
     >
-      <Image src={logo} width={120} height={40} alt="" />
+      <Box height={"90%"} width={"20vw"} position={"relative"}>
+        <Image
+          src={logo}
+          fill
+          objectFit="contain"
+          objectPosition="left center"
+          alt=""
+        />
+      </Box>
       <Stack direction={"row"} gap={4} marginRight={"20px"}>
         <NavText onClick={() => router.push("/")}>View Site</NavText>
         <NavText onClick={handleLogout}>Log Out</NavText>

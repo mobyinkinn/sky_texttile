@@ -56,24 +56,24 @@ export default function NavbarAdmin() {
 
   return (
     <Stack backgroundColor={"#fff"} height={"90vh"} width={"300px"}>
-      {/* <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
+      <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
         <Typography
           sx={{
-            backgroundColor: "#61aa70",
+            // backgroundColor: "#61aa70",
             width: "fit-content",
             padding: "5px 10px",
             borderRadius: "5px",
-            cursor: "pointer",
+            // cursor: "pointer",
             margin: "10px",
             color: "white",
-            "&:hover": {
-              backgroundColor: "#53B567",
-            },
+            // "&:hover": {
+            //   backgroundColor: "#53B567",
+            // },
           }}
         >
           Quick Links
         </Typography>
-      </Stack> */}
+      </Stack>
       <Stack
         sx={{
           overflow: "auto",
