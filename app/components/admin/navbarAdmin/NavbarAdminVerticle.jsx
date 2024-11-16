@@ -71,7 +71,7 @@ export default function NavbarAdmin() {
             // },
           }}
         >
-          Quick Links
+          Admin Panel
         </Typography>
       </Stack>
       <Stack

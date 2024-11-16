@@ -42,9 +42,14 @@ const pageData = [
 ];
 
 export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
-  const [metaData, setMetaData] = useState({});
+  const initialData = {
+    title: data?.title || "",
+    keywords: data?.keywords || "",
+    description: data?.description || "",
+  };
+  const [metaData, setMetaData] = useState(initialData);
 
-  console.log(metaData);
+  console.log(data);
 
   const handleUpdateBlog = async () => {
     const imageData = new FormData();
@@ -79,7 +84,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
             <Label width={"100px"}>Title</Label>
             <TextInput
               placeholder="Enter Title"
-              value={metaData?.title || ""}
+              value={metaData?.title}
               onChange={(e) =>
                 setMetaData({ ...metaData, title: e.target.value })
               }
@@ -90,7 +95,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
             <Label width={"100px"}>Description</Label>
             <TextInput
               placeholder="Enter Slug"
-              value={metaData?.description || ""}
+              value={metaData?.description}
               onChange={(e) =>
                 setMetaData({ ...metaData, description: e.target.value })
               }
@@ -100,7 +105,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
             <Label width={"100px"}>Keywords</Label>
             <TextInput
               placeholder="Enter Title"
-              value={metaData?.keywords || ""}
+              value={metaData?.keywords}
               onChange={(e) =>
                 setMetaData({ ...metaData, keywords: e.target.value })
               }

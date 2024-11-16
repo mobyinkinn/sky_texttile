@@ -49,14 +49,14 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-const UserData = localStorage.getItem("UserData");
-const newUpdate = JSON.parse(UserData);
-const router = useRouter();
-const token = newUpdate?.data?.accessToken;
+  const UserData = localStorage.getItem("UserData");
+  const newUpdate = JSON.parse(UserData);
+  const router = useRouter();
+  const token = newUpdate?.data?.accessToken;
 
-if (!token) {
-  router.push("/admin/login");
-}
+  if (!token) {
+    router.push("/admin/login");
+  }
 
   // Fetch departments data from API
   const fetchDepartments = async () => {
@@ -170,9 +170,9 @@ if (!token) {
         <Stack width={"100%"} position={"relative"}>
           <Container>
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <MainHead>Departments</MainHead>
+              <MainHead>Events</MainHead>
               <StyledButton onClick={() => setViewForm(true)}>
-                Add Department
+                Add Events
               </StyledButton>
             </Stack>
             {viewForm && (
@@ -182,19 +182,6 @@ if (!token) {
               />
             )}
             <InnerContainer>
-              <InnerContainerHead>Listing</InnerContainerHead>
-              <InnerContainerHeadSection>
-                <SearchInput placeholder="Search" />
-                <GreenButtonSmall>Go!</GreenButtonSmall>
-                <GrayButtonSmall>
-                  <a
-                    href="http://res.cloudinary.com/dfia0vhez/image/upload/v1731585250/qijjbwjuiwqmcfyn4lbz.pdf"
-                    download="your-file.pdf"
-                  >
-                    Download PDF
-                  </a>
-                </GrayButtonSmall>
-              </InnerContainerHeadSection>
               <TableContainer>
                 <Table
                   sx={{ minWidth: 650 }}
