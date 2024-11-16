@@ -27,7 +27,7 @@ const navData = [
   {
     id: 2,
     name: "Seo Meta tags",
-    link: "/admin/seo-changes",
+    link: "/admin/seo",
     icon: ShowChartIcon,
   },
   {
@@ -38,8 +38,8 @@ const navData = [
   },
   {
     id: 4,
-    name: "Opening Data",
-    link: "/admin/data",
+    name: "Hiring Data",
+    link: "/admin/hiring-data",
     icon: PictureAsPdfIcon,
   },
   {
@@ -54,10 +54,9 @@ export default function NavbarAdmin() {
   const path = usePathname();
   const router = useRouter();
 
-  console.log(path === navData[0].link);
   return (
     <Stack backgroundColor={"#fff"} height={"90vh"} width={"300px"}>
-      <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
+      {/* <Stack backgroundColor={"#89CC97"} alignItems={"center"}>
         <Typography
           sx={{
             backgroundColor: "#61aa70",
@@ -74,7 +73,7 @@ export default function NavbarAdmin() {
         >
           Quick Links
         </Typography>
-      </Stack>
+      </Stack> */}
       <Stack
         sx={{
           overflow: "auto",
@@ -88,15 +87,13 @@ export default function NavbarAdmin() {
           <tbody>
             {navData.map((el, i) => {
               return (
-                <NavTableRow
-                  key={el.id}
-                  onClick={() => router.push(el.link)}
-                  bgColor={path === el.link && "#eee"}
-                >
-                  <NavTableCell icon>
+                <NavTableRow key={el.id} onClick={() => router.push(el.link)}>
+                  <NavTableCell icon bgColor={path === el.link && "#eee"}>
                     <el.icon width={"50px"} height={"50px"} />
                   </NavTableCell>
-                  <NavTableCell>{el.name}</NavTableCell>
+                  <NavTableCell bgColor={path === el.link && "#eee"}>
+                    {el.name}
+                  </NavTableCell>
                 </NavTableRow>
               );
             })}

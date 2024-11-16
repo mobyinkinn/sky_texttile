@@ -13,14 +13,18 @@ export default function NavbarAdminHorizontal() {
   return (
     <Stack
       height={"10vh"}
-      backgroundColor={"#25313E"}
+      backgroundColor={"#eee"}
       padding={"10px"}
       direction={"row"}
       justifyContent={"space-between"}
       alignItems={"center"}
+      sx={{
+        border: "1px solid #ddd",
+      }}
     >
       <Image src={logo} width={120} height={40} alt="" />
-      <Stack>
+      <Stack direction={"row"} gap={4} marginRight={"20px"}>
+        <NavText onClick={() => router.push("/")}>View Site</NavText>
         <NavText onClick={handleLogout}>Log Out</NavText>
       </Stack>
     </Stack>

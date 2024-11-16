@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import {
@@ -53,7 +51,6 @@ export default function Careers() {
   const UserData = localStorage.getItem("UserData");
   const newUpdate = JSON.parse(UserData);
   const token = newUpdate?.data?.accessToken;
-  console.log("token", token);
   // Fetch departments data from API
   const fetchDepartments = async () => {
     try {

@@ -49,7 +49,6 @@ export default function Contacts() {
   const UserData = localStorage.getItem("UserData");
   const newUpdate = JSON.parse(UserData);
   const token = newUpdate?.data?.accessToken;
-  console.log("token", token);
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
