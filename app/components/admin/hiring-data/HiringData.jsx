@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  Box,
+  CircularProgress,
   Stack,
   Table,
   TableBody,
@@ -39,6 +41,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function HiringData() {
   const [viewForm, setViewForm] = useState(false);
@@ -46,9 +49,14 @@ export default function HiringData() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
-  const token = newUpdate?.data?.accessToken;
+ const UserData = localStorage.getItem("UserData");
+ const newUpdate = JSON.parse(UserData);
+ const router = useRouter();
+ const token = newUpdate?.data?.accessToken;
+
+ if (!token) {
+   router.push("/admin/login");
+ }
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
@@ -100,76 +108,92 @@ export default function HiringData() {
 
   return (
     <Stack>
-      <NavbarAdminHorizontal />
-      <Stack direction={"row"}>
-        <NavbarAdmin />
-        <Stack width={"100%"} position={"relative"}>
-          {token ? (
-            <Container>
-              <Stack direction={"row"} justifyContent={"space-between"}>
-                <MainHead>Careers data</MainHead>
-              </Stack>
-              <InnerContainer>
-                {/* <InnerContainerHead>Listing</InnerContainerHead>
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "90vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+      <>
+        <NavbarAdminHorizontal />
+        <Stack direction={"row"}>
+          <NavbarAdmin />
+          <Stack width={"100%"} position={"relative"}>
+            {token ? (
+              <Container>
+                <Stack direction={"row"} justifyContent={"space-between"}>
+                  <MainHead>Careers data</MainHead>
+                </Stack>
+                <InnerContainer>
+                  {/* <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
                 <SearchInput placeholder="Search" />
                 <GreenButtonSmall>Go!</GreenButtonSmall>
                 <GrayButtonSmall>Reset</GrayButtonSmall>
               </InnerContainerHeadSection> */}
-                <TableContainer>
-                  <Table
-                    sx={{ minWidth: 650 }}
-                    size="large"
-                    aria-label="Departments"
-                  >
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>#</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>PhoneNumber</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Position</TableCell>
-                        <TableCell>Resume</TableCell>
-                        <TableCell>Action</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {loading ? (
+                  <TableContainer>
+                    <Table
+                      sx={{ minWidth: 650 }}
+                      size="large"
+                      aria-label="Departments"
+                    >
+                      <TableHead>
                         <TableRow>
-                          <TableCell colSpan={6} align="center">
-                            Loading...
-                          </TableCell>
+                          <TableCell>#</TableCell>
+                          <TableCell>Name</TableCell>
+                          <TableCell>PhoneNumber</TableCell>
+                          <TableCell>Email</TableCell>
+                          <TableCell>Position</TableCell>
+                          <TableCell>Resume</TableCell>
+                          <TableCell>Action</TableCell>
                         </TableRow>
-                      ) : (
-                        departments.map((department, index) => (
-                          <TableRow
-                            key={department._id}
-                            sx={{
-                              verticalAlign: "baseline",
-                              backgroundColor: "white",
-                              "&:last-child td, &:last-child th": { border: 0 },
-                            }}
-                          >
-                            <TableCell>{index + 1}</TableCell>
-                            <TableCell>
-                              {department.FirstName} {department.LastName}
+                      </TableHead>
+                      <TableBody>
+                        {loading ? (
+                          <TableRow>
+                            <TableCell colSpan={6} align="center">
+                              Loading...
                             </TableCell>
-                            <TableCell>{department.PhoneNumber}</TableCell>
-                            <TableCell>{department.Email}</TableCell>
-                            <TableCell>{department.Position}</TableCell>
-                            <StyledButton>
-                              <a
-                                href={department.Resume}
-                                style={{
-                                  textDecoration: "none",
-                                  color: "black",
-                                }}
-                              >
-                                Download
-                              </a>
-                            </StyledButton>
+                          </TableRow>
+                        ) : (
+                          departments.map((department, index) => (
+                            <TableRow
+                              key={department._id}
+                              sx={{
+                                verticalAlign: "baseline",
+                                backgroundColor: "white",
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell>
+                                {department.FirstName} {department.LastName}
+                              </TableCell>
+                              <TableCell>{department.PhoneNumber}</TableCell>
+                              <TableCell>{department.Email}</TableCell>
+                              <TableCell>{department.Position}</TableCell>
+                              <StyledButton>
+                                <a
+                                  href={department.Resume}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                >
+                                  Download
+                                </a>
+                              </StyledButton>
 
-                            {/* <TableCell>
+                              {/* <TableCell>
                               <StatusLabel
                                 status={
                                   department.isBlocked ? "Blocked" : "Active"
@@ -178,32 +202,34 @@ export default function HiringData() {
                                 {department.isBlocked ? "Blocked" : "Active"}
                               </StatusLabel>
                             </TableCell> */}
-                            <TableCell>
-                              <Stack direction={"row"} gap={"8px"}>
-                                <RedButtonSmall
-                                  onClick={() =>
-                                    handleDeleteBlog(department._id)
-                                  }
-                                >
-                                  <DeleteIcon
-                                    sx={{ width: "15px", height: "15px" }}
-                                  />
-                                </RedButtonSmall>
-                              </Stack>
-                            </TableCell>
-                          </TableRow>
-                        ))
-                      )}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </InnerContainer>
-            </Container>
-          ) : (
-            "You need to login first Invalid Login"
-          )}
+                              <TableCell>
+                                <Stack direction={"row"} gap={"8px"}>
+                                  <RedButtonSmall
+                                    onClick={() =>
+                                      handleDeleteBlog(department._id)
+                                    }
+                                  >
+                                    <DeleteIcon
+                                      sx={{ width: "15px", height: "15px" }}
+                                    />
+                                  </RedButtonSmall>
+                                </Stack>
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </InnerContainer>
+              </Container>
+            ) : (
+              "You need to login first Invalid Login"
+            )}
+          </Stack>
         </Stack>
-      </Stack>
+      </>
+      )}
     </Stack>
   );
 }
