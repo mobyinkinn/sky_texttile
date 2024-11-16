@@ -3,6 +3,8 @@
 "use client";
 
 import {
+  Box,
+  CircularProgress,
   Stack,
   Table,
   TableBody,
@@ -43,6 +45,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
+import { useRouter } from "next/navigation";
 
 export default function Careers() {
   const [viewForm, setViewForm] = useState(false);
@@ -52,8 +55,12 @@ export default function Careers() {
   const [currentBlog, setCurrentBlog] = useState(null);
   const UserData = localStorage.getItem("UserData");
   const newUpdate = JSON.parse(UserData);
+  const router = useRouter();
   const token = newUpdate?.data?.accessToken;
-  console.log("token", token);
+
+  if (!token) {
+    router.push("/admin/login");
+  }
   // Fetch departments data from API
   const fetchDepartments = async () => {
     try {
@@ -159,142 +166,156 @@ export default function Careers() {
 
   return (
     <Stack>
-      <NavbarAdminHorizontal />
-      <Stack direction={"row"}>
-        <NavbarAdmin />
-        <Stack width={"100%"} position={"relative"}>
-          {token ? (
-            <Container>
-              <Stack direction={"row"} justifyContent={"space-between"}>
-                <MainHead>Careers</MainHead>
-                <StyledButton onClick={() => setViewForm(true)}>
-                  Add Careers
-                </StyledButton>
-              </Stack>
-              {viewForm && (
-                <Createcareers
-                  setViewForm={setViewForm}
-                  fetchDepartments={fetchDepartments}
-                />
-              )}
-              <InnerContainer>
-                {/* <InnerContainerHead>Listing</InnerContainerHead>
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "90vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+      <>
+        <NavbarAdminHorizontal />
+        <Stack direction={"row"}>
+          <NavbarAdmin />
+          <Stack width={"100%"} position={"relative"}>
+              <Container>
+                <Stack direction={"row"} justifyContent={"space-between"}>
+                  <MainHead>Careers</MainHead>
+                  <StyledButton onClick={() => setViewForm(true)}>
+                    Add Careers
+                  </StyledButton>
+                </Stack>
+                {viewForm && (
+                  <Createcareers
+                    setViewForm={setViewForm}
+                    fetchDepartments={fetchDepartments}
+                  />
+                )}
+                <InnerContainer>
+                  {/* <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
                 <SearchInput placeholder="Search" />
                 <GreenButtonSmall>Go!</GreenButtonSmall>
                 <GrayButtonSmall>Reset</GrayButtonSmall>
               </InnerContainerHeadSection> */}
-                <TableContainer>
-                  <Table
-                    sx={{ minWidth: 650 }}
-                    size="large"
-                    aria-label="Departments"
-                  >
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>#</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell>type</TableCell>
-                        <TableCell>location</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>Actions</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {loading ? (
+                  <TableContainer>
+                    <Table
+                      sx={{ minWidth: 650 }}
+                      size="large"
+                      aria-label="Departments"
+                    >
+                      <TableHead>
                         <TableRow>
-                          <TableCell colSpan={6} align="center">
-                            Loading...
-                          </TableCell>
+                          <TableCell>#</TableCell>
+                          <TableCell>Title</TableCell>
+                          <TableCell>type</TableCell>
+                          <TableCell>location</TableCell>
+                          <TableCell>Status</TableCell>
+                          <TableCell>Actions</TableCell>
                         </TableRow>
-                      ) : (
-                        departments.map((department, index) => (
-                          <TableRow
-                            key={department._id}
-                            sx={{
-                              backgroundColor: "white",
-                              "&:last-child td, &:last-child th": { border: 0 },
-                            }}
-                          >
-                            <TableCell>{index + 1}</TableCell>
-                            <TableCell>{department.title}</TableCell>
-                            <TableCell>{department.type}</TableCell>
-                            <TableCell>{department.location}</TableCell>
-                            <TableCell>
-                              <StatusLabel
-                                status={
-                                  department.isBlocked ? "Blocked" : "Active"
-                                }
-                              >
-                                {department.isBlocked ? "Blocked" : "Active"}
-                              </StatusLabel>
-                            </TableCell>
-                            <TableCell>
-                              <Stack direction={"row"} gap={"8px"}>
-                                <GreenButtonSmall
-                                  onClick={() =>
-                                    handleToggleBlock(
-                                      department._id,
-                                      department.isBlocked
-                                    )
-                                  }
-                                >
-                                  {department.isBlocked ? (
-                                    <BlockIcon
-                                      sx={{
-                                        width: "15px",
-                                        height: "15px",
-                                        color: "red",
-                                      }}
-                                    />
-                                  ) : (
-                                    <UnblockIcon
-                                      sx={{
-                                        width: "15px",
-                                        height: "15px",
-                                        color: "green",
-                                      }}
-                                    />
-                                  )}
-                                </GreenButtonSmall>
-                                <YellowButtonSmall
-                                  onClick={() => handleEditClick(department)}
-                                >
-                                  <EditIcon
-                                    sx={{ width: "15px", height: "15px" }}
-                                  />
-                                </YellowButtonSmall>
-                                <RedButtonSmall
-                                  onClick={() =>
-                                    handleDeleteBlog(department._id)
-                                  }
-                                >
-                                  <DeleteIcon
-                                    sx={{ width: "15px", height: "15px" }}
-                                  />
-                                </RedButtonSmall>
-                              </Stack>
+                      </TableHead>
+                      <TableBody>
+                        {loading ? (
+                          <TableRow>
+                            <TableCell colSpan={6} align="center">
+                              Loading...
                             </TableCell>
                           </TableRow>
-                        ))
-                      )}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </InnerContainer>
-              {editModalOpen && currentBlog && (
-                <EditCareers
-                  setEditModalOpen={setEditModalOpen}
-                  fetchDepartments={fetchDepartments}
-                  blog={currentBlog}
-                />
-              )}
-            </Container>
-          ) : (
-            "You need to login first Invalid Login"
-          )}
+                        ) : (
+                          departments.map((department, index) => (
+                            <TableRow
+                              key={department._id}
+                              sx={{
+                                backgroundColor: "white",
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell>{department.title}</TableCell>
+                              <TableCell>{department.type}</TableCell>
+                              <TableCell>{department.location}</TableCell>
+                              <TableCell>
+                                <StatusLabel
+                                  status={
+                                    department.isBlocked ? "Blocked" : "Active"
+                                  }
+                                >
+                                  {department.isBlocked ? "Blocked" : "Active"}
+                                </StatusLabel>
+                              </TableCell>
+                              <TableCell>
+                                <Stack direction={"row"} gap={"8px"}>
+                                  <GreenButtonSmall
+                                    onClick={() =>
+                                      handleToggleBlock(
+                                        department._id,
+                                        department.isBlocked
+                                      )
+                                    }
+                                  >
+                                    {department.isBlocked ? (
+                                      <BlockIcon
+                                        sx={{
+                                          width: "15px",
+                                          height: "15px",
+                                          color: "red",
+                                        }}
+                                      />
+                                    ) : (
+                                      <UnblockIcon
+                                        sx={{
+                                          width: "15px",
+                                          height: "15px",
+                                          color: "green",
+                                        }}
+                                      />
+                                    )}
+                                  </GreenButtonSmall>
+                                  <YellowButtonSmall
+                                    onClick={() => handleEditClick(department)}
+                                  >
+                                    <EditIcon
+                                      sx={{ width: "15px", height: "15px" }}
+                                    />
+                                  </YellowButtonSmall>
+                                  <RedButtonSmall
+                                    onClick={() =>
+                                      handleDeleteBlog(department._id)
+                                    }
+                                  >
+                                    <DeleteIcon
+                                      sx={{ width: "15px", height: "15px" }}
+                                    />
+                                  </RedButtonSmall>
+                                </Stack>
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </InnerContainer>
+                {editModalOpen && currentBlog && (
+                  <EditCareers
+                    setEditModalOpen={setEditModalOpen}
+                    fetchDepartments={fetchDepartments}
+                    blog={currentBlog}
+                  />
+                )}
+              </Container>
+          </Stack>
         </Stack>
-      </Stack>
+      </>
+      )}
     </Stack>
   );
 }
