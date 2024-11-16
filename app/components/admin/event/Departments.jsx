@@ -41,6 +41,7 @@ import { useEffect, useState } from "react";
 import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
+import { useRouter } from "next/navigation";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -48,6 +49,14 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
+const UserData = localStorage.getItem("UserData");
+const newUpdate = JSON.parse(UserData);
+const router = useRouter();
+const token = newUpdate?.data?.accessToken;
+
+if (!token) {
+  router.push("/admin/login");
+}
 
   // Fetch departments data from API
   const fetchDepartments = async () => {
