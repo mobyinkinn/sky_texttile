@@ -1,4 +1,5 @@
 import SkyTextiles from "@/app/components/company/parts/SkyPrimware";
+import axios from "axios";
 // export const metadata = {
 //   title:
 //   "Best Garmenting And  Finishing Manufacturing Company in Ahmedabad, Gujarat, India & Asia: Sky Textiles",

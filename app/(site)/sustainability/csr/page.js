@@ -1,4 +1,5 @@
 import Csr from "@/app/components/sustainiblity/parts/Csr";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

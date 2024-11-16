@@ -1,4 +1,5 @@
 import Yarns from "@/app/components/products/parts/Yarns";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

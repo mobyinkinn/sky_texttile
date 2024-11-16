@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 const NavTableCell = styled.td((props) => ({
   padding: "8px",
-  color: "#717171",
+  color: props.color || "#717171",
   width: props.icon && "40px",
 }));
 

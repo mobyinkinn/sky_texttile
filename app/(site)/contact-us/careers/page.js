@@ -1,4 +1,5 @@
 import Careers from "@/app/components/getintouch/parts/Careers";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

@@ -1,4 +1,5 @@
 import Certs from "@/app/components/getintouch/parts/Certifications";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

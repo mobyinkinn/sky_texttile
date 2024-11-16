@@ -1,4 +1,5 @@
 import Why from "@/app/components/whyus/Why";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

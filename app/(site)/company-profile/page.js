@@ -1,4 +1,5 @@
 import Company from "@/app/components/company/Company";
+import axios from "axios";
 
 // export const metadata = {
 //   title:

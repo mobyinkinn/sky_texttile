@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { InnerContainerHead } from "@/app/styledComponents/admin/AdminHead";
 import {
   BlueButtonSmall,
@@ -14,70 +14,49 @@ import {
   Label,
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
-import { Stack } from "@mui/material";
+import { Autocomplete, Stack, TextField } from "@mui/material";
 import JoditEditor from "jodit-react";
 import axios from "axios";
 
-export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
-  const editor = useRef(null);
-  const [title, setTitle] = useState(blog?.title || "");
-  const [content, setContent] = useState(blog?.content || "");
-  const [slug, setSlug] = useState(blog?.slug || "");
-  const [image, setImage] = useState(blog?.image || null);
-  const [previewImage, setPreviewImage] = useState(blog?.image || null);
-  const [isImageChanged, setIsImageChanged] = useState(false);
+const pageData = [
+  { label: "home" },
+  { label: "blog" },
+  { label: "clients" },
+  { label: "companyProfile" },
+  { label: "skyPrimware" },
+  { label: "skyInternational" },
+  { label: "skyTextiles" },
+  { label: "careers" },
+  { label: "enquiry" },
+  { label: "contactUs" },
+  { label: "infrastructure" },
+  { label: "products" },
+  { label: "fabrics" },
+  { label: "yarns" },
+  { label: "garments" },
+  { label: "sustainablity" },
+  { label: "certs" },
+  { label: "csr" },
+  { label: "events" },
+  { label: "whyUs" },
+];
 
-  // JoditEditor configuration
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      placeholder: "Start typing...",
-      language: "en",
-    }),
-    []
-  );
+export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
+  const [metaData, setMetaData] = useState({});
 
-  // Handle image file change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setIsImageChanged(true);
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreviewImage(imageUrl);
-    }
-  };
+  console.log(metaData);
 
-  // API call to update the blog data
   const handleUpdateBlog = async () => {
     const imageData = new FormData();
 
-    if (isImageChanged) {
-      imageData.append("image", image);
-    }
-
-    const formData = {
-      title,
-      slug,
-      content,
-    };
-
     try {
-      const response = await axios.post(
-        `http://localhost:8000/api/v1/blog/update/${blog._id}`,
-        formData,
+      const response = await axios.put(
+        `http://localhost:8000/api/v1/seo/updateById?id=${data._id}`,
+        metaData,
         {
           headers: {},
         }
       );
-      let imageResponse;
-      if (isImageChanged) {
-        imageResponse = await axios.post(
-          `http://localhost:8000/api/v1/blog/update-image/${blog._id}`,
-          imageData
-        );
-      }
-
       if (response.status === 200) {
         alert("Blog updated successfully!");
         fetchDepartments();
@@ -85,72 +64,70 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       } else {
         alert("Failed to update the blog.");
       }
-
-      if (isImageChanged) {
-        if (imageResponse.status === 200) {
-          fetchDepartments();
-          setEditModalOpen(false);
-        } else {
-          alert("Failed to update the image.");
-        }
-      }
     } catch (error) {
       console.error("Error updating blog:", error);
       alert("An error occurred while updating the blog.");
-    }
-
-    if (isImageChanged) {
-      setIsImageChanged(false);
     }
   };
 
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
-        <InnerContainerHead>Edit Blog</InnerContainerHead>
+        <InnerContainerHead>Edit MetaData</InnerContainerHead>
         <InnerContainerHeadSection column>
-          <Stack direction={"row"}>
-            <InputSection width={"50%"}>
-              <Label width={"100px"}>Title</Label>
-              <TextInput
-                placeholder="Enter Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </InputSection>
-
-            <InputSection width={"50%"}>
-              <Label width={"100px"}>Slug</Label>
-              <TextInput
-                placeholder="Enter Slug"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-              />
-            </InputSection>
-          </Stack>
-
-          <InputSection>
-            <Label width={"100px"}>Image</Label>
-            <TextInput type="file" onChange={handleImageChange} />
-          </InputSection>
-          {previewImage && (
-            <img
-              src={previewImage}
-              alt="Preview"
-              style={{ width: "100px", height: "100px", marginTop: "10px" }}
-            />
-          )}
-
-          <InputSection>
-            <Label width={"100px"}>Content</Label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1}
-              onChange={(newContent) => setContent(newContent)}
+          <InputSection width={"70%"}>
+            <Label width={"100px"}>Title</Label>
+            <TextInput
+              placeholder="Enter Title"
+              value={metaData?.title || ""}
+              onChange={(e) =>
+                setMetaData({ ...metaData, title: e.target.value })
+              }
             />
           </InputSection>
+
+          <InputSection width={"70%"}>
+            <Label width={"100px"}>Description</Label>
+            <TextInput
+              placeholder="Enter Slug"
+              value={metaData?.description || ""}
+              onChange={(e) =>
+                setMetaData({ ...metaData, description: e.target.value })
+              }
+            />
+          </InputSection>
+          <InputSection width={"70%"}>
+            <Label width={"100px"}>Keywords</Label>
+            <TextInput
+              placeholder="Enter Title"
+              value={metaData?.keywords || ""}
+              onChange={(e) =>
+                setMetaData({ ...metaData, keywords: e.target.value })
+              }
+            />
+          </InputSection>
+          {/* <InputSection width={"70%"}>
+            <Label width={"100px"}>Page</Label>
+            <Autocomplete
+              disablePortal
+              options={pageData}
+              sx={{ width: 300 }}
+              onChange={(e, newValue) =>
+                setMetaData({ ...metaData, pagename: newValue.label })
+              }
+              renderInput={(params) => (
+                <TextField
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      padding: "7px 10px",
+                    },
+                  }}
+                  {...params}
+                  label="Type here"
+                />
+              )}
+            />
+          </InputSection> */}
 
           <InputSection>
             <Label></Label>

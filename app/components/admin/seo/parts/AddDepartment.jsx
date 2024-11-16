@@ -19,7 +19,7 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Box, Stack } from "@mui/material";
-import { useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const pageData = [
@@ -45,30 +45,27 @@ const pageData = [
   { label: "whyUs" },
 ];
 
+const initialMetaData = {
+  keywords: "",
+  description: "",
+  title: "",
+  pagename: "",
+};
+
 export default function AddDepartment({ setViewForm, fetchDepartments }) {
-  const [title, setTitle] = useState("");
-  const [keywords, setKeywords] = useState("");
-
-  // JoditEditor configuration
-
-  // Handle image file change
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  const [metaData, setMetaData] = useState(initialMetaData);
+  console.log(metaData);
 
   // API call to save the form data
   const handleSubmit = async () => {
     try {
-      const formData = new FormData();
-      formData.append("title", title);
+      const formData = metaData;
 
       const response = await axios.post(
-        "http://localhost:8000/api/v1/blog/create",
+        "http://localhost:8000/api/v1/seo/create-metadata",
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          headers: {},
         }
       );
 
@@ -96,8 +93,10 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
               <Label width={"100px"}>Title</Label>
               <TextInput
                 placeholder="Enter Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={metaData.title}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, title: e.target.value })
+                }
               />
             </InputSection>
 
@@ -106,16 +105,20 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
               <Label width={"100px"}>Keywords</Label>
               <TextInput
                 placeholder="Enter Keywords"
-                value={keywords}
-                onChange={(e) => setKeywords(e.target.value)}
+                value={metaData.keywords}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, keywords: e.target.value })
+                }
               />
             </InputSection>
             <InputSection width={"70%"}>
               <Label width={"100px"}>Description</Label>
               <TextInput
                 placeholder="Enter Description"
-                value={keywords}
-                onChange={(e) => setKeywords(e.target.value)}
+                value={metaData.description}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, description: e.target.value })
+                }
               />
             </InputSection>
             <InputSection width={"70%"}>
@@ -124,6 +127,9 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
                 disablePortal
                 options={pageData}
                 sx={{ width: 300 }}
+                onChange={(e, newValue) =>
+                  setMetaData({ ...metaData, pagename: newValue.label })
+                }
                 renderInput={(params) => (
                   <TextField
                     sx={{
