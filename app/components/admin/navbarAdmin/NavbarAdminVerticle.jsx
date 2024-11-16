@@ -33,8 +33,8 @@ const navData = [
   },
   {
     id: 4,
-    name: "Opening Data",
-    link: "/admin/data",
+    name: "Careers Data",
+    link: "/admin/hiring-data",
     icon: ManageAccountsIcon,
   },
   {
