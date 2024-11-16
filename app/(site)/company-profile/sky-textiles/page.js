@@ -1,4 +1,5 @@
 import SkyTextiles from "@/app/components/company/parts/SkyTextilex";
+import axios from "axios";
 
 // export const metadata = {
 //   title:

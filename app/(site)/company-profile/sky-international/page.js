@@ -1,4 +1,5 @@
 import SkyTextiles from "@/app/components/company/parts/SkyInternational";
+import axios from "axios";
 // export const metadata = {
 //   title:
 //   "Best Textile Manufacturing Company in Ahmedabad, Gujarat, India & Asia: Sky Textiles",

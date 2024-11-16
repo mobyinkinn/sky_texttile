@@ -304,10 +304,27 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
+  const [metaData, setMetaData] = useState("");
   const UserData = localStorage.getItem("UserData");
   const newUpdate = JSON.parse(UserData);
   const router = useRouter();
   const token = newUpdate?.data?.accessToken;
+
+  const getMetaData = async (metadata) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/v1/seo/getByPageName?pagename=${metadata.pagename}`
+      );
+      if (response.status === 200) {
+        setMetaData(response.data.message);
+      } else {
+        alert("Failed to fetch departments data.");
+      }
+    } catch (error) {
+      console.error("Error fetching departments:", error);
+      alert("An error occurred while fetching the data.");
+    }
+  };
 
   if (!token) {
     router.push("/admin/login");
@@ -319,7 +336,6 @@ export default function Departments() {
       const response = await axios.get(
         "http://localhost:8000/api/v1/seo/get-all"
       );
-      console.log(response);
       if (response.status === 200) {
         setDepartments(response.data.message);
       } else {
@@ -382,6 +398,7 @@ export default function Departments() {
 
   const handleEditClick = (blog) => {
     setCurrentBlog(blog);
+    getMetaData(blog);
     setEditModalOpen(true);
   };
   // Handle input changes
@@ -564,8 +581,8 @@ export default function Departments() {
                 {editModalOpen && currentBlog && (
                   <EditBlog
                     setEditModalOpen={setEditModalOpen}
+                    data={metaData}
                     fetchDepartments={fetchDepartments}
-                    blog={currentBlog}
                   />
                 )}
               </Container>

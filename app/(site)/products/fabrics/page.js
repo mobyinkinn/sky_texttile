@@ -1,4 +1,5 @@
 import Yarns from "@/app/components/products/parts/Fabrics";
+import axios from "axios";
 // export const metadata = {
 //   title:
 //   "Best fabric manufacturers in Ahmedabad, Gujarat, India & Asia: Sky Textiles",

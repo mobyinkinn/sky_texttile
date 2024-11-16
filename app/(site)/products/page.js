@@ -1,4 +1,5 @@
 import Products from "@/app/components/products/Products";
+import axios from "axios";
 
 // export const metadata = {
 //   title:

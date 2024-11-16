@@ -49,7 +49,6 @@ export default function HiringData() {
   const UserData = localStorage.getItem("UserData");
   const newUpdate = JSON.parse(UserData);
   const token = newUpdate?.data?.accessToken;
-  console.log("token", token);
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
@@ -94,8 +93,6 @@ export default function HiringData() {
       );
     }
   };
-
- 
 
   useEffect(() => {
     fetchDepartments();
@@ -148,7 +145,7 @@ export default function HiringData() {
                           <TableRow
                             key={department._id}
                             sx={{
-                              verticalAlign:"baseline",
+                              verticalAlign: "baseline",
                               backgroundColor: "white",
                               "&:last-child td, &:last-child th": { border: 0 },
                             }}
@@ -161,7 +158,15 @@ export default function HiringData() {
                             <TableCell>{department.Email}</TableCell>
                             <TableCell>{department.Position}</TableCell>
                             <StyledButton>
-                              <a href={department.Resume} style={{textDecoration:"none", color:"black"}}>Download</a>
+                              <a
+                                href={department.Resume}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "black",
+                                }}
+                              >
+                                Download
+                              </a>
                             </StyledButton>
 
                             {/* <TableCell>
