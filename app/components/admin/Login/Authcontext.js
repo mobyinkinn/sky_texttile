@@ -157,14 +157,15 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/admin/login",
+        "https://skybackend.pmcommu.in/api/v1/admin/login",
         {
           email,
           password,
         }
       );
       if (response.status === 200) {
-        const data = response.data;
+        const data = response.data.data.accessToken;
+        console.log("data", response);
         setAuth(data); // Set the authenticated user data
         localStorage.setItem("UserData", JSON.stringify(data)); // Store token in localStorage for persistent login
       } else {

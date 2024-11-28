@@ -52,7 +52,7 @@ export default function HiringData() {
  const UserData = localStorage.getItem("UserData");
  const newUpdate = JSON.parse(UserData);
  const router = useRouter();
- const token = newUpdate?.data?.accessToken;
+ const token = newUpdate;
 
  if (!token) {
    router.push("/admin/login");
@@ -60,7 +60,7 @@ export default function HiringData() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/careersForm/get-all-careers"
+        "https://skybackend.pmcommu.in/api/v1/careersForm/get-all-careers"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -85,7 +85,7 @@ export default function HiringData() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/v1/careersForm/delete/${id}`
+        `https://skybackend.pmcommu.in/api/v1/careersForm/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {

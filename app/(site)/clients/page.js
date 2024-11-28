@@ -4,7 +4,7 @@ let data;
 const fetchData = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8000/api/v1/seo/getByPageName?pagename=clients"
+      "https://skybackend.pmcommu.in/api/v1/seo/getByPageName?pagename=clients"
     );
 
     data = response.data.message;
