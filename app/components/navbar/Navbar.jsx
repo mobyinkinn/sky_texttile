@@ -161,6 +161,12 @@ const navData = [
     route: "/clients",
     subRoutes: [],
   },
+   {
+    id: 5,
+    name: "Blog",
+    route: "/blog",
+    subRoutes: [],
+  },
   {
     id: 6,
     name: "Get in Touch",

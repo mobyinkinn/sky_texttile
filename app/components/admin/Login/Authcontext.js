@@ -138,12 +138,16 @@
 
 // export const useAuth = () => useContext(AuthContext);
 
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [tokens, setTokens] = useState(null);
+  const router = useRouter();
   const [auth, setAuth] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -154,6 +158,7 @@ export const AuthProvider = ({ children }) => {
       setAuth({ token, auth_page: authData, user: userData });
     }
   }, []);
+ 
   const login = async (email, password) => {
     try {
       const response = await axios.post(
@@ -170,7 +175,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("UserData", JSON.stringify(data)); // Store token in localStorage for persistent login
       } else {
         throw new Error(response.data.message || "Login failed");
-        
       }
     } catch (error) {
       console.error("Login error:", error.message);
@@ -211,7 +215,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, logout, isAuthenticated, auth }}
+      value={{ login, logout, isAuthenticated, auth, tokens, setTokens }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,4 +1,5 @@
 import Clients from "@/app/components/clients/Clients";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

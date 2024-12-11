@@ -15,7 +15,6 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Autocomplete, Stack, TextField } from "@mui/material";
-import JoditEditor from "jodit-react";
 import axios from "axios";
 
 const pageData = [

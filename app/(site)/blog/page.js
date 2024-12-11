@@ -1,4 +1,5 @@
 import Blog from "@/app/components/blog/Blog";
+import axios from "axios";
 
 let data;
 const fetchData = async () => {

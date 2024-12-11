@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   CircularProgress,
@@ -42,6 +41,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../login/Authcontext";
 
 export default function HiringData() {
   const [viewForm, setViewForm] = useState(false);
@@ -49,14 +49,21 @@ export default function HiringData() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
- const UserData = localStorage.getItem("UserData");
- const newUpdate = JSON.parse(UserData);
  const router = useRouter();
- const token = newUpdate;
+    const { tokens, setTokens } = useAuth();
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const UserData = localStorage.getItem("UserData");
+        if (UserData) {
+          setTokens(JSON.parse(UserData));
+        } else {
+          router.push("/admin/login");
+        }
+      }
+    }, [router]);
+    console.log("tokens", tokens);
 
- if (!token) {
-   router.push("/admin/login");
- }
+
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
@@ -126,7 +133,7 @@ export default function HiringData() {
         <Stack direction={"row"}>
           <NavbarAdmin />
           <Stack width={"100%"} position={"relative"}>
-            {token ? (
+            {tokens ? (
               <Container>
                 <Stack direction={"row"} justifyContent={"space-between"}>
                   <MainHead>Careers data</MainHead>

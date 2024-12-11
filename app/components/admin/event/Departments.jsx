@@ -42,6 +42,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../login/Authcontext";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -49,14 +50,21 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
   const router = useRouter();
-  const token = newUpdate
-console.log("token", token);
-  if (!token) {
-    router.push("/admin/login");
-  }
+   
+  const { tokens, setTokens } = useAuth();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const UserData = localStorage.getItem("UserData");
+      if (UserData) {
+        setTokens(JSON.parse(UserData));
+      } else {
+        router.push("/admin/login");
+      }
+    }
+  }, [router]);
+  console.log("tokens", tokens);
+
 
   // Fetch departments data from API
   const fetchDepartments = async () => {

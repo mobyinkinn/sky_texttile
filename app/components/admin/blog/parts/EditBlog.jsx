@@ -1,3 +1,4 @@
+"use client"
 import { useMemo, useRef, useState } from "react";
 import { InnerContainerHead } from "@/app/styledComponents/admin/AdminHead";
 import {
@@ -15,11 +16,12 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Stack } from "@mui/material";
-import JoditEditor from "jodit-react";
 import axios from "axios";
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
+
 
 export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
-  const editor = useRef(null);
   const [title, setTitle] = useState(blog?.title || "");
   const [content, setContent] = useState(blog?.content || "");
   const [slug, setSlug] = useState(blog?.slug || "");
@@ -27,15 +29,6 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
   const [previewImage, setPreviewImage] = useState(blog?.image || null);
   const [isImageChanged, setIsImageChanged] = useState(false);
 
-  // JoditEditor configuration
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      placeholder: "Start typing...",
-      language: "en",
-    }),
-    []
-  );
 
   // Handle image file change
   const handleImageChange = (e) => {
@@ -143,13 +136,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
           <InputSection>
             <Label width={"100px"}>Content</Label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1}
-              onChange={(newContent) => setContent(newContent)}
-            />
+            <Jodit content={content} setContent={setContent} />
           </InputSection>
 
           <InputSection>

@@ -44,6 +44,7 @@ import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../login/Authcontext";
 
 export default function Careers() {
   const [viewForm, setViewForm] = useState(false);
@@ -51,14 +52,22 @@ export default function Careers() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
   const router = useRouter();
-  const token = newUpdate;
+  
+  const { tokens, setTokens } = useAuth();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const UserData = localStorage.getItem("UserData");
+      if (UserData) {
+        setTokens(JSON.parse(UserData));
+      } else {
+        router.push("/admin/login");
+      }
+    }
+  }, [router]);
+  console.log("tokens", tokens);
 
-  if (!token) {
-    router.push("/admin/login");
-  }
+
   // Fetch departments data from API
   const fetchDepartments = async () => {
     try {

@@ -1,254 +1,3 @@
-// "use client";
-
-// import {
-//   Stack,
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableContainer,
-//   TableHead,
-//   TableRow,
-// } from "@mui/material";
-// import NavbarAdminHorizontal from "../navbarAdmin/NavbarAdminHorizontal";
-// import NavbarAdmin from "../navbarAdmin/NavbarAdminVerticle";
-// import {
-//   Container,
-//   InnerContainer,
-//   InnerContainerHeadSection,
-// } from "@/app/styledComponents/admin/Container";
-// import {
-//   InnerContainerHead,
-//   MainHead,
-// } from "@/app/styledComponents/admin/AdminHead";
-// import {
-//   GrayButtonSmall,
-//   GreenButtonSmall,
-//   RedButtonSmall,
-//   StatusLabel,
-//   StyledButton,
-//   YellowButtonSmall,
-// } from "@/app/styledComponents/admin/Buttons";
-// import { SearchInput } from "@/app/styledComponents/admin/Inputs";
-
-// import DoneIcon from "@mui/icons-material/Done";
-// import EditIcon from "@mui/icons-material/Edit";
-// import BlockIcon from "@mui/icons-material/VisibilityOff";
-// import UnblockIcon from "@mui/icons-material/Visibility";
-
-// import DeleteIcon from "@mui/icons-material/Delete";
-
-// import departmentImg from "./parts/assets/untitled.jpg";
-// import Image from "next/image";
-// import { useEffect, useState } from "react";
-// import AddDepartment from "./parts/AddDepartment";
-// import axios from "axios";
-
-// // const departmentData = [
-// //   {
-// //     id: 0,
-// //     name: "Child Devlopement Center(CDC)",
-// //     image: departmentImg,
-// //     status: "Active",
-// //     Created: "02/24/2022",
-// //   },
-// //   {
-// //     id: 1,
-// //     name: "Shoulder Surgery",
-// //     image: departmentImg,
-// //     status: "Inactive",
-// //     Created: "02/24/2022",
-// //   },
-// //   {
-// //     id: 2,
-// //     name: "Hip Surgery",
-// //     image: departmentImg,
-// //     status: "Active",
-// //     Created: "02/24/2022",
-// //   },
-// // ];
-
-// export default function Departments() {
-//    const [viewForm, setViewForm] = useState(false);
-//    const [departments, setDepartments] = useState([]);
-//    const [loading, setLoading] = useState(true);
-
-//    // Fetch departments data from API
-//    const fetchDepartments = async () => {
-//      try {
-//        const response = await axios.get(
-//          "https://skybackend.pmcommu.in/api/v1/blog/get-all"
-//        );
-//        if (response.status === 200) {
-//          setDepartments(response.data.message);
-//        } else {
-//          alert("Failed to fetch departments data.");
-//        }
-//      } catch (error) {
-//        console.error("Error fetching departments:", error);
-//        alert("An error occurred while fetching the data.");
-//      } finally {
-//        setLoading(false);
-//      }
-//    };
-// const handleBlockBlog = async (id, isBlocked) => {
-//   try {
-//     const response = await axios.put(
-//       `https://skybackend.pmcommu.in/api/v1/blog/block-blog/${id}`,
-//       {
-//         isBlocked: !isBlocked,
-//       }
-//     );
-
-//     if (response.data.statusCode === 200) {
-//       alert(`Blog ${isBlocked ? "unblocked" : "blocked"} successfully!`);
-//       fetchDepartments(); // Refresh the list
-//     } else {
-//       alert("Failed to update the blog status.");
-//     }
-//   } catch (error) {
-//     console.error("Error updating blog status:", error);
-//     alert("An error occurred. Please check the console for details.");
-//   }
-// };
-//    // Fetch data on component mount
-//    useEffect(() => {
-//      fetchDepartments();
-//    }, []);
-//   return (
-//     <Stack>
-//       <NavbarAdminHorizontal />
-//       <Stack direction={"row"}>
-//         <NavbarAdmin />
-//         <Stack width={"100%"} position={"relative"}>
-//           <Container>
-//             <Stack direction={"row"} justifyContent={"space-between"}>
-//               <MainHead>Departments</MainHead>
-//               <StyledButton onClick={() => setViewForm(true)}>
-//                 Add Department
-//               </StyledButton>
-//             </Stack>
-//             {viewForm && (
-//               <AddDepartment
-//                 setViewForm={setViewForm}
-//                 fetchDepartments={fetchDepartments}
-//               />
-//             )}
-//             <InnerContainer>
-//               <InnerContainerHead>Listing</InnerContainerHead>
-//               <InnerContainerHeadSection>
-//                 <SearchInput placeholder="Search" />
-//                 <GreenButtonSmall>Go!</GreenButtonSmall>
-//                 <GrayButtonSmall>Reset</GrayButtonSmall>
-//               </InnerContainerHeadSection>
-//               <TableContainer>
-//                 <Table
-//                   sx={{ minWidth: 650 }}
-//                   size="large"
-//                   aria-label="Departments"
-//                 >
-//                   <TableHead>
-//                     <TableRow>
-//                       <TableCell>#</TableCell>
-//                       <TableCell>Title</TableCell>
-//                       <TableCell>Image</TableCell>
-//                       <TableCell>Slug</TableCell>
-//                       <TableCell>Status</TableCell>
-//                       <TableCell>Actions</TableCell>
-//                     </TableRow>
-//                   </TableHead>
-//                   <TableBody>
-//                     {loading ? (
-//                       <TableRow>
-//                         <TableCell colSpan={6} align="center">
-//                           Loading...
-//                         </TableCell>
-//                       </TableRow>
-//                     ) : (
-//                       departments.map((department, index) => (
-//                         <TableRow
-//                           key={department.id}
-//                           sx={{
-//                             backgroundColor: "white",
-//                             "&:last-child td, &:last-child th": { border: 0 },
-//                           }}
-//                         >
-//                           <TableCell>{index + 1}</TableCell>
-//                           <TableCell>{department.title}</TableCell>
-//                           <TableCell>
-//                             <Image
-//                               src={department.image || "/placeholder.jpg"}
-//                               alt={department.title}
-//                               width={50}
-//                               height={50}
-//                             />
-//                           </TableCell>
-//                           <TableCell>{department.slug}</TableCell>
-//                           <TableCell>
-//                             <StatusLabel status={department.status}>
-//                               {department.status}
-//                             </StatusLabel>
-//                           </TableCell>
-//                           <TableCell>
-//                             <Stack
-//                               direction={"row"}
-//                               gap={"8px"}
-//                               onClick={() =>
-//                                 handleBlockBlog(
-//                                   department._id,
-//                                   department.isBlocked
-//                                 )
-//                               }
-//                             >
-//                               {department.isBlocked === true ? (
-//                                 <GreenButtonSmall>
-//                                   <BlockIcon
-//                                     sx={{
-//                                       width: "15px",
-//                                       height: "15px",
-//                                     }}
-//                                   />
-//                                 </GreenButtonSmall>
-//                               ) : (
-//                                 <GreenButtonSmall>
-//                                   <UnblockIcon
-//                                     sx={{
-//                                       width: "15px",
-//                                       height: "15px",
-//                                     }}
-//                                   />
-//                                 </GreenButtonSmall>
-//                               )}
-//                               <YellowButtonSmall>
-//                                 <EditIcon
-//                                   sx={{
-//                                     width: "15px",
-//                                     height: "15px",
-//                                   }}
-//                                 />
-//                               </YellowButtonSmall>
-//                               <RedButtonSmall>
-//                                 <DeleteIcon
-//                                   sx={{
-//                                     width: "15px",
-//                                     height: "15px",
-//                                   }}
-//                                 />
-//                               </RedButtonSmall>
-//                             </Stack>
-//                           </TableCell>
-//                         </TableRow>
-//                       ))
-//                     )}
-//                   </TableBody>
-//                 </Table>
-//               </TableContainer>
-//             </InnerContainer>
-//           </Container>
-//         </Stack>
-//       </Stack>
-//     </Stack>
-//   );
-// }
 
 "use client";
 
@@ -297,6 +46,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../login/Authcontext";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -304,14 +54,21 @@ export default function Departments() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
+  //  const [token, setToken] = useState(null);
   const router = useRouter();
-  const token = newUpdate;
-
-  if (!token) {
-    router.push("/admin/login");
-  }
+  
+  const { tokens, setTokens } = useAuth();
+ useEffect(() => {
+   if (typeof window !== "undefined") {
+     const UserData = localStorage.getItem("UserData");
+     if (UserData) {
+       setTokens(JSON.parse(UserData));
+     } else {
+       router.push("/admin/login");
+     }
+   }
+ }, [router]);
+console.log("tokens", tokens);
 
   // Fetch departments data from API
   const fetchDepartments = async () => {

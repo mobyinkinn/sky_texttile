@@ -297,6 +297,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../login/Authcontext";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -305,10 +306,20 @@ export default function Departments() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const [metaData, setMetaData] = useState("");
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
   const router = useRouter();
-  const token = newUpdate;
+  const { tokens, setTokens } = useAuth();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const UserData = localStorage.getItem("UserData");
+      if (UserData) {
+        setTokens(JSON.parse(UserData));
+      } else {
+        router.push("/admin/login");
+      }
+    }
+  }, [router]);
+  console.log("tokens", tokens);
+
 
   const getMetaData = async (metadata) => {
     try {
@@ -326,9 +337,6 @@ export default function Departments() {
     }
   };
 
-  if (!token) {
-    router.push("/admin/login");
-  }
 
   // Fetch departments data from API
   const fetchDepartments = async () => {
@@ -383,15 +391,15 @@ export default function Departments() {
       );
 
       if (response.data.statusCode === 200) {
-        alert("Blog deleted successfully!");
+        alert("Metadata deleted successfully!");
         fetchDepartments();
       } else {
-        alert("Failed to delete the blog.");
+        alert("Failed to delete the Metadata.");
       }
     } catch (error) {
-      console.error("Error deleting blog:", error);
+      console.error("Error deleting Metadata:", error);
       alert(
-        "An error occurred while deleting the blog. Please check the console for details."
+        "An error occurred while deleting the Metadata. Please check the console for details."
       );
     }
   };
@@ -418,15 +426,15 @@ export default function Departments() {
       );
 
       if (response.data.statusCode === 200) {
-        alert("Blog updated successfully!");
+        alert("Metadata updated successfully!");
         fetchDepartments();
         setEditModalOpen(false);
       } else {
-        alert("Failed to update the blog.");
+        alert("Failed to update the Metadata.");
       }
     } catch (error) {
-      console.error("Error updating blog:", error);
-      alert("An error occurred while updating the blog.");
+      console.error("Error updating Metadata:", error);
+      alert("An error occurred while updating the Metadata.");
     }
   };
 
