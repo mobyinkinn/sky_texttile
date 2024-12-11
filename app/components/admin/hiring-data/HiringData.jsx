@@ -41,7 +41,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../login/Authcontext";
+import { useAuth } from "../login/AuthContext";
 
 export default function HiringData() {
   const [viewForm, setViewForm] = useState(false);
