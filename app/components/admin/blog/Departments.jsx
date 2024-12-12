@@ -11,7 +11,6 @@ import {
   TableRow,
 } from "@mui/material";
 import NavbarAdminHorizontal from "../navbarAdmin/NavbarAdminHorizontal";
-import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import NavbarAdmin from "../navbarAdmin/NavbarAdminVerticle";
@@ -41,12 +40,12 @@ import UnblockIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/app/components/admin/login/AuthContext";
+import { AuthContext } from "../login/AuthContext";
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
   const [departments, setDepartments] = useState([]);
@@ -56,7 +55,7 @@ export default function Departments() {
   //  const [token, setToken] = useState(null);
   const router = useRouter();
   
-  const { tokens, setTokens } = React.useContext(AuthContext);
+  const { tokens, setTokens } = useContext(AuthContext);
  useEffect(() => {
    if (typeof window !== "undefined") {
      const UserData = localStorage.getItem("UserData");

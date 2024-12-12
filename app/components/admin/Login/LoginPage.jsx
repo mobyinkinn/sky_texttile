@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Container,
   Box,
@@ -19,11 +19,11 @@ import {
   VisibilityOff,
 } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./AuthContext.js";
+import { AuthContext } from "./AuthContext";
 
 const LoginPage = () => {
   const navigate = useRouter();
-  const { login } = useAuth();
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

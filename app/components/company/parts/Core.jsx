@@ -479,12 +479,12 @@ export default function Core() {
 }
 
 const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = React.useState({
+  const [mousePosition, setMousePosition] = useState({
     x: null,
     y: null,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const updateMousePosition = (ev) => {
       setMousePosition({ x: ev.clientX, y: ev.clientY });
     };

@@ -37,7 +37,7 @@ import UnblockIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
@@ -51,7 +51,7 @@ export default function Departments() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
-  const { tokens, setTokens } = React.useContext(AuthContext);
+  const { tokens, setTokens } = useContext(AuthContext);
    
   useEffect(() => {
     if (typeof window !== "undefined") {

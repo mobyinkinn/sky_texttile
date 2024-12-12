@@ -262,7 +262,6 @@ import {
   TableRow,
 } from "@mui/material";
 import NavbarAdminHorizontal from "../navbarAdmin/NavbarAdminHorizontal";
-import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import NavbarAdmin from "../navbarAdmin/NavbarAdminVerticle";
@@ -292,7 +291,7 @@ import UnblockIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
@@ -307,7 +306,7 @@ export default function Departments() {
   const [currentBlog, setCurrentBlog] = useState(null);
   const [metaData, setMetaData] = useState("");
   const router = useRouter();
-  const { tokens, setTokens } = React.useContext(AuthContext);
+  const { tokens, setTokens } = useContext(AuthContext);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

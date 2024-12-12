@@ -39,7 +39,7 @@ import UnblockIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
@@ -53,7 +53,7 @@ export default function Careers() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
-  const { tokens, setTokens } = React.useContext(AuthContext);
+  const { tokens, setTokens } = useContext(AuthContext);
   
   useEffect(() => {
     if (typeof window !== "undefined") {
