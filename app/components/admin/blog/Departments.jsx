@@ -46,8 +46,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../login/AuthContext";
-
+import { AuthContext } from "../login/AuthContext";
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
   const [departments, setDepartments] = useState([]);
@@ -57,7 +56,7 @@ export default function Departments() {
   //  const [token, setToken] = useState(null);
   const router = useRouter();
   
-  const { tokens, setTokens } = useAuth();
+  const { tokens, setTokens } = React.useContext(AuthContext);
  useEffect(() => {
    if (typeof window !== "undefined") {
      const UserData = localStorage.getItem("UserData");

@@ -42,7 +42,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../login/AuthContext";
+import { AuthContext } from "../login/AuthContext";
 
 export default function Contacts() {
   const [viewForm, setViewForm] = useState(false);
@@ -51,7 +51,8 @@ export default function Contacts() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
-  const { tokens, setTokens } = useAuth();
+  const { tokens, setTokens } = React.useContext(AuthContext);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const UserData = localStorage.getItem("UserData");

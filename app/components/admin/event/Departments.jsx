@@ -42,7 +42,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../login/AuthContext";
+import { AuthContext } from "../login/AuthContext";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -51,8 +51,8 @@ export default function Departments() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
+  const { tokens, setTokens } = React.useContext(AuthContext);
    
-  const { tokens, setTokens } = useAuth();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const UserData = localStorage.getItem("UserData");
