@@ -42,7 +42,7 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Auth } from "../../context/Auth";
+import { Auth } from "../login/Auth";
 
 export default function Contacts() {
   const [viewForm, setViewForm] = useState(false);
@@ -50,18 +50,26 @@ export default function Contacts() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
-  const router = useRouterr();
-  const token = newUpdate?.data?.accessToken;
+  const router = useRouter();
+  const { tokens, setTokens } = useContext(Auth);
 
-  if (!token) {
-    router.push("/admin/login");
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const UserData = localStorage.getItem("UserData");
+      if (UserData) {
+        setTokens(JSON.parse(UserData));
+      } else {
+        router.push("/admin/login");
+      }
+    }
+  }, [router]);
+  console.log("tokens", tokens);
+
+
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://sky-backend-bvuy.onrender.com/api/v1/contact/get-all-details"
+        "https://skybackend.pmcommu.in/api/v1/contact/get-all-details"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -86,7 +94,7 @@ export default function Contacts() {
 
     try {
       const response = await axios.delete(
-        `https://sky-backend-bvuy.onrender.com/api/v1/contact/delete/${id}`
+        `https://skybackend.pmcommu.in/api/v1/contact/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -122,71 +130,71 @@ export default function Contacts() {
           <CircularProgress />
         </Box>
       ) : (
-        <>
-          <NavbarAdminHorizontal />
-          <Stack direction={"row"}>
-            <NavbarAdmin />
-            <Stack width={"100%"} position={"relative"}>
-              {token ? (
-                <Container>
-                  <Stack direction={"row"} justifyContent={"space-between"}>
-                    <MainHead>Contact Data</MainHead>
-                  </Stack>
-                  <InnerContainer>
-                    {/* <InnerContainerHead>Listing</InnerContainerHead>
+      <>
+        <NavbarAdminHorizontal />
+        <Stack direction={"row"}>
+          <NavbarAdmin />
+          <Stack width={"100%"} position={"relative"}>
+            {tokens ? (
+              <Container>
+                <Stack direction={"row"} justifyContent={"space-between"}>
+                  <MainHead>Contact Data</MainHead>
+                </Stack>
+                <InnerContainer>
+                  {/* <InnerContainerHead>Listing</InnerContainerHead>
               <InnerContainerHeadSection>
                 <SearchInput placeholder="Search" />
                 <GreenButtonSmall>Go!</GreenButtonSmall>
                 <GrayButtonSmall>Reset</GrayButtonSmall>
               </InnerContainerHeadSection> */}
-                    <TableContainer>
-                      <Table
-                        sx={{ minWidth: 650 }}
-                        size="large"
-                        aria-label="Departments"
-                      >
-                        <TableHead>
+                  <TableContainer>
+                    <Table
+                      sx={{ minWidth: 650 }}
+                      size="large"
+                      aria-label="Departments"
+                    >
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>#</TableCell>
+                          <TableCell>Name</TableCell>
+                          <TableCell>PhoneNumber</TableCell>
+                          <TableCell>Email</TableCell>
+                          <TableCell>Category</TableCell>
+                          <TableCell>Comapany Name</TableCell>
+                          <TableCell>Message</TableCell>
+                          <TableCell>Action</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {loading ? (
                           <TableRow>
-                            <TableCell>#</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>PhoneNumber</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Category</TableCell>
-                            <TableCell>Comapany Name</TableCell>
-                            <TableCell>Message</TableCell>
-                            <TableCell>Action</TableCell>
+                            <TableCell colSpan={6} align="center">
+                              Loading...
+                            </TableCell>
                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {loading ? (
-                            <TableRow>
-                              <TableCell colSpan={6} align="center">
-                                Loading...
+                        ) : (
+                          departments.map((department, index) => (
+                            <TableRow
+                              key={department._id}
+                              sx={{
+                                verticalAlign: "baseline",
+                                backgroundColor: "white",
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell>
+                                {department.FirstName} {department.LastName}
                               </TableCell>
-                            </TableRow>
-                          ) : (
-                            departments.map((department, index) => (
-                              <TableRow
-                                key={department._id}
-                                sx={{
-                                  verticalAlign: "baseline",
-                                  backgroundColor: "white",
-                                  "&:last-child td, &:last-child th": {
-                                    border: 0,
-                                  },
-                                }}
-                              >
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>
-                                  {department.FirstName} {department.LastName}
-                                </TableCell>
-                                <TableCell>{department.PhoneNumber}</TableCell>
-                                <TableCell>{department.Email}</TableCell>
-                                <TableCell>{department.Category}</TableCell>
-                                <TableCell>{department.CompanyName}</TableCell>
-                                <TableCell>{department.Message}</TableCell>
+                              <TableCell>{department.PhoneNumber}</TableCell>
+                              <TableCell>{department.Email}</TableCell>
+                              <TableCell>{department.Category}</TableCell>
+                              <TableCell>{department.CompanyName}</TableCell>
+                              <TableCell>{department.Message}</TableCell>
 
-                                {/* <TableCell>
+                              {/* <TableCell>
                               <StatusLabel
                                 status={
                                   department.isBlocked ? "Blocked" : "Active"
@@ -195,33 +203,33 @@ export default function Contacts() {
                                 {department.isBlocked ? "Blocked" : "Active"}
                               </StatusLabel>
                             </TableCell> */}
-                                <TableCell>
-                                  <Stack direction={"row"} gap={"8px"}>
-                                    <RedButtonSmall
-                                      onClick={() =>
-                                        handleDeleteBlog(department._id)
-                                      }
-                                    >
-                                      <DeleteIcon
-                                        sx={{ width: "15px", height: "15px" }}
-                                      />
-                                    </RedButtonSmall>
-                                  </Stack>
-                                </TableCell>
-                              </TableRow>
-                            ))
-                          )}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </InnerContainer>
-                </Container>
-              ) : (
-                "You need to login first Invalid Login"
-              )}
-            </Stack>
+                              <TableCell>
+                                <Stack direction={"row"} gap={"8px"}>
+                                  <RedButtonSmall
+                                    onClick={() =>
+                                      handleDeleteBlog(department._id)
+                                    }
+                                  >
+                                    <DeleteIcon
+                                      sx={{ width: "15px", height: "15px" }}
+                                    />
+                                  </RedButtonSmall>
+                                </Stack>
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </InnerContainer>
+              </Container>
+            ) : (
+              "You need to login first Invalid Login"
+            )}
           </Stack>
-        </>
+        </Stack>
+      </>
       )}
     </Stack>
   );
