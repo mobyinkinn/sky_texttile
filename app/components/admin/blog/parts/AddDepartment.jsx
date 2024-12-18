@@ -44,7 +44,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
       formData.append("image", image);
 
       const response = await axios.post(
-        "https://skybackend.pmcommu.in/api/v1/blog/create",
+        "https://sky-backend-bvuy.onrender.com/api/v1/blog/create",
         formData,
         {
           headers: {

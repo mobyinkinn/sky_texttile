@@ -233,7 +233,7 @@ export default function Events() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://skybackend.pmcommu.in/api/v1/blog/get-all"
+        "https://sky-backend-bvuy.onrender.com/api/v1/blog/get-all"
       );
       setData(response.data.message); // Assuming the response data is an array
       setLoading(false);

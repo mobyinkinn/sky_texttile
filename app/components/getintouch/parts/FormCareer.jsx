@@ -35,7 +35,7 @@ export default function Form({ setShowForm }) {
 
     try {
       const response = await axios.post(
-        "https://skybackend.pmcommu.in/api/v1/careersForm/fill-form",
+        "https://sky-backend-bvuy.onrender.com/api/v1/careersForm/fill-form",
         form
       );
       setShowForm(false);

@@ -58,7 +58,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
     try {
       const response = await axios.post(
-        `https://skybackend.pmcommu.in/api/v1/event/update/${blog._id}`,
+        `https://sky-backend-bvuy.onrender.com/api/v1/event/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -67,7 +67,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `https://skybackend.pmcommu.in/api/v1/event/update-image/${blog._id}`,
+          `https://sky-backend-bvuy.onrender.com/api/v1/event/update-image/${blog._id}`,
           imageData
         );
       }

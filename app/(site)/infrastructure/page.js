@@ -14,7 +14,7 @@ let data;
 const fetchData = async () => {
   try {
     const response = await axios.get(
-      "https://skybackend.pmcommu.in/api/v1/seo/getByPageName?pagename=infrastructure"
+      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=infrastructure"
     );
     // setData(response.data.message); // Assuming the response data is an array
 

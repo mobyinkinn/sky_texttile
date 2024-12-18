@@ -5,7 +5,7 @@
 // const fetchData = async () => {
 //   try {
 //     const response = await axios.get(
-//       "https://skybackend.pmcommu.in/api/v1/seo/getByPageName?pagename=blog"
+//       "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=blog"
 //     );
 //     // setData(response.data.message); // Assuming the response data is an array
 
@@ -36,7 +36,7 @@ import axios from "axios";
 export async function generateMetadata() {
   try {
     const response = await axios.get(
-      "https://skybackend.pmcommu.in/api/v1/seo/getByPageName?pagename=blog"
+      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=blog"
     );
 
     const data = response.data.message;

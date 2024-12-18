@@ -61,7 +61,7 @@ export default function Contacts() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://skybackend.pmcommu.in/api/v1/contact/get-all-details"
+        "https://sky-backend-bvuy.onrender.com/api/v1/contact/get-all-details"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -86,7 +86,7 @@ export default function Contacts() {
 
     try {
       const response = await axios.delete(
-        `https://skybackend.pmcommu.in/api/v1/contact/delete/${id}`
+        `https://sky-backend-bvuy.onrender.com/api/v1/contact/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {

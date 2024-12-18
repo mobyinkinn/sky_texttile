@@ -49,7 +49,7 @@ export default function Createcareers({ setViewForm, fetchDepartments }) {
       };
 
       const response = await axios.post(
-        "https://skybackend.pmcommu.in/api/v1/careers/create-careers",
+        "https://sky-backend-bvuy.onrender.com/api/v1/careers/create-careers",
         formData,
         {
           headers: {
