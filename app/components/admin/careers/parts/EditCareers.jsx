@@ -20,16 +20,7 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 
-<<<<<<< HEAD
-export default function EditCareers({
-  setEditModalOpen,
-  fetchDepartments,
-  blog,
-}) {
-  const editor = useRef(null);
-=======
 export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }) {
->>>>>>> 2992e87ec94471a5f7e3bc8ab4fc3ad20441e24d
   const [title, setTitle] = useState(blog?.title || "");
   const [content, setContent] = useState(blog?.content || "");
   const [slug, setSlug] = useState(blog?.slug || "");
