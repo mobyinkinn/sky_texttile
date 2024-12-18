@@ -63,7 +63,7 @@ export default function Careers() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/careers/get-careers"
+        "https://skybackend.pmcommu.in/api/v1/careers/get-careers"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -82,8 +82,8 @@ export default function Careers() {
   const handleToggleBlock = async (id, isBlocked) => {
     try {
       const endpoint = isBlocked
-        ? `http://localhost:8000/api/v1/careers/unblock-career/${id}`
-        : `http://localhost:8000/api/v1/careers/block-career/${id}`;
+        ? `https://skybackend.pmcommu.in/api/v1/careers/unblock-career/${id}`
+        : `https://skybackend.pmcommu.in/api/v1/careers/block-career/${id}`;
 
       const response = await axios.put(endpoint);
 
@@ -108,7 +108,7 @@ export default function Careers() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/v1/careers/deleteById?id=${id}`
+        `https://skybackend.pmcommu.in/api/v1/careers/deleteById?id=${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -141,7 +141,7 @@ export default function Careers() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/v1/blog/updateById`,
+        `https://skybackend.pmcommu.in/api/v1/blog/updateById`,
         formData
       );
 
@@ -177,11 +177,11 @@ export default function Careers() {
           <CircularProgress />
         </Box>
       ) : (
-      <>
-        <NavbarAdminHorizontal />
-        <Stack direction={"row"}>
-          <NavbarAdmin />
-          <Stack width={"100%"} position={"relative"}>
+        <>
+          <NavbarAdminHorizontal />
+          <Stack direction={"row"}>
+            <NavbarAdmin />
+            <Stack width={"100%"} position={"relative"}>
               <Container>
                 <Stack direction={"row"} justifyContent={"space-between"}>
                   <MainHead>Careers</MainHead>
@@ -310,9 +310,9 @@ export default function Careers() {
                   />
                 )}
               </Container>
+            </Stack>
           </Stack>
-        </Stack>
-      </>
+        </>
       )}
     </Stack>
   );

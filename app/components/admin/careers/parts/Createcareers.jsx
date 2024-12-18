@@ -26,7 +26,7 @@ export default function Createcareers({ setViewForm, fetchDepartments }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
-const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("");
   // JoditEditor configuration
   const config = useMemo(
     () => ({
@@ -36,7 +36,6 @@ const [location, setLocation] = useState("");
     }),
     []
   );
-
 
   // API call to save the form data
   const handleSubmit = async () => {
@@ -49,7 +48,7 @@ const [location, setLocation] = useState("");
       };
 
       const response = await axios.post(
-        "http://localhost:8000/api/v1/careers/create-careers",
+        "https://skybackend.pmcommu.in/api/v1/careers/create-careers",
         formData,
         {
           headers: {

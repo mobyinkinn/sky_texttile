@@ -62,7 +62,7 @@ export default function Departments() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/event/get-all"
+        "https://skybackend.pmcommu.in/api/v1/event/get-all"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -81,8 +81,8 @@ export default function Departments() {
   const handleToggleBlock = async (id, isBlocked) => {
     try {
       const endpoint = isBlocked
-        ? `http://localhost:8000/api/v1/event/unblock-event/${id}`
-        : `http://localhost:8000/api/v1/event/block-event/${id}`;
+        ? `https://skybackend.pmcommu.in/api/v1/event/unblock-event/${id}`
+        : `https://skybackend.pmcommu.in/api/v1/event/block-event/${id}`;
 
       const response = await axios.put(endpoint);
 
@@ -107,7 +107,7 @@ export default function Departments() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/v1/event/delete/${id}`
+        `https://skybackend.pmcommu.in/api/v1/event/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -141,7 +141,7 @@ export default function Departments() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/v1/event/update/${currentBlog._id}`,
+        `https://skybackend.pmcommu.in/api/v1/event/update/${currentBlog._id}`,
         formData
       );
 

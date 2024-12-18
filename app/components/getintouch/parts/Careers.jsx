@@ -53,7 +53,7 @@ export default function Careers() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/careers/get-careers"
+        "https://skybackend.pmcommu.in/api/v1/careers/get-careers"
       );
       setData(response.data.message); // Assuming the response data is an array
     } catch (error) {

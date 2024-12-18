@@ -18,7 +18,11 @@ import { Stack } from "@mui/material";
 import JoditEditor from "jodit-react";
 import axios from "axios";
 
-export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }) {
+export default function EditCareers({
+  setEditModalOpen,
+  fetchDepartments,
+  blog,
+}) {
   const editor = useRef(null);
   const [title, setTitle] = useState(blog?.title || "");
   const [content, setContent] = useState(blog?.content || "");
@@ -64,7 +68,7 @@ export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/v1/blog/update/${blog._id}`,
+        `https://skybackend.pmcommu.in/api/v1/blog/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -73,7 +77,7 @@ export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `http://localhost:8000/api/v1/blog/update-image/${blog._id}`,
+          `https://skybackend.pmcommu.in/api/v1/blog/update-image/${blog._id}`,
           imageData
         );
       }

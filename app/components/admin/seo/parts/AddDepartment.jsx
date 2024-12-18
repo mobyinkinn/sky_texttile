@@ -62,7 +62,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
       const formData = metaData;
 
       const response = await axios.post(
-        "http://localhost:8000/api/v1/seo/create-metadata",
+        "https://skybackend.pmcommu.in/api/v1/seo/create-metadata",
         formData,
         {
           headers: {},

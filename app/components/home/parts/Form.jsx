@@ -22,7 +22,7 @@ export default function Form() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/contact/form",
+        "https://skybackend.pmcommu.in/api/v1/contact/form",
         form
       );
       // console.log(response);

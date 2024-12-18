@@ -157,7 +157,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/admin/login",
+        "https://skybackend.pmcommu.in/api/v1/admin/login",
         {
           email,
           password,
@@ -169,7 +169,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("UserData", JSON.stringify(data)); // Store token in localStorage for persistent login
       } else {
         throw new Error(response.data.message || "Login failed");
-        
       }
     } catch (error) {
       console.error("Login error:", error.message);
@@ -209,9 +208,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = () => !!auth;
 
   return (
-    <AuthContext.Provider
-      value={{ login, logout, isAuthenticated, auth }}
-    >
+    <AuthContext.Provider value={{ login, logout, isAuthenticated, auth }}>
       {children}
     </AuthContext.Provider>
   );
