@@ -269,14 +269,14 @@ export default function Events() {
           fontWeight={"bold"}
           textAlign={"center"}
         >
-          Events at Sky Textiles
+          Blogs at Sky Textiles
         </Typography>
-        <Typography
+        {/* <Typography
           fontSize={{ md: "1rem", xs: "0.8rem" }}
           textAlign={"center"}
         >
-          View Upcoming And Past Events Hosted By Sky Textiles.
-        </Typography>
+          View Upcoming And Past Blogs Hosted By Sky Textiles.
+        </Typography> */}
         {/* <Stack
           direction={"row"}
           justifyContent={"center"}

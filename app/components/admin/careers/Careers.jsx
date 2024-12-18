@@ -39,11 +39,12 @@ import UnblockIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
 import { useRouter } from "next/navigation";
+import { Auth } from "../login/Auth";
 
 export default function Careers() {
   const [viewForm, setViewForm] = useState(false);
@@ -51,14 +52,22 @@ export default function Careers() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
-  const UserData = localStorage.getItem("UserData");
-  const newUpdate = JSON.parse(UserData);
   const router = useRouter();
-  const token = newUpdate?.data?.accessToken;
+  const { tokens, setTokens } = useContext(Auth);
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const UserData = localStorage.getItem("UserData");
+      if (UserData) {
+        setTokens(JSON.parse(UserData));
+      } else {
+        router.push("/admin/login");
+      }
+    }
+  }, [router]);
+  console.log("tokens", tokens);
 
-  if (!token) {
-    router.push("/admin/login");
-  }
+
   // Fetch departments data from API
   const fetchDepartments = async () => {
     try {

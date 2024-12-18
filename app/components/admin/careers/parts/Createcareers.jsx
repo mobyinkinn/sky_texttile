@@ -16,10 +16,11 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Box, Stack } from "@mui/material";
-import JoditEditor from "jodit-react";
 import { placeholder } from "jodit/esm/plugins/placeholder/placeholder";
 import { useMemo, useRef, useState } from "react";
 import axios from "axios";
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 
 export default function Createcareers({ setViewForm, fetchDepartments }) {
   const editor = useRef(null);
@@ -108,13 +109,7 @@ export default function Createcareers({ setViewForm, fetchDepartments }) {
           {/* Content Editor */}
           <InputSection>
             <Label width={"100px"}>Description</Label>
-            <JoditEditor
-              ref={editor}
-              value={description}
-              config={config}
-              tabIndex={1}
-              onBlur={(newContent) => setDescription(newContent)}
-            />
+            <Jodit content={content} setContent={setContent} />
           </InputSection>
 
           {/* Action Buttons */}

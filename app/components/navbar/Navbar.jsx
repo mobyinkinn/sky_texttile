@@ -1,10 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { Box, Button, Fade, Slide, Stack, Typography } from "@mui/material";
 import logo from "./parts/assets/logo.png";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { MdOutlineClose } from "react-icons/io";
@@ -161,6 +160,12 @@ const navData = [
     route: "/clients",
     subRoutes: [],
   },
+   {
+    id: 5,
+    name: "Blog",
+    route: "/blog",
+    subRoutes: [],
+  },
   {
     id: 6,
     name: "Get in Touch",
@@ -192,7 +197,7 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
   const [expanded, setExpanded] = useState("");
-  const containerRef = React.useRef(null);
+  const containerRef = useRef(null);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

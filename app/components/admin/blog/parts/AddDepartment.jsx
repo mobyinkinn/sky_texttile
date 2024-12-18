@@ -16,10 +16,10 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Box, Stack } from "@mui/material";
-import JoditEditor from "jodit-react";
-import { placeholder } from "jodit/esm/plugins/placeholder/placeholder";
 import { useMemo, useRef, useState } from "react";
 import axios from "axios";
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 
 export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const editor = useRef(null);
@@ -28,15 +28,6 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState(null);
 
-  // JoditEditor configuration
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      placeholder: "Start typing...",
-      language: "en",
-    }),
-    []
-  );
 
   // Handle image file change
   const handleImageChange = (e) => {
@@ -110,13 +101,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
           {/* Content Editor */}
           <InputSection>
             <Label width={"100px"}>Content</Label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1}
-              onBlur={(newContent) => setContent(newContent)}
-            />
+            <Jodit content={content} setContent={setContent} />
           </InputSection>
 
           {/* Action Buttons */}

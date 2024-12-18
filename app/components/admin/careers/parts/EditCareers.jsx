@@ -1,3 +1,4 @@
+"use client"
 import { useMemo, useRef, useState } from "react";
 import { InnerContainerHead } from "@/app/styledComponents/admin/AdminHead";
 import {
@@ -15,15 +16,20 @@ import {
   TextInput,
 } from "@/app/styledComponents/admin/Inputs";
 import { Stack } from "@mui/material";
-import JoditEditor from "jodit-react";
 import axios from "axios";
+import dynamic from "next/dynamic";
+const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 
+<<<<<<< HEAD
 export default function EditCareers({
   setEditModalOpen,
   fetchDepartments,
   blog,
 }) {
   const editor = useRef(null);
+=======
+export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }) {
+>>>>>>> 2992e87ec94471a5f7e3bc8ab4fc3ad20441e24d
   const [title, setTitle] = useState(blog?.title || "");
   const [content, setContent] = useState(blog?.content || "");
   const [slug, setSlug] = useState(blog?.slug || "");
@@ -31,15 +37,6 @@ export default function EditCareers({
   const [previewImage, setPreviewImage] = useState(blog?.image || null);
   const [isImageChanged, setIsImageChanged] = useState(false);
 
-  // JoditEditor configuration
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      placeholder: "Start typing...",
-      language: "en",
-    }),
-    []
-  );
 
   // Handle image file change
   const handleImageChange = (e) => {
@@ -147,13 +144,7 @@ export default function EditCareers({
 
           <InputSection>
             <Label width={"100px"}>Content</Label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1}
-              onChange={(newContent) => setContent(newContent)}
-            />
+            <Jodit content={content} setContent={setContent} />
           </InputSection>
 
           <InputSection>

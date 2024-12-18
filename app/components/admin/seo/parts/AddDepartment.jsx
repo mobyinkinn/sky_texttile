@@ -38,7 +38,7 @@ const pageData = [
   { label: "fabrics" },
   { label: "yarns" },
   { label: "garments" },
-  { label: "sustainablity" },
+  { label: "sustainability" },
   { label: "certs" },
   { label: "csr" },
   { label: "events" },
