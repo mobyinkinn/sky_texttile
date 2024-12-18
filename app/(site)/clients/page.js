@@ -29,9 +29,9 @@
 //   return <Clients />;
 // }
 
-
-import axios from "axios";
 import Clients from "@/app/components/clients/Clients";
+
+export const dynamic = "force-dynamic"; // Ensures the page is always dynamic
 
 export async function generateMetadata() {
   let metaData = {
@@ -41,14 +41,19 @@ export async function generateMetadata() {
   };
 
   try {
-    const response = await axios.get(
-      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=clients"
+    const response = await fetch(
+      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=clients",
+      {
+        cache: "no-store", // Fetches fresh data every time
+      }
     );
-    if (response.data?.message) {
+    const data = await response.json();
+
+    if (data?.message) {
       metaData = {
-        title: response.data.message.title || "Default Title",
-        description: response.data.message.description || "Default Description",
-        keywords: response.data.message.keywords || "Default Keywords",
+        title: data.message.title || "Default Title",
+        description: data.message.description || "Default Description",
+        keywords: data.message.keywords || "Default Keywords",
       };
     }
   } catch (error) {
