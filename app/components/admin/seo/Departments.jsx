@@ -296,7 +296,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../login/AuthContext";
+import { Auth } from "../login/Auth";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);
@@ -306,7 +306,7 @@ export default function Departments() {
   const [currentBlog, setCurrentBlog] = useState(null);
   const [metaData, setMetaData] = useState("");
   const router = useRouter();
-  const { tokens, setTokens } = useContext(AuthContext);
+  const { tokens, setTokens } = useContext(Auth);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

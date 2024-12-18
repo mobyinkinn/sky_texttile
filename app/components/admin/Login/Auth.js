@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-export const AuthContext = createContext();
+export const Auth = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [tokens, setTokens] = useState(null);
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       setAuth({ token, auth_page: authData, user: userData });
     }
   }, []);
- 
+
   const login = async (email, password) => {
     try {
       const response = await axios.post(
@@ -74,10 +74,10 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = () => !!auth;
 
   return (
-    <AuthContext.Provider
+    <Auth.Provider
       value={{ login, logout, isAuthenticated, auth, tokens, setTokens }}
     >
       {children}
-    </AuthContext.Provider>
+    </Auth.Provider>
   );
 };

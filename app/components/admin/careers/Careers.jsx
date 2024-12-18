@@ -44,7 +44,7 @@ import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../login/AuthContext";
+import { Auth } from "../login/Auth";
 
 export default function Careers() {
   const [viewForm, setViewForm] = useState(false);
@@ -53,7 +53,7 @@ export default function Careers() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
-  const { tokens, setTokens } = useContext(AuthContext);
+  const { tokens, setTokens } = useContext(Auth);
   
   useEffect(() => {
     if (typeof window !== "undefined") {

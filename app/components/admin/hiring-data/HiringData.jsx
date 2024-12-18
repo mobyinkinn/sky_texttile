@@ -41,7 +41,7 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../login/AuthContext";
+import { Auth } from "../login/Auth";
 
 export default function HiringData() {
   const [viewForm, setViewForm] = useState(false);
@@ -50,7 +50,7 @@ export default function HiringData() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
  const router = useRouter();
-  const { tokens, setTokens } = useContext(AuthContext);
+  const { tokens, setTokens } = useContext(Auth);
 
     useEffect(() => {
       if (typeof window !== "undefined") {

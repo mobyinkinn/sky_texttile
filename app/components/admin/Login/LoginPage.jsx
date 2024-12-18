@@ -19,11 +19,11 @@ import {
   VisibilityOff,
 } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "./AuthContext";
+import { Auth } from "./Auth";
 
 const LoginPage = () => {
   const navigate = useRouter();
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(Auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
