@@ -3,7 +3,7 @@
 import { createTheme, Stack, ThemeProvider } from "@mui/material";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import { AuthProvider } from "./components/admin/login/Auth";
+import { AuthProvider } from "./components/context/Auth";
 
 // const poppins = Poppins({
 //   weight: ["400", "700"], // Add the weights you want to use

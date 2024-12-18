@@ -296,7 +296,7 @@ import AddDepartment from "./parts/AddDepartment";
 import axios from "axios";
 import EditBlog from "./parts/EditBlog";
 import { useRouter } from "next/navigation";
-import { Auth } from "../login/Auth";
+import { Auth } from "../../context/Auth";
 
 export default function Departments() {
   const [viewForm, setViewForm] = useState(false);

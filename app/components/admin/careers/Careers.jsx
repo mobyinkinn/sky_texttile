@@ -44,7 +44,7 @@ import axios from "axios";
 import Createcareers from "./parts/Createcareers";
 import EditCareers from "./parts/EditCareers";
 import { useRouter } from "next/navigation";
-import { Auth } from "../login/Auth";
+import { Auth } from "../../context/Auth";
 
 export default function Careers() {
   const [viewForm, setViewForm] = useState(false);

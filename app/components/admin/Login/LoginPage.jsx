@@ -19,7 +19,7 @@ import {
   VisibilityOff,
 } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-import { Auth } from "./Auth";
+import { Auth } from "../../context/Auth";
 
 const LoginPage = () => {
   const navigate = useRouter();
