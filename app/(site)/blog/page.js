@@ -43,7 +43,7 @@ export async function generateMetadata() {
 
     return {
       title: data?.title || "Default Title",
-      description: data?.description || "Default Description",
+      description: data?.description || "Default Descri ption",
       keywords: data?.keywords || "default, keywords",
     };
   } catch (error) {
