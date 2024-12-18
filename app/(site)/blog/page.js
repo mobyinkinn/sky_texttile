@@ -1,11 +1,11 @@
-// import Blog from "@/app/components/blog/Blog";
+import Blog from "@/app/components/blog/Blog";
 // import axios from "axios";
 
 // let data;
 // const fetchData = async () => {
 //   try {
 //     const response = await axios.get(
-//       "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=blog"
+//       "https://skybackend.pmcommu.in/api/v1/seo/getByPageName?pagename=blog"
 //     );
 //     // setData(response.data.message); // Assuming the response data is an array
 
@@ -30,32 +30,45 @@
 //   return <Blog />;
 // }
 
-import Blog from "@/app/components/blog/Blog";
-import axios from "axios";
+
+
+
+export const dynamic = "force-dynamic"; // Ensures the page is always dynamic
 
 export async function generateMetadata() {
+  let metaData = {
+    title: "Default Title",
+    description: "Default Description",
+    keywords: "Default Keywords",
+  };
+
   try {
-    const response = await axios.get(
-      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=blog"
+    const response = await fetch(
+      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=blog",
+      {
+        cache: "no-store", // Fetches fresh data every time
+      }
     );
+    const data = await response.json();
 
-    const data = response.data.message;
-
-    return {
-      title: data?.title || "Default Title",
-      description: data?.description || "Default Descri ption",
-      keywords: data?.keywords || "default, keywords",
-    };
+    if (data?.message) {
+      metaData = {
+        title: data.message.title || "Default Title",
+        description: data.message.description || "Default Description",
+        keywords: data.message.keywords || "Default Keywords",
+      };
+    }
   } catch (error) {
     console.error("Error fetching metadata:", error);
-    return {
-      title: "Error Title",
-      description: "Error Description",
-      keywords: "error, keywords",
-    };
   }
+
+  return {
+    title: metaData.title,
+    description: metaData.description,
+    keywords: metaData.keywords,
+  };
 }
 
-export default function Index() {
+export default function Page() {
   return <Blog />;
 }
