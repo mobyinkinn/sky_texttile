@@ -79,27 +79,51 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
       <InnerContainer width={"80%"}>
         <InnerContainerHead>Edit MetaData</InnerContainerHead>
         <InnerContainerHeadSection column>
-          <InputSection width={"70%"}>
-            <Label width={"100px"}>Title</Label>
-            <TextInput
-              placeholder="Enter Title"
-              value={metaData?.title}
-              onChange={(e) =>
-                setMetaData({ ...metaData, title: e.target.value })
-              }
-            />
-          </InputSection>
+          <Stack direction={"row"}>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>Title</Label>
+              <TextInput
+                placeholder="Enter Title"
+                value={metaData?.title}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, title: e.target.value })
+                }
+              />
+            </InputSection>
 
-          <InputSection width={"70%"}>
-            <Label width={"100px"}>Description</Label>
-            <TextInput
-              placeholder="Enter Slug"
-              value={metaData?.description}
-              onChange={(e) =>
-                setMetaData({ ...metaData, description: e.target.value })
-              }
-            />
-          </InputSection>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>Description</Label>
+              <TextInput
+                placeholder="Enter Description"
+                value={metaData?.description}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, description: e.target.value })
+                }
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>h1 Tag</Label>
+              <TextInput
+                placeholder="Enter h1"
+                value={metaData?.h1}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, h1: e.target.value })
+                }
+              />
+            </InputSection>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>h2 Tag</Label>
+              <TextInput
+                placeholder="Enter h2"
+                value={metaData?.h2}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, h2: e.target.value })
+                }
+              />
+            </InputSection>
+          </Stack>
           <InputSection width={"70%"}>
             <Label width={"100px"}>Keywords</Label>
             <TextInput
