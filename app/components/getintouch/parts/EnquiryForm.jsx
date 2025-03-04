@@ -1,8 +1,65 @@
+"use client";
+import { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import left from "./assets/left.svg";
 import right from "./assets/right.svg";
 
 export default function Form() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    companyName: "",
+    category: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleContactUs = async () => {
+    const data = {
+      FirstName: formData.firstName,
+      LastName: formData.lastName,
+      Email: formData.email,
+      PhoneNumber: formData.phone,
+      CompanyName: formData.companyName,
+      Category: formData.category,
+      Message: formData.message,
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:7000/api/v1/contact/form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to send message");
+
+      alert("Message sent successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        companyName: "",
+        category: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <Stack
       margin={{
@@ -14,9 +71,7 @@ export default function Form() {
         sm: "30px",
       }}
       gap={"10px"}
-      sx={{
-        position: "relative",
-      }}
+      sx={{ position: "relative" }}
     >
       <Box
         display={{ md: "block", xs: "none" }}
@@ -29,7 +84,7 @@ export default function Form() {
           right: "0",
           bottom: "0",
         }}
-      ></Box>
+      />
       <Box
         display={{ md: "block", xs: "none" }}
         sx={{
@@ -41,18 +96,14 @@ export default function Form() {
           left: "0",
           bottom: "0",
         }}
-      ></Box>
+      />
       <Typography
         sx={{ fontSize: "2rem", textAlign: "center", fontWeight: "bold" }}
       >
         Contact us
       </Typography>
       <Typography
-        sx={{
-          color: "#D88684",
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
+        sx={{ color: "#D88684", textAlign: "center", fontWeight: "bold" }}
       >
         View Upcoming And Past Events Hosted By Sky Textiles
       </Typography>
@@ -65,71 +116,71 @@ export default function Form() {
       >
         <Stack
           direction={{ xll: "row", smm: "row", sm: "column" }}
-          sx={{
-            width: "100%",
-          }}
+          sx={{ width: "100%" }}
           justifyContent={"center"}
           gap={{ xll: "20px", smm: "20px", sm: "10px" }}
         >
           <TextField
             variant="outlined"
             label="First name"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
           <TextField
             variant="outlined"
             label="Last name"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
         </Stack>
         <Stack
           direction={{ xll: "row", smm: "row", sm: "column" }}
           justifyContent={"center"}
           gap={{ xll: "20px", smm: "20px", sm: "10px" }}
-          sx={{
-            width: "100%",
-          }}
+          sx={{ width: "100%" }}
         >
           <TextField
             variant="outlined"
             label="Email address"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
           <TextField
             variant="outlined"
             label="Phone"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
         </Stack>
         <Stack
           direction={{ xll: "row", smm: "row", sm: "column" }}
           justifyContent={"center"}
           gap={{ xll: "20px", smm: "20px", sm: "10px" }}
-          sx={{
-            width: "100%",
-          }}
+          sx={{ width: "100%" }}
         >
           <TextField
             variant="outlined"
             label="Company name"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
           <TextField
             variant="outlined"
             label="Category"
-            sx={{
-              width: { xll: "50%", smm: "50%", sm: "100%" },
-            }}
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            sx={{ width: { xll: "50%", smm: "50%", sm: "100%" } }}
           />
         </Stack>
         <TextField
@@ -137,14 +188,21 @@ export default function Form() {
           rows={4}
           maxRows={4}
           label="Message"
-          sx={{
-            width: "100%",
-          }}
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          sx={{ width: "100%" }}
         />
       </Stack>
       <Button
         variant="contained"
-        sx={{ width: "200px", margin: "auto", backgroundColor: "#FB5457" }}
+        sx={{
+          width: "200px",
+          margin: "auto",
+          backgroundColor: "#FB5457",
+          cursor: "pointer",
+        }}
+        onClick={handleContactUs}
       >
         Send Request
       </Button>
