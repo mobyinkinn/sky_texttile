@@ -17,6 +17,7 @@ import logo from "./parts/assets/logo.png";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -140,8 +141,7 @@ const navData = [
         head: "Events",
         data: "Events for Employees",
         color: "#DFD5E6",
-        route:
-          "/sustainability/event",
+        route: "/sustainability/event",
       },
       {
         id: 2,
@@ -175,16 +175,14 @@ const navData = [
         head: "Enquiry",
         data: "Your questions, our answers",
         color: "#FFDFE6",
-        route:
-          "/contact-us/enquiry",
+        route: "/contact-us/enquiry",
       },
       {
         id: 1,
         head: "Careers",
         data: "Opportunities for professional growth",
         color: "#DFDFFD",
-        route:
-          "/contact-us/careers",
+        route: "/contact-us/careers",
       },
     ],
   },
@@ -193,9 +191,29 @@ const navData = [
 export default function Footer() {
   const router = useRouter();
   const [expanded, setExpanded] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
+  };
+
+  const handleSubscribe = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:7000/api/v1/newsletter/create",
+        { email }
+      );
+
+      if (response.data.statusCode === 200) {
+        alert("Newsletter subscribed successfully!");
+        setEmail("");
+      } else {
+        alert("Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -306,7 +324,12 @@ export default function Footer() {
           >
             <Typography fontWeight={"bold"}>Subscribe</Typography>
             <Stack direction={"row"}>
-              <TextField label="Email address" variant="outlined" />
+              <TextField
+                label="Email address"
+                variant="outlined"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <button
                 style={{
                   position: "relative",
@@ -317,7 +340,9 @@ export default function Footer() {
                   borderRadius: "0 5px 5px 0",
                   outline: "none",
                   padding: "0 20px",
+                  cursor: "pointer",
                 }}
+                onClick={handleSubscribe}
               >
                 <FaArrowRight />
               </button>

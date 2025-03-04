@@ -48,6 +48,12 @@ const navData = [
     link: "/admin/contact-data",
     icon: ContactsIcon,
   },
+  {
+    id: 6,
+    name: "Newsletter Subscribers",
+    link: "/admin/newsletter",
+    icon: ContactsIcon,
+  },
 ];
 
 export default function NavbarAdmin() {
