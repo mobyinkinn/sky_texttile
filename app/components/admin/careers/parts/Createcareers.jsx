@@ -25,6 +25,7 @@ const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 export default function Createcareers({ setViewForm, fetchDepartments }) {
   const editor = useRef(null);
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
   const [location, setLocation] = useState("");
@@ -49,7 +50,7 @@ export default function Createcareers({ setViewForm, fetchDepartments }) {
       };
 
       const response = await axios.post(
-        "https://sky-backend-bvuy.onrender.com/api/v1/careers/create-careers",
+        "http://localhost:7000/api/v1/careers/create-careers",
         formData,
         {
           headers: {

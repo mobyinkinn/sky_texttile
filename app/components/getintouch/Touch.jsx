@@ -12,7 +12,7 @@ export default function Touch() {
       <Hero />
       <Map />
       <Form />
-      <Footer></Footer>
+      <Footer/>
     </Stack>
   );
 }

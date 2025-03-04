@@ -141,7 +141,7 @@ const navData = [
         data: "Events for Employees",
         color: "#DFD5E6",
         route:
-          "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india",
+          "/sustainability/event",
       },
       {
         id: 2,

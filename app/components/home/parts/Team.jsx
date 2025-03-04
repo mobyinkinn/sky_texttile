@@ -53,7 +53,7 @@ const teamData = [
   },
   {
     id: 5,
-    name: "Anurag Duglach",
+    name: "Anurag Dulgach",
     designation: "Head Ecommerce & Social Media",
     img: anurag,
   },

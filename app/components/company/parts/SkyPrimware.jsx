@@ -9,7 +9,7 @@ import handShake from "./assets/handShake.png";
 import tree from "./assets/sustainable.gif";
 import sun from "./assets/sun.png";
 import graph from "./assets/graph.png";
-
+import bg from "./assets/skyInternational/bg.jpg"
 import community from "./assets/skyPrimware/expertise.JPG";
 import curiosity from "./assets/skyPrimware/quality.JPG";
 import collab from "./assets/skyPrimware/product.JPG";
@@ -214,6 +214,15 @@ export default function SkyTextiles() {
   return (
     <Stack>
       <Navbar />
+      <Box
+        height={{ lg: "100vh", smm: "50vh", xs: "30vh" }}
+        marginTop={"40px"}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${bg.src})`,
+          backgroundSize: "cover",
+        }}
+      ></Box>
       <Stack margin={{ md: "150px 0", xs: "150px 0" }}>
         <Typography
           fontSize={{ lg: "3rem", smm: "2rem", xs: "1.5rem" }}

@@ -45,17 +45,19 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
     title: data?.title || "",
     keywords: data?.keywords || "",
     description: data?.description || "",
+    h1:data?.h1 || "",
+    h2:data?.h2 || "",
   };
   const [metaData, setMetaData] = useState(initialData);
 
-  console.log(data);
+  console.log("data",data);
 
   const handleUpdateBlog = async () => {
     const imageData = new FormData();
 
     try {
       const response = await axios.put(
-        `https://sky-backend-bvuy.onrender.com/api/v1/seo/updateById?id=${data._id}`,
+        `http://localhost:7000/api/v1/seo/updateById?id=${data._id}`,
         metaData,
         {
           headers: {},

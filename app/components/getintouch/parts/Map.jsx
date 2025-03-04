@@ -13,6 +13,9 @@ const locations = [
   { name: "India", positionY: "47%", positionX: "17%" },
   { name: "Sri Lanka", positionY: "50%", positionX: "17%" },
   { name: "Singapore", positionY: "60%", positionX: "13%" },
+  { name: "Laos", positionY: "47%", positionX: "30%" },
+  { name: "Thailand", positionY: "50%", positionX: "7%" },
+  
 ];
 
 export default function Map() {
@@ -34,7 +37,7 @@ export default function Map() {
         We'd Love To Hear From You
       </Typography>
       <Typography color={"#F8575A"} textAlign={"center"}>
-        We Have Offices And Teams All Around The World.
+        We are serving customers all around the world.
       </Typography>
       <Box
         margin={{
@@ -81,9 +84,7 @@ export default function Map() {
                 marginBottom: "5px",
               }}
             ></Box>
-            <Typography fontSize={"1rem"}>
-              Sky textiles India Pvt Ltd.
-            </Typography>
+            <Typography fontSize={"1rem"}>{locations.name}</Typography>
             <Typography fontSize={"0.9rem"}>
               {locations[viewLocation]?.name || ""}
             </Typography>
@@ -171,6 +172,40 @@ export default function Map() {
               borderRadius: "100%",
               top: "60%",
               right: "17%",
+            }}
+          />
+        </Tooltip>
+        <Tooltip
+          onMouseEnter={() => setViewLocation(5)}
+          onMouseLeave={() => setViewLocation(-1)}
+        >
+          <Skeleton
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "#F8575A",
+              height: "25px",
+              width: "15px",
+              position: "absolute",
+              borderRadius: "100%",
+              top: "30%",
+              right: "47%",
+            }}
+          />
+        </Tooltip>
+        <Tooltip
+          onMouseEnter={() => setViewLocation(6)}
+          onMouseLeave={() => setViewLocation(-1)}
+        >
+          <Skeleton
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "#F8575A",
+              height: "25px",
+              width: "15px",
+              position: "absolute",
+              borderRadius: "100%",
+              top: "50%",
+              right: "7%",
             }}
           />
         </Tooltip>

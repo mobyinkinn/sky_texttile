@@ -8,7 +8,7 @@ import Company from "@/app/components/company/Company";
 // const fetchData = async () => {
 //   try {
 //     const response = await axios.get(
-//       "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=companyProfile"
+//       "http://localhost:7000/api/v1/seo/getByPageName?pagename=companyProfile"
 //     );
 //     // setData(response.data.message); // Assuming the response data is an array
 
@@ -63,7 +63,7 @@ export async function generateMetadata() {
 
   try {
     const response = await fetch(
-      "https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=companyProfile",
+      "http://localhost:7000/api/v1/seo/getByPageName?pagename=companyProfile",
       {
         cache: "no-store", // Fetches fresh data every time
       }
@@ -88,6 +88,39 @@ export async function generateMetadata() {
   };
 }
 
-export default function Page() {
-  return <Company />;
+
+
+export default async function Page() {
+  let pageData = {
+    h1: "Default H1",
+    h2: "Default H2",
+  };
+
+  // Fetching the H1 and H2 data
+  try {
+    const response = await fetch(
+      "http://localhost:7000/api/v1/seo/getByPageName?pagename=companyProfile",
+      {
+        cache: "no-store", // Fetch fresh data every time
+      }
+    );
+    const data = await response.json();
+
+    if (data?.message) {
+      pageData = {
+        h1: data.message.h1 || "Default H1",
+        h2: data.message.h2 || "Default H2",
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+  }
+
+  return (
+    <>
+      <h1 style={{ display: "none" }}>{pageData.h1}</h1>
+      <h2 style={{ display: "none" }}>{pageData.h2}</h2>
+      <Company />
+    </>
+  );
 }

@@ -27,8 +27,11 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const [content, setContent] = useState("");
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState(null);
-
-
+  const [h1, seth1] = useState("")
+  const [h2, seth2] = useState("")
+  const [metatitle, setmetatitle] = useState("")
+const [description, setdescription] = useState("")
+const [keywords, setkeywords] = useState("")
   // Handle image file change
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -41,10 +44,16 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
       formData.append("title", title);
       formData.append("content", content);
       formData.append("slug", slug);
+      formData.append("h1", h1);
+      formData.append("h2", h2);
+      formData.append("metatitle", metatitle);
+      formData.append("description", description);
+      formData.append("keywords", keywords);
+
       formData.append("image", image);
 
       const response = await axios.post(
-        "https://sky-backend-bvuy.onrender.com/api/v1/blog/create",
+        "http://localhost:7000/api/v1/blog/create",
         formData,
         {
           headers: {
@@ -69,7 +78,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
   return (
     <ModalContainer>
       <InnerContainer width={"80%"}>
-        <InnerContainerHead>Add Department</InnerContainerHead>
+        <InnerContainerHead>Add Blog</InnerContainerHead>
         <InnerContainerHeadSection column>
           {/* Title Input */}
           <Stack direction={"row"}>
@@ -92,12 +101,58 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
               />
             </InputSection>
           </Stack>
-          {/* Image Upload */}
-          <InputSection>
-            <Label width={"100px"}>Image</Label>
-            <TextInput type="file" onChange={handleImageChange} />
-          </InputSection>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>h1</Label>
+              <TextInput
+                placeholder="Enter h1"
+                value={h1}
+                onChange={(e) => seth1(e.target.value)}
+              />
+            </InputSection>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>h2</Label>
+              <TextInput
+                placeholder="Enter h2"
+                value={h2}
+                onChange={(e) => seth2(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Meta Title</Label>
+              <TextInput
+                placeholder="Enter Meta Title"
+                value={metatitle}
+                onChange={(e) => setmetatitle(e.target.value)}
+              />
+            </InputSection>
 
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>description</Label>
+              <TextInput
+                placeholder="Enter description"
+                value={description}
+                onChange={(e) => setdescription(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          {/* Image Upload */}
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Image</Label>
+              <TextInput type="file" onChange={handleImageChange} />
+            </InputSection>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>keywords</Label>
+              <TextInput
+                placeholder="Enter keywords"
+                value={keywords}
+                onChange={(e) => setkeywords(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
           {/* Content Editor */}
           <InputSection>
             <Label width={"100px"}>Content</Label>

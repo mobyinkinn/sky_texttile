@@ -19,6 +19,7 @@ const processData = [
     head: "Dyeing",
     img: dyeing,
     data: "Our advanced dyeing machines ensure precise and consistent color application, delivering high-quality, vibrant fabrics with superior durability.",
+    Title: "Knitting Capacity",
   },
   {
     id: 1,

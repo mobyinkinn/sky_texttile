@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid";
 import flowChart from "./assets/garmentsFlowChart.jpg";
 
 import img1 from "./assets/Garments/INNERWEAR.JPG";
-import img2 from "./assets/Garments/CASUALWEAR.JPG";
+import img2 from "./assets/Garments/CASUALWEAR.jpg";
 import img3 from "./assets/Garments/LOUNGEWEAR.JPG";
 import img4 from "./assets/Garments/WINTERWEAR.JPG";
 import img5 from "./assets/Garments/Athleisure.JPG";
@@ -150,7 +150,7 @@ export default function Yarns() {
                     </Stack>
                     <Box
                       width={"100%"}
-                      height={"35vh"}
+                      height={"55vh"}
                       marginTop={"20px"}
                       sx={{
                         backgroundImage: `url(${el.img.src})`,

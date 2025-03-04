@@ -35,7 +35,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/founders-day",
+  //       "/sustainability/event/founders-day",
   //     image: foundersDay,
   //     description:
   //       "1st Founders Day marked with commitments, uniform policy, and annual event.",
@@ -46,7 +46,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/independence-day",
+  //       "/sustainability/event/independence-day",
   //     image: independence,
   //     description:
   //       "Independence Day celebration fostering patriotism and unity among our team.",
@@ -57,7 +57,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/ganesh-chaturthi",
+  //       "/sustainability/event/ganesh-chaturthi",
   //     image: ganesh,
   //     description:
   //       "Joyful Ganesh Chaturthi celebration uniting our factory team in devotion.",
@@ -68,7 +68,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/navratri",
+  //       "/sustainability/event/navratri",
   //     image: navratri,
   //     description:
   //       "Navratri celebration at our factory embraces Gujarat's culture, dance, and unity.",
@@ -79,7 +79,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/sardar-patel-jayanti",
+  //       "/sustainability/event/sardar-patel-jayanti",
   //     image: sardar,
   //     description:
   //       "Sardar Patel Jayanti, National Unity Day, honors India’s first Deputy PM.",
@@ -90,7 +90,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/vishwakarma-puja",
+  //       "/sustainability/event/vishwakarma-puja",
   //     image: vishwakarma,
   //     description:
   //       "Vishwakarma Puja celebrates Lord Vishwakarma, the divine architect, creator.",
@@ -101,7 +101,7 @@ export default function Events() {
   //     time: "11 AM - 1 PM",
   //     location: "Sky Textiles",
   //     route:
-  //       "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/fire-and-safety",
+  //       "/sustainability/event/fire-and-safety",
   //     image: fireSafety,
   //     description:
   //       "Comprehensive Fire & Safety Programs ensuring a secure, compliant workplace environment.",
@@ -112,7 +112,7 @@ export default function Events() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://sky-backend-bvuy.onrender.com/api/v1/event/get-all"
+        "http://localhost:7000/api/v1/event/get-all"
       );
       setData(response.data.message); // Assuming the response data is an array
       setLoading(false);
@@ -136,7 +136,7 @@ export default function Events() {
       <Navbar />
       <Stack
         height={{ lg: "90vh", smm: "50vh", xs: "30vh" }}
-        marginTop={"50px"}
+        marginTop={"70px"}
         width={"100%"}
         sx={{
           backgroundImage: `url(${banner.src})`,
@@ -264,7 +264,7 @@ export default function Events() {
               }}
               onClick={() =>
                 router.push(
-                  `/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/${d.slug}`
+                  `/sustainability/event/${d.slug}`
                 )
               }
             >

@@ -53,7 +53,7 @@ export default function Careers() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://sky-backend-bvuy.onrender.com/api/v1/careers/get-careers"
+        "http://localhost:7000/api/v1/careers/get-careers"
       );
       setData(response.data.message); // Assuming the response data is an array
     } catch (error) {

@@ -30,7 +30,7 @@ const data = [
     time: "11 AM - 1 PM",
     location: "Sky Textiles",
     route:
-      "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/independence-day",
+      "/sustainability/event/independence-day",
     image: independence,
     description:
       "Independence Day celebration fostering patriotism and unity among our team.",
@@ -41,7 +41,7 @@ const data = [
     time: "11 AM - 1 PM",
     location: "Sky Textiles",
     route:
-      "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/ganesh-chaturthi",
+      "/sustainability/event/ganesh-chaturthi",
     image: ganesh,
     description:
       "Joyful Ganesh Chaturthi celebration uniting our factory team in devotion.",
@@ -52,7 +52,7 @@ const data = [
     time: "11 AM - 1 PM",
     location: "Sky Textiles",
     route:
-      "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india/navratri",
+      "/sustainability/event/navratri",
     image: navratri,
     description:
       "Navratri celebration at our factory embraces Gujarat's culture, dance, and unity.",
@@ -67,7 +67,7 @@ export default function Event() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://sky-backend-bvuy.onrender.com/api/v1/event/get-by-slug/${params.slug}`
+        `http://localhost:7000/api/v1/event/get-by-slug/${params.slug}`
       );
       setData(response.data.message); // Assuming the response data is an array
     } catch (error) {

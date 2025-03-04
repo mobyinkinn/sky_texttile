@@ -78,49 +78,69 @@ export default function Yarns() {
           flexWrap={"wrap"}
           direction={"row"}
           gap={{ md: "20px", xs: "20px" }}
-          margin={{ md: "70px 100px 30px 100px", xs: "50px 30px" }}
+          margin={{ md: "70px 50px 30px 50px", xs: "50px 30px" }}
           justifyContent={"center"}
         >
-          <Box
-            width={{ md: "22%", xs: "40%" }}
-            height={"30vh"}
-            sx={{
-              backgroundImage: `url(${heena.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              borderRadius: "15px",
-            }}
-          ></Box>
-          <Box
-            width={{ md: "22%", xs: "40%" }}
-            height={"30vh"}
-            sx={{
-              backgroundImage: `url(${lurex.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              borderRadius: "15px",
-            }}
-          ></Box>
-          <Box
-            width={{ md: "22%", xs: "40%" }}
-            height={"30vh"}
-            sx={{
-              backgroundImage: `url(${sorona.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              borderRadius: "15px",
-            }}
-          ></Box>
-          <Box
-            width={{ md: "22%", xs: "40%" }}
-            height={"30vh"}
-            sx={{
-              backgroundImage: `url(${valvateen.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              borderRadius: "15px",
-            }}
-          ></Box>
+          <Stack direction={"column"} width={"20%"} gap={1}>
+            <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
+              Heena Polyster
+            </Typography>
+            <Box
+              width={{ md: "100%", xs: "40%" }}
+              height={"30vh"}
+              sx={{
+                backgroundImage: `url(${heena.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          </Stack>
+          <Stack direction={"column"} width={"20%"} gap={1}>
+            <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
+              Lurex
+            </Typography>
+            <Box
+              width={{ md: "100%", xs: "40%" }}
+              height={"30vh"}
+              sx={{
+                backgroundImage: `url(${lurex.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          </Stack>
+          <Stack direction={"column"} width={"20%"} gap={1}>
+            <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
+              Sorona Pique
+            </Typography>
+            <Box
+              width={{ md: "100%", xs: "40%" }}
+              height={"30vh"}
+              sx={{
+                backgroundImage: `url(${sorona.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          </Stack>
+          <Stack direction={"column"} width={"20%"} gap={1}>
+            <Typography variant="h5" fontWeight={"bold"} textAlign={"center"}>
+              NM Yarn
+            </Typography>
+            <Box
+              width={{ md: "100%", xs: "40%" }}
+              height={"30vh"}
+              sx={{
+                backgroundImage: `url(${valvateen.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                borderRadius: "15px",
+              }}
+            ></Box>
+          </Stack>
         </Stack>
       </Stack>
       <Stack

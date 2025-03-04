@@ -76,7 +76,7 @@
 //    const fetchDepartments = async () => {
 //      try {
 //        const response = await axios.get(
-//          "https://sky-backend-bvuy.onrender.com/api/v1/blog/get-all"
+//          "http://localhost:7000/api/v1/blog/get-all"
 //        );
 //        if (response.status === 200) {
 //          setDepartments(response.data.message);
@@ -93,7 +93,7 @@
 // const handleBlockBlog = async (id, isBlocked) => {
 //   try {
 //     const response = await axios.put(
-//       `https://sky-backend-bvuy.onrender.com/api/v1/blog/block-blog/${id}`,
+//       `http://localhost:7000/api/v1/blog/block-blog/${id}`,
 //       {
 //         isBlocked: !isBlocked,
 //       }
@@ -324,7 +324,7 @@ export default function Departments() {
   const getMetaData = async (metadata) => {
     try {
       const response = await axios.get(
-        `https://sky-backend-bvuy.onrender.com/api/v1/seo/getByPageName?pagename=${metadata.pagename}`
+        `http://localhost:7000/api/v1/seo/getByPageName?pagename=${metadata.pagename}`
       );
       if (response.status === 200) {
         setMetaData(response.data.message);
@@ -342,7 +342,7 @@ export default function Departments() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://sky-backend-bvuy.onrender.com/api/v1/seo/get-all"
+        "http://localhost:7000/api/v1/seo/get-all"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -361,8 +361,8 @@ export default function Departments() {
   const handleToggleBlock = async (id, isBlocked) => {
     try {
       const endpoint = isBlocked
-        ? `https://sky-backend-bvuy.onrender.com/api/v1/blog/unblock-blog/${id}`
-        : `https://sky-backend-bvuy.onrender.com/api/v1/blog/block-blog/${id}`;
+        ? `http://localhost:7000/api/v1/blog/unblock-blog/${id}`
+        : `http://localhost:7000/api/v1/blog/block-blog/${id}`;
 
       const response = await axios.put(endpoint);
 
@@ -387,7 +387,7 @@ export default function Departments() {
 
     try {
       const response = await axios.delete(
-        `https://sky-backend-bvuy.onrender.com/api/v1/blog/delete/${id}`
+        `http://localhost:7000/api/v1/blog/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -404,9 +404,10 @@ export default function Departments() {
     }
   };
 
-  const handleEditClick = (blog) => {
+  const handleEditClick = async (blog) => {
+    console.log("blog",blog)
     setCurrentBlog(blog);
-    getMetaData(blog);
+   await getMetaData(blog);
     setEditModalOpen(true);
   };
   // Handle input changes
@@ -421,7 +422,7 @@ export default function Departments() {
 
     try {
       const response = await axios.post(
-        `https://sky-backend-bvuy.onrender.com/api/v1/blog/update/${currentBlog._id}`,
+        `http://localhost:7000/api/v1/blog/update/${currentBlog._id}`,
         formData
       );
 

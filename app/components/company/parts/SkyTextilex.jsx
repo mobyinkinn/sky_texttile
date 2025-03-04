@@ -23,6 +23,7 @@ import img1 from "./assets/skyTextile/1.1.JPG";
 import img2 from "./assets/skyTextile/1.2.JPG";
 import img3 from "./assets/skyTextile/1.3.JPG";
 import img4 from "./assets/skyTextile/1.4.JPG";
+import bg from "./assets/skyTextile/bg.JPG";
 
 import trust from "./assets/Trust.png";
 import back from "./assets/back.png";
@@ -237,6 +238,15 @@ export default function SkyTextiles() {
   return (
     <Stack>
       <Navbar />
+      <Box
+        height={{ lg: "100vh", smm: "50vh", xs: "30vh" }}
+        marginTop={"40px"}
+        width={"100%"}
+        sx={{
+          backgroundImage: `url(${bg.src})`,
+          backgroundSize: "cover",
+        }}
+      ></Box>
       <Stack margin={{ md: "150px 0", xs: "150px 0" }}>
         <Typography
           fontSize={{ lg: "3rem", smm: "2rem", xs: "1.5rem" }}

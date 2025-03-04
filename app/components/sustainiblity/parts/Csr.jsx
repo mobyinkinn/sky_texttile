@@ -3,6 +3,8 @@ import Navbar from "../../navbar/Navbar";
 import Footer from "../../footer/Footer";
 
 import banner from "./assets/csrBanner.jpg";
+import women from "./assets/women.jpg";
+
 import sl from "./assets/sl.png";
 import sl2 from "./assets/sl2.png";
 import stethoscope from "./assets/stethoscope.png";
@@ -19,7 +21,7 @@ export default function Csr() {
           backgroundImage: `url(${banner.src})`,
           width: "100%",
           height: { lg: "90vh", smm: "50vh", xs: "30vh" },
-          marginTop: "50px",
+          marginTop: "80px",
           backgroundSize: "cover",
           backgroundPosition: "center center",
         }}
@@ -217,7 +219,16 @@ export default function Csr() {
             }}
           ></Stack>
         </Stack>
-        <Stack margin={{ md: "200px", xs: "50px 0 0 0" }} position={"relative"}>
+        <Stack margin={{ md: "100px 200px", xs: "50px 0 0 0" }} position={"relative"} gap={"20px"}>
+          <Box
+            sx={{
+              backgroundImage: `url(${women.src})`,
+              width: "100%",
+              height: { lg: "60vh", smm: "50vh", xs: "30vh" },
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+            }}
+          ></Box>
           <Typography
             textAlign={"center"}
             fontWeight={"bold"}

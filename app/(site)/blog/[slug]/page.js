@@ -1,14 +1,71 @@
 import Event from "@/app/components/blog/blogs/blog";
+export const dynamic = "force-dynamic"; // Ensures the page is always dynamic
 
-export const metadata = {
-  title:
-    "Best Cotton Mill in India: Sky Textiles Leading the Way in Ahmedabad, Gujarat, and Asia SKY Textiles",
-  description:
-    "Sky Textiles, the best cotton mill in India, Ahmedabad, Gujarat, and Asia, offers premium-quality cotton fabrics with a focus on innovation and sustainability. Discover top-tier cotton manufacturing solutions trusted globally.",
-  keywords:
-    "Best cotton mill in India, Best cotton mill in Ahmedabad, Best cotton mill in Gujarat, Best cotton mill in Asia, Cotton fabric manufacturer, Premium cotton fabrics, Sustainable cotton manufacturing, Cotton manufacturing solutions, Sky Textiles, Cotton industry leader, Eco-friendly cotton production, Textile, Fabrics, Weaving, Textile industry, Textile manufacturing, Textile products, Textile market, Textile suppliers, Fabric production, Textile trade, Textile job works, Garment manufacturers, Yarn suppliers, Fabric wholesalers, T-shirt manufacturers, Shirt production, Kids wear suppliers, Uniform design services, B2B textile services, Textile manufacturing company, Apparel production, Custom fabric printing, Garment sourcing, Textile outsourcing, Bulk textile orders, Quality textile products, Customized uniform solutions, Fabric customization, Apparel design services, Wholesale textile distribution, Textile manufacturers in Gujarat, Fabric suppliers Gujarat, Indian textile industry, Gujarat textile exports, Quality textiles Gujarat, Textile mills Gujarat, Fabric production India, Gujarat textile market, Textile weaving Gujarat, Sustainable textiles Gujarat, Gujarat textile infrastructure, Traditional Indian textiles Gujarat, Gujarat textile innovations, Gujarat textile manufacturing hub, Cotton textiles Gujarat, Gujarat silk industry, Textile printing Gujarat, Gujarat textile craftsmanship, Textile dyeing techniques Gujarat, Gujarat textile trade partners",
-};
+export async function generateMetadata( {params}) {
+  console.log("paramsss", params);
 
-export default function Index() {
-  return <Event />;
+  let metaData = {
+    title: "Default Title",
+    description: "Default Description",
+    keywords: "Default Keywords",
+  };
+
+  try {
+    const response = await fetch(
+      `http://localhost:7000/api/v1/blog/get-by-slug/${params.slug}`,
+      {
+        cache: "no-store", // Fetches fresh data every time
+      }
+    );
+    const data = await response.json();
+    if (data?.message) {
+      metaData = {
+        title: data.message.title || "Default Title",
+        description: data.message.description || "Default Description",
+        keywords: data.message.keywords || "Default Keywords",
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching metadata:", error);
+  }
+
+  return {
+    title: metaData.title,
+    description: metaData.description,
+    keywords: metaData.keywords,
+  };
+}
+
+export default async function Page({ params }) {
+  let pageData = {
+    h1: "Default H1",
+    h2: "Default H2",
+  };
+
+  // Fetching the H1 and H2 data
+  try {
+    const response = await fetch(
+      `http://localhost:7000/api/v1/blog/get-by-slug/${params.slug}`,
+      {
+        cache: "no-store", // Fetch fresh data every time
+      }
+    );
+    const data = await response.json();
+
+    if (data?.message) {
+      pageData = {
+        h1: data.message.h1 || "Default H1",
+        h2: data.message.h2 || "Default H2",
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+  }
+  return (
+    <>
+      <h1 style={{ display: "none" }}>{pageData.h1}</h1>
+      <h2 style={{ display: "none" }}>{pageData.h2}</h2>
+      <Event />
+    </>
+  );
 }

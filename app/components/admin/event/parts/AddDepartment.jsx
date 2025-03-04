@@ -53,7 +53,7 @@
 //       formData.append("image", image);
 
 //       const response = await axios.post(
-//         "https://sky-backend-bvuy.onrender.com/api/v1/event/create",
+//         "http://localhost:7000/api/v1/event/create",
 //         formData,
 //         {
 //           headers: {
@@ -183,7 +183,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
       formData.append("image", image);
 
       const response = await axios.post(
-        "https://sky-backend-bvuy.onrender.com/api/v1/event/create",
+        "http://localhost:7000/api/v1/event/create",
         formData,
         {
           headers: {

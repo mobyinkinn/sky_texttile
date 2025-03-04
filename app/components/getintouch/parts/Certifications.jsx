@@ -8,6 +8,7 @@ import Footer from "../../footer/Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import community from "./assets/3.jpg";
 
 import cert1 from "./assets/certs/skyTextiles/1.jpg";
 import cert2 from "./assets/certs/skyTextiles/2.jpg";
@@ -69,6 +70,7 @@ import cert57 from "./assets/certs/skyTextiles/57.jpg";
 import cert58 from "./assets/certs/skyTextiles/58.jpg";
 import cert59 from "./assets/certs/skyTextiles/59.jpg";
 import cert60 from "./assets/certs/skyTextiles/60.jpg";
+import cert61 from "./assets/certs/skyTextiles/61.png";
 
 import certi1 from "./assets/certs/skyPrimware/1.jpg";
 import certi2 from "./assets/certs/skyPrimware/2.jpg";
@@ -94,6 +96,8 @@ import certi21 from "./assets/certs/skyPrimware/21.jpg";
 import certi22 from "./assets/certs/skyPrimware/22.jpg";
 import certi23 from "./assets/certs/skyPrimware/23.jpg";
 import certi24 from "./assets/certs/skyPrimware/24.jpg";
+import certi25 from "./assets/certs/skyPrimware/25.png";
+
 
 const skyPrimwareImages = [
   certi1,
@@ -120,6 +124,7 @@ const skyPrimwareImages = [
   certi22,
   certi23,
   certi24,
+  certi25,
 ];
 
 const skyTextileImages = [
@@ -183,6 +188,7 @@ const skyTextileImages = [
   cert58,
   cert59,
   cert60,
+  cert61,
 ];
 
 export default function Certifications() {
@@ -211,6 +217,16 @@ export default function Certifications() {
   return (
     <Stack>
       <Navbar />
+      {/* <Box
+        sx={{
+          backgroundImage: `url(${community.src})`,
+          width: "100%",
+          height: { lg: "90vh", smm: "50vh", xs: "30vh" },
+          marginTop: "80px",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      ></Box> */}
       <Stack margin={"100px 0"}>
         <Typography
           fontSize={{ md: "3rem", sm: "1.9rem" }}
@@ -313,7 +329,7 @@ export default function Certifications() {
         fontWeight={"bold"}
         textAlign={"center"}
       >
-        Sky Primware
+        Sky Primwear
       </Typography>
       <Typography
         margin={{ md: "20px 100px", xs: "20px" }}

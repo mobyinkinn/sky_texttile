@@ -72,7 +72,7 @@ export default function Careers() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://sky-backend-bvuy.onrender.com/api/v1/careers/get-careers"
+        "http://localhost:7000/api/v1/careers/get-careers"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -91,8 +91,8 @@ export default function Careers() {
   const handleToggleBlock = async (id, isBlocked) => {
     try {
       const endpoint = isBlocked
-        ? `https://sky-backend-bvuy.onrender.com/api/v1/careers/unblock-career/${id}`
-        : `https://sky-backend-bvuy.onrender.com/api/v1/careers/block-career/${id}`;
+        ? `http://localhost:7000/api/v1/careers/unblock-career/${id}`
+        : `http://localhost:7000/api/v1/careers/block-career/${id}`;
 
       const response = await axios.put(endpoint);
 
@@ -117,7 +117,7 @@ export default function Careers() {
 
     try {
       const response = await axios.delete(
-        `https://sky-backend-bvuy.onrender.com/api/v1/careers/deleteById?id=${id}`
+        `http://localhost:7000/api/v1/careers/deleteById?id=${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -150,7 +150,7 @@ export default function Careers() {
 
     try {
       const response = await axios.post(
-        `https://sky-backend-bvuy.onrender.com/api/v1/blog/updateById`,
+        `http://localhost:7000/api/v1/blog/updateById`,
         formData
       );
 

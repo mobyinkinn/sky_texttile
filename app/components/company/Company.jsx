@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-import banner from "./parts/assets/Banner.jpg";
+import banner from "./parts/assets/Banner.jpeg";
 import We from "./parts/We";
 import Strength from "./parts/Strength";
 import Vision from "./parts/Vision";

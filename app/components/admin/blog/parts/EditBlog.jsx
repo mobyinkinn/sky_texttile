@@ -29,7 +29,11 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
   const [previewImage, setPreviewImage] = useState(blog?.image || null);
   const [isImageChanged, setIsImageChanged] = useState(false);
 
-
+  const [h1, seth1] = useState(blog?.h1||"");
+  const [h2, seth2] = useState(blog?.h2||"");
+  const [metatitle, setmetatitle] = useState(blog?.metatitle||"");
+  const [description, setdescription] = useState(blog?.description||"");
+  const [keywords, setkeywords] = useState(blog?.keywords||"");
   // Handle image file change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -57,7 +61,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
     try {
       const response = await axios.post(
-        `https://sky-backend-bvuy.onrender.com/api/v1/blog/update/${blog._id}`,
+        `http://localhost:7000/api/v1/blog/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -66,7 +70,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `https://sky-backend-bvuy.onrender.com/api/v1/blog/update-image/${blog._id}`,
+          `http://localhost:7000/api/v1/blog/update-image/${blog._id}`,
           imageData
         );
       }
@@ -121,18 +125,64 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
               />
             </InputSection>
           </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>h1</Label>
+              <TextInput
+                placeholder="Enter h1"
+                value={h1}
+                onChange={(e) => seth1(e.target.value)}
+              />
+            </InputSection>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>h2</Label>
+              <TextInput
+                placeholder="Enter h2"
+                value={h2}
+                onChange={(e) => seth2(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Meta Title</Label>
+              <TextInput
+                placeholder="Enter Meta Title"
+                value={metatitle}
+                onChange={(e) => setmetatitle(e.target.value)}
+              />
+            </InputSection>
 
-          <InputSection>
-            <Label width={"100px"}>Image</Label>
-            <TextInput type="file" onChange={handleImageChange} />
-          </InputSection>
-          {previewImage && (
-            <img
-              src={previewImage}
-              alt="Preview"
-              style={{ width: "100px", height: "100px", marginTop: "10px" }}
-            />
-          )}
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>description</Label>
+              <TextInput
+                placeholder="Enter description"
+                value={description}
+                onChange={(e) => setdescription(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Image</Label>
+              <TextInput type="file" onChange={handleImageChange} />
+            </InputSection>
+            {/* {previewImage && (
+              <img
+                src={previewImage}
+                alt="Preview"
+                style={{ width: "100px", height: "100px", marginTop: "10px" }}
+              />
+            )} */}
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>keywords</Label>
+              <TextInput
+                placeholder="Enter keywords"
+                value={keywords}
+                onChange={(e) => setkeywords(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
 
           <InputSection>
             <Label width={"100px"}>Content</Label>
