@@ -23,7 +23,7 @@ import img1 from "./assets/skyTextile/1.1.JPG";
 import img2 from "./assets/skyTextile/1.2.JPG";
 import img3 from "./assets/skyTextile/1.3.JPG";
 import img4 from "./assets/skyTextile/1.4.JPG";
-import bg from "./assets/skyTextile/bg.JPG";
+import bg from "./assets/skyTextile/bannergr.jpg";
 
 import trust from "./assets/Trust.png";
 import back from "./assets/back.png";
