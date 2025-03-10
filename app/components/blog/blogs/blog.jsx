@@ -55,7 +55,7 @@ export default function Event() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:7000/api/v1/blog/get-by-slug/${params.slug}`
+        `https://skytextilesbackend.pmcommu.in/api/v1/blog/get-by-slug/${params.slug}`
       );
       setData(response.data.message); // Assuming the response data is an array
     } catch (error) {

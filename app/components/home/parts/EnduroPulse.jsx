@@ -156,7 +156,7 @@ export default function Enduro() {
           position={"relative"}
           sx={{
             backgroundImage: `url(${enduro1.src})`,
-            backgroundSize: "150%",
+            backgroundSize: "100%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center 0px",
             transition: "all 0.3s ease",
@@ -310,7 +310,7 @@ export default function Enduro() {
             }}
             justifyContent={"space-between"}
           >
-            <Typography color="white">Vibrant Gujarat</Typography>
+            <Typography color="white">Bharat tex 2025</Typography>
             <Stack
               backgroundColor={"#E39B97"}
               width={"25px"}

@@ -112,7 +112,7 @@ export default function Events() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:7000/api/v1/event/get-all"
+        "https://skytextilesbackend.pmcommu.in/api/v1/event/get-all"
       );
       setData(response.data.message); // Assuming the response data is an array
       setLoading(false);

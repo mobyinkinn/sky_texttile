@@ -68,7 +68,7 @@ export default function HiringData() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:7000/api/v1/careersForm/get-all-careers"
+        "https://skytextilesbackend.pmcommu.in/api/v1/careersForm/get-all-careers"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -93,7 +93,7 @@ export default function HiringData() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:7000/api/v1/careersForm/delete/${id}`
+        `https://skytextilesbackend.pmcommu.in/api/v1/careersForm/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {

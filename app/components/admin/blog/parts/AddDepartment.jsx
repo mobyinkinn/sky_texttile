@@ -53,7 +53,7 @@ const [keywords, setkeywords] = useState("")
       formData.append("image", image);
 
       const response = await axios.post(
-        "http://localhost:7000/api/v1/blog/create",
+        "https://skytextilesbackend.pmcommu.in/api/v1/blog/create",
         formData,
         {
           headers: {

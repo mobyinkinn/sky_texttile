@@ -139,7 +139,7 @@ const navData = [
       {
         id: 1,
         head: "Events",
-        data: "Events for Employees",
+        data: "Empowering growth, celebrating milestones, and shaping the future.",
         color: "#DFD5E6",
         route: "/sustainability/event",
       },
@@ -200,7 +200,7 @@ export default function Footer() {
   const handleSubscribe = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:7000/api/v1/newsletter/create",
+        "https://skytextilesbackend.pmcommu.in/api/v1/newsletter/create",
         { email }
       );
 

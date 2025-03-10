@@ -50,7 +50,7 @@ export default function Createcareers({ setViewForm, fetchDepartments }) {
       };
 
       const response = await axios.post(
-        "http://localhost:7000/api/v1/careers/create-careers",
+        "https://skytextilesbackend.pmcommu.in/api/v1/careers/create-careers",
         formData,
         {
           headers: {

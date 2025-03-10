@@ -12,7 +12,7 @@ export async function generateMetadata( {params}) {
 
   try {
     const response = await fetch(
-      `http://localhost:7000/api/v1/blog/get-by-slug/${params.slug}`,
+      `https://skytextilesbackend.pmcommu.in/api/v1/blog/get-by-slug/${params.slug}`,
       {
         cache: "no-store", // Fetches fresh data every time
       }
@@ -45,7 +45,7 @@ export default async function Page({ params }) {
   // Fetching the H1 and H2 data
   try {
     const response = await fetch(
-      `http://localhost:7000/api/v1/blog/get-by-slug/${params.slug}`,
+      `https://skytextilesbackend.pmcommu.in/api/v1/blog/get-by-slug/${params.slug}`,
       {
         cache: "no-store", // Fetch fresh data every time
       }

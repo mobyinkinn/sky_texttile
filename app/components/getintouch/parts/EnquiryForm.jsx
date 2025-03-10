@@ -32,7 +32,7 @@ export default function Form() {
 
     try {
       const response = await fetch(
-        "http://localhost:7000/api/v1/contact/form",
+        "https://skytextilesbackend.pmcommu.in/api/v1/contact/form",
         {
           method: "POST",
           headers: {

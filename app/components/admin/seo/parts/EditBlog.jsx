@@ -57,7 +57,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
 
     try {
       const response = await axios.put(
-        `http://localhost:7000/api/v1/seo/updateById?id=${data._id}`,
+        `https://skytextilesbackend.pmcommu.in/api/v1/seo/updateById?id=${data._id}`,
         metaData,
         {
           headers: {},

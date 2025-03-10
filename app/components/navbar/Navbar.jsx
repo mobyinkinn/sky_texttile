@@ -133,10 +133,9 @@ const navData = [
       {
         id: 1,
         head: "Events",
-        data: "Events for Employees",
+        data: "Empowering growth, celebrating milestones, and shaping the future.",
         color: "#DFD5E6",
-        route:
-          "/sustainability/event",
+        route: "/sustainability/event",
       },
       {
         id: 2,
@@ -160,7 +159,7 @@ const navData = [
     route: "/clients",
     subRoutes: [],
   },
-   {
+  {
     id: 5,
     name: "Blog",
     route: "/blog",

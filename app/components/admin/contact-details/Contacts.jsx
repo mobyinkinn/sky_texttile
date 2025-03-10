@@ -69,7 +69,7 @@ export default function Contacts() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:7000/api/v1/contact/get-all-details"
+        "https://skytextilesbackend.pmcommu.in/api/v1/contact/get-all-details"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -94,7 +94,7 @@ export default function Contacts() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:7000/api/v1/contact/delete/${id}`
+        `https://skytextilesbackend.pmcommu.in/api/v1/contact/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {

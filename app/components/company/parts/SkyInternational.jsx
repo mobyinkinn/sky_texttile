@@ -13,6 +13,7 @@ import graph from "./assets/graph.png";
 import community from "./assets/skyInternational/unique.jpg";
 import curiosity from "./assets/skyInternational/quality.JPG";
 import collab from "./assets/skyInternational/customer.JPG";
+import bg from "./assets/skyInternational/bg.jpg";
 
 import { useRef, useState } from "react";
 import Slider from "react-slick";
@@ -193,6 +194,16 @@ export default function SkyTextiles() {
   return (
     <Stack>
       <Navbar />
+       <Box
+          height={{ lg: "100vh", smm: "50vh", xs: "30vh" }}
+          marginTop={"70px"}
+          width={"100%"}
+          sx={{
+            backgroundImage: `url(${bg.src})`,
+            backgroundSize: "contain",
+            backgroundRepeat:"no-repeat"
+          }}
+        ></Box>
       <Stack margin={{ md: "150px 0", xs: "150px 0" }}>
         <Typography
           fontSize={{ lg: "3rem", smm: "2rem", xs: "1.5rem" }}

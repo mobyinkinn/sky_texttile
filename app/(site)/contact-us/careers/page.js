@@ -5,7 +5,7 @@
 // const fetchData = async () => {
 //   try {
 //     const response = await axios.get(
-//       "http://localhost:7000/api/v1/seo/getByPageName?pagename=careers"
+//       "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=careers"
 //     );
 //     // setData(response.data.message); // Assuming the response data is an array
 
@@ -45,7 +45,7 @@ export async function generateMetadata() {
 
   try {
     const response = await fetch(
-      "http://localhost:7000/api/v1/seo/getByPageName?pagename=careers",
+      "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=careers",
       {
         cache: "no-store", // Fetches fresh data every time
       }
@@ -80,7 +80,7 @@ export default async function Page() {
   // Fetching the H1 and H2 data
   try {
     const response = await fetch(
-      "http://localhost:7000/api/v1/seo/getByPageName?pagename=careers",
+      "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=careers",
       {
         cache: "no-store", // Fetch fresh data every time
       }

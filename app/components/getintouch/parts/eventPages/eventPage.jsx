@@ -22,6 +22,7 @@ import navratri from "../assets/Events/navratri/1.jpg";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Spinner from "@/app/components/admin/event/parts/Spinner";
 
 const data = [
   {
@@ -61,28 +62,31 @@ const data = [
 
 export default function Event() {
   const router = useRouter();
-  const params = useParams();
-  const [eventData, setData] = useState(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:7000/api/v1/event/get-by-slug/${params.slug}`
-      );
-      setData(response.data.message); // Assuming the response data is an array
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const {slug} = useParams();
+  const [eventData, setEventData] = useState(null);
+const [loading, setLoading] = useState(true);
+ const fetchData = async () => {
+   try {
+     const response = await axios.get(
+       `https://skytextilesbackend.pmcommu.in/api/v1/event/get-by-slug?slug=${slug}`
+     );
+     setEventData(response.data.message); // Assuming response.data.message contains the event details
+     setLoading(false);
+   } catch (error) {
+     console.error("Error fetching data:", error);
+     setLoading(false);
+   }
+ };
 
   // useEffect to call the API when the component mounts
-  useEffect(() => {
-    async function fetched() {
-      await fetchData();
-    }
-    fetched();
-  }, []);
-
+useEffect(() => {
+  if (slug) {
+    fetchData();
+  }
+}, [slug]);
+if (loading){
+  return <Spinner/>
+}
   // console.log(eventData);
 
   return (
@@ -103,49 +107,21 @@ export default function Event() {
           {eventData?.title}
         </Typography>
         <Typography dangerouslySetInnerHTML={{ __html: eventData?.content }} />
-
-        {/* <Stack
-          direction={{ md: "row" }}
-          gap={"20px"}
-          justifyContent={"space-between"}
-          marginTop={"30px"}
+        <Stack
+          direction={"row"}
+          flexWrap={"wrap"}
+          gap={"50px"}
+          justifyContent={"center"}
+          marginTop={"20px"}
+          marginX={{ xs: "20px", md: "0" }}
+          display={{ xs: "none", md: "flex" }}
         >
-          <Box
-            sx={{
-              backgroundImage: `url(${img2.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              height: "110vh",
-            }}
-            width={{ md: "48%", xs: "100%" }}
-          ></Box>
-          <Stack
-            width={{ md: "48%", xs: "100%" }}
-            justifyContent={"space-between"}
-            gap={"20px"}
-          >
-            <Box
-              sx={{
-                backgroundImage: `url(${img3.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                height: { md: "50vh", xs: "70vh" },
-                width: "100%",
-              }}
-            ></Box>
-            <Box
-              sx={{
-                backgroundImage: `url(${img4.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                height: "50vh",
-                width: "100%",
-              }}
-            ></Box>
-          </Stack>
-        </Stack>*/}
+          {eventData.images?.map((el) => (
+            <CheckupCard el={el} />
+          ))}
+        </Stack>
       </Stack>
-      <Stack>
+      {/* <Stack>
         <Typography
           margin={{ md: "0 50px", smm: "0 30px", xs: "0 20px" }}
           fontSize={{ lg: "2.5rem", smm: "1.7rem", xs: "1rem" }}
@@ -202,10 +178,7 @@ export default function Event() {
               <Typography fontSize={"1.3rem"} fontWeight={"bold"}>
                 {d.Title}
               </Typography>
-              {/* <Stack direction={"row"} gap={"10px"} alignItems={"center"}>
-                <Image src={time} alt="" height={15} width={15} />
-                <Typography>{d.time}</Typography>
-              </Stack> */}
+             
               <Stack direction={"row"} gap={"10px"} alignItems={"center"}>
                 <Image src={location} alt="" height={16} width={12} />
                 <Typography>{d.Title}</Typography>
@@ -233,8 +206,32 @@ export default function Event() {
             </Stack>
           ))}
         </Stack>
-      </Stack>
+      </Stack> */}
       <Footer />
+    </Stack>
+  );
+}
+
+function CheckupCard({ el }) {
+  return (
+    <Stack
+      width={{ lg: "29%", md: "46%", sm: "100%" }}
+      height={"421px"}
+      sx={{
+        borderRadius: "10px",
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          height: { xs: "50%", md: "100%" },
+          width: "100%",
+          position: "relative",
+          alignSelf: "center",
+        }}
+      >
+        <Image src={el} alt="" fill objectFit="cover" />
+      </Box>
     </Stack>
   );
 }
