@@ -50,6 +50,8 @@ const initialMetaData = {
   description: "",
   title: "",
   pagename: "",
+  bold: "",
+  italic: "",
 };
 
 export default function AddDepartment({ setViewForm, fetchDepartments }) {
@@ -62,7 +64,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
       const formData = metaData;
 
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/seo/create-metadata",
+        "https://skytextiles.in/api/v1/seo/create-metadata",
         formData,
         {
           headers: {},
@@ -130,6 +132,28 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
                   value={metaData.h2}
                   onChange={(e) =>
                     setMetaData({ ...metaData, h2: e.target.value })
+                  }
+                />
+              </InputSection>
+            </Stack>
+            <Stack direction={"row"}>
+              <InputSection width={"70%"}>
+                <Label width={"100px"}>Bold</Label>
+                <TextInput
+                  placeholder="Enter bold"
+                  value={metaData.bold}
+                  onChange={(e) =>
+                    setMetaData({ ...metaData, bold: e.target.value })
+                  }
+                />
+              </InputSection>
+              <InputSection width={"70%"}>
+                <Label width={"100px"}>italic</Label>
+                <TextInput
+                  placeholder="Enter italic"
+                  value={metaData.italic}
+                  onChange={(e) =>
+                    setMetaData({ ...metaData, italic: e.target.value })
                   }
                 />
               </InputSection>

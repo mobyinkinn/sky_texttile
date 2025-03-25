@@ -44,7 +44,7 @@ export default function Contacts() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://skytextilesbackend.pmcommu.in/api/v1/newsletter/get-all"
+        "https://skytextiles.in/api/v1/newsletter/get-all"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);

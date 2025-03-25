@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/admin/login",
+        "https://skytextiles.in/api/v1/admin/login",
         {
           email,
           password,

@@ -47,6 +47,8 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
     description: data?.description || "",
     h1:data?.h1 || "",
     h2:data?.h2 || "",
+    bold: data?.bold || "",
+    italic: data?.italic || "",
   };
   const [metaData, setMetaData] = useState(initialData);
 
@@ -57,7 +59,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
 
     try {
       const response = await axios.put(
-        `https://skytextilesbackend.pmcommu.in/api/v1/seo/updateById?id=${data._id}`,
+        `https://skytextiles.in/api/v1/seo/updateById?id=${data._id}`,
         metaData,
         {
           headers: {},
@@ -122,6 +124,28 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, data }) {
                 value={metaData?.h2}
                 onChange={(e) =>
                   setMetaData({ ...metaData, h2: e.target.value })
+                }
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>bold</Label>
+              <TextInput
+                placeholder="Enter bold"
+                value={metaData?.bold}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, bold: e.target.value })
+                }
+              />
+            </InputSection>
+            <InputSection width={"70%"}>
+              <Label width={"100px"}>italic</Label>
+              <TextInput
+                placeholder="Enter italic"
+                value={metaData?.italic}
+                onChange={(e) =>
+                  setMetaData({ ...metaData, italic: e.target.value })
                 }
               />
             </InputSection>

@@ -22,7 +22,7 @@ export default function Form() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/contact/form",
+        "https://skytextiles.in/api/v1/contact/form",
         form
       );
       // console.log(response);

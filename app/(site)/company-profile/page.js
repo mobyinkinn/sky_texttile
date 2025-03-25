@@ -8,7 +8,7 @@ import Company from "@/app/components/company/Company";
 // const fetchData = async () => {
 //   try {
 //     const response = await axios.get(
-//       "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=companyProfile"
+//       "https://skytextiles.in/api/v1/seo/getByPageName?pagename=companyProfile"
 //     );
 //     // setData(response.data.message); // Assuming the response data is an array
 
@@ -56,14 +56,14 @@ export const dynamic = "force-dynamic"; // Ensures the page is always dynamic
 
 export async function generateMetadata() {
   let metaData = {
-    title: "Default Title",
-    description: "Default Description",
+    title: "",
+    description: "",
     keywords: "Default Keywords",
   };
 
   try {
     const response = await fetch(
-      "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=companyProfile",
+      "https://skytextiles.in/api/v1/seo/getByPageName?pagename=companyProfile",
       {
         cache: "no-store", // Fetches fresh data every time
       }
@@ -72,8 +72,8 @@ export async function generateMetadata() {
 
     if (data?.message) {
       metaData = {
-        title: data.message.title || "Default Title",
-        description: data.message.description || "Default Description",
+        title: data.message.title || "",
+        description: data.message.description || "",
         keywords: data.message.keywords || "Default Keywords",
       };
     }
@@ -92,14 +92,16 @@ export async function generateMetadata() {
 
 export default async function Page() {
   let pageData = {
-    h1: "Default H1",
-    h2: "Default H2",
+    h1: "",
+    h2: "",
+    bold: "",
+    italic: "",
   };
 
   // Fetching the H1 and H2 data
   try {
     const response = await fetch(
-      "https://skytextilesbackend.pmcommu.in/api/v1/seo/getByPageName?pagename=companyProfile",
+      "https://skytextiles.in/api/v1/seo/getByPageName?pagename=companyProfile",
       {
         cache: "no-store", // Fetch fresh data every time
       }
@@ -108,8 +110,10 @@ export default async function Page() {
 
     if (data?.message) {
       pageData = {
-        h1: data.message.h1 || "Default H1",
-        h2: data.message.h2 || "Default H2",
+        h1: data.message.h1 || "",
+        h2: data.message.h2 || "",
+        bold: data.message.bold || "",
+        italic: data.message.italic || "",
       };
     }
   } catch (error) {
@@ -120,6 +124,8 @@ export default async function Page() {
     <>
       <h1 style={{ display: "none" }}>{pageData.h1}</h1>
       <h2 style={{ display: "none" }}>{pageData.h2}</h2>
+      <b style={{ display: "none" }}>{pageData.bold}</b>
+      <i style={{ display: "none" }}>{pageData.italic}</i>
       <Company />
     </>
   );

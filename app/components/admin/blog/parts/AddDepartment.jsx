@@ -28,6 +28,8 @@ export default function AddDepartment({ setViewForm, fetchDepartments }) {
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState(null);
   const [h1, seth1] = useState("")
+  const [bold, setbold] = useState("");
+  const [italic, setitalic] = useState("");
   const [h2, seth2] = useState("")
   const [metatitle, setmetatitle] = useState("")
 const [description, setdescription] = useState("")
@@ -46,6 +48,8 @@ const [keywords, setkeywords] = useState("")
       formData.append("slug", slug);
       formData.append("h1", h1);
       formData.append("h2", h2);
+      formData.append("bold", bold);
+      formData.append("italic", italic);
       formData.append("metatitle", metatitle);
       formData.append("description", description);
       formData.append("keywords", keywords);
@@ -53,7 +57,7 @@ const [keywords, setkeywords] = useState("")
       formData.append("image", image);
 
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/blog/create",
+        "https://skytextiles.in/api/v1/blog/create",
         formData,
         {
           headers: {
@@ -116,6 +120,25 @@ const [keywords, setkeywords] = useState("")
                 placeholder="Enter h2"
                 value={h2}
                 onChange={(e) => seth2(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Bold</Label>
+              <TextInput
+                placeholder="Enter Bold"
+                value={bold}
+                onChange={(e) => setbold(e.target.value)}
+              />
+            </InputSection>
+
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Italic</Label>
+              <TextInput
+                placeholder="Enter Italic"
+                value={italic}
+                onChange={(e) => setitalic(e.target.value)}
               />
             </InputSection>
           </Stack>

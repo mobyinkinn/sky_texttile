@@ -31,6 +31,8 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
 
   const [h1, seth1] = useState(blog?.h1||"");
   const [h2, seth2] = useState(blog?.h2||"");
+  const [bold, setbold] = useState(blog?.bold || "");
+  const [italic, setitalic] = useState(blog?.italic || "");
   const [metatitle, setmetatitle] = useState(blog?.metatitle||"");
   const [description, setdescription] = useState(blog?.description||"");
   const [keywords, setkeywords] = useState(blog?.keywords||"");
@@ -57,11 +59,17 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       title,
       slug,
       content,
+      h1,
+      h2,
+      bold,
+      italic,
+      metatitle,
+      description,
     };
 
     try {
       const response = await axios.post(
-        `https://skytextilesbackend.pmcommu.in/api/v1/blog/update/${blog._id}`,
+        `https://skytextiles.in/api/v1/blog/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -70,7 +78,7 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `https://skytextilesbackend.pmcommu.in/api/v1/blog/update-image/${blog._id}`,
+          `https://skytextiles.in/api/v1/blog/update-image/${blog._id}`,
           imageData
         );
       }
@@ -140,6 +148,25 @@ export default function EditBlog({ setEditModalOpen, fetchDepartments, blog }) {
                 placeholder="Enter h2"
                 value={h2}
                 onChange={(e) => seth2(e.target.value)}
+              />
+            </InputSection>
+          </Stack>
+          <Stack direction={"row"}>
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Bold</Label>
+              <TextInput
+                placeholder="Enter bold"
+                value={bold}
+                onChange={(e) => setbold(e.target.value)}
+              />
+            </InputSection>
+
+            <InputSection width={"50%"}>
+              <Label width={"100px"}>Italic</Label>
+              <TextInput
+                placeholder="Enter italic"
+                value={italic}
+                onChange={(e) => setitalic(e.target.value)}
               />
             </InputSection>
           </Stack>

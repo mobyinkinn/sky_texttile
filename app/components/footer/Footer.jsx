@@ -200,7 +200,7 @@ export default function Footer() {
   const handleSubscribe = async () => {
     try {
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/newsletter/create",
+        "https://skytextiles.in/api/v1/newsletter/create",
         { email }
       );
 

@@ -56,7 +56,7 @@ export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }
 
     try {
       const response = await axios.post(
-        `https://skytextilesbackend.pmcommu.in/api/v1/blog/update/${blog._id}`,
+        `https://skytextiles.in/api/v1/blog/update/${blog._id}`,
         formData,
         {
           headers: {},
@@ -65,7 +65,7 @@ export default function EditCareers({ setEditModalOpen, fetchDepartments, blog }
       let imageResponse;
       if (isImageChanged) {
         imageResponse = await axios.post(
-          `https://skytextilesbackend.pmcommu.in/api/v1/blog/update-image/${blog._id}`,
+          `https://skytextiles.in/api/v1/blog/update-image/${blog._id}`,
           imageData
         );
       }

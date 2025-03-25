@@ -53,7 +53,7 @@
 //       formData.append("image", image);
 
 //       const response = await axios.post(
-//         "https://skytextilesbackend.pmcommu.in/api/v1/event/create",
+//         "https://skytextiles.in/api/v1/event/create",
 //         formData,
 //         {
 //           headers: {
@@ -193,7 +193,7 @@
 // }
 
 //       const response = await axios.post(
-//         "https://skytextilesbackend.pmcommu.in/api/v1/event/create",
+//         "https://skytextiles.in/api/v1/event/create",
 //         formData,
 //         {
 //           headers: {
@@ -331,7 +331,7 @@ export default function AddDepartment({ setViewForm, fetchDepartments, setLoadin
 
     try {
       const response = await axios.post(
-        "https://skytextilesbackend.pmcommu.in/api/v1/event/create",
+        "https://skytextiles.in/api/v1/event/create",
         formData,
         {
           headers: {

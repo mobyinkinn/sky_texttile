@@ -71,7 +71,7 @@ export default function Departments() {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "https://skytextilesbackend.pmcommu.in/api/v1/blog/get-all"
+        "https://skytextiles.in/api/v1/blog/get-all"
       );
       if (response.status === 200) {
         setDepartments(response.data.message);
@@ -90,8 +90,8 @@ export default function Departments() {
   const handleToggleBlock = async (id, isBlocked) => {
     try {
       const endpoint = isBlocked
-        ? `https://skytextilesbackend.pmcommu.in/api/v1/blog/unblock-blog/${id}`
-        : `https://skytextilesbackend.pmcommu.in/api/v1/blog/block-blog/${id}`;
+        ? `https://skytextiles.in/api/v1/blog/unblock-blog/${id}`
+        : `https://skytextiles.in/api/v1/blog/block-blog/${id}`;
 
       const response = await axios.put(endpoint);
 
@@ -116,7 +116,7 @@ export default function Departments() {
 
     try {
       const response = await axios.delete(
-        `https://skytextilesbackend.pmcommu.in/api/v1/blog/delete/${id}`
+        `https://skytextiles.in/api/v1/blog/delete/${id}`
       );
 
       if (response.data.statusCode === 200) {
@@ -149,7 +149,7 @@ export default function Departments() {
 
     try {
       const response = await axios.post(
-        `https://skytextilesbackend.pmcommu.in/api/v1/blog/update/${currentBlog._id}`,
+        `https://skytextiles.in/api/v1/blog/update/${currentBlog._id}`,
         formData
       );
 

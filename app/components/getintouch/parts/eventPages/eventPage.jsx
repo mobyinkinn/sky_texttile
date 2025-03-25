@@ -68,7 +68,7 @@ const [loading, setLoading] = useState(true);
  const fetchData = async () => {
    try {
      const response = await axios.get(
-       `https://skytextilesbackend.pmcommu.in/api/v1/event/get-by-slug?slug=${slug}`
+       `https://skytextiles.in/api/v1/event/get-by-slug?slug=${slug}`
      );
      setEventData(response.data.message); // Assuming response.data.message contains the event details
      setLoading(false);
