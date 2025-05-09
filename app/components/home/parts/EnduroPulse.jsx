@@ -187,7 +187,7 @@ export default function Enduro() {
             }}
             justifyContent={"space-between"}
           >
-            <Typography color="white">Vibrant Gujarat</Typography>
+            <Typography color="white">Bharat-Tex</Typography>
             <Stack
               backgroundColor={"#E39B97"}
               width={"25px"}
@@ -310,7 +310,7 @@ export default function Enduro() {
             }}
             justifyContent={"space-between"}
           >
-            <Typography color="white">Bharat tex 2025</Typography>
+            <Typography color="white">x Vibrant Gujarat</Typography>
             <Stack
               backgroundColor={"#E39B97"}
               width={"25px"}
@@ -389,7 +389,7 @@ export default function Enduro() {
             }}
             justifyContent={"space-between"}
           >
-            <Typography color="white">Vibrant Gujarat</Typography>
+            <Typography color="white"></Typography>
             <Stack
               backgroundColor={"#E39B97"}
               width={"25px"}

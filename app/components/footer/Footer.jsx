@@ -168,7 +168,7 @@ const navData = [
   {
     id: 6,
     name: "Get in Touch",
-    route: "/contact-us",
+    route: "/contact-us/enquiry",
     subRoutes: [
       {
         id: 0,
@@ -260,7 +260,7 @@ export default function Footer() {
               </Typography>
               <Typography
                 sx={{ cursor: "pointer", "&:hover": { color: "#FB5457" } }}
-                onClick={() => router.push("/get-in-touch")}
+                onClick={() => router.push("/contact-us/enquiry")}
               >
                 Get In Touch
               </Typography>

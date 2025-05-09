@@ -100,12 +100,12 @@ export default function Form() {
       <Typography
         sx={{ fontSize: "2rem", textAlign: "center", fontWeight: "bold" }}
       >
-        Contact us
+        Got a Project? Let's talk
       </Typography>
       <Typography
         sx={{ color: "#D88684", textAlign: "center", fontWeight: "bold" }}
       >
-        View Upcoming And Past Events Hosted By Sky Textiles
+        Get a Quote Immediately Upon Form Submission
       </Typography>
 
       <Stack

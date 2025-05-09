@@ -19,13 +19,14 @@ const processData = [
     head: "Dyeing",
     img: dyeing,
     data: "Our advanced dyeing machines ensure precise and consistent color application, delivering high-quality, vibrant fabrics with superior durability.",
-    Title: "Knitting Capacity",
+    Title: "Dyeing Capacity: 550 tons Per Month",
   },
   {
     id: 1,
     head: "Printing",
     img: printing,
     data: "Fabric printing at our textile company utilizes various advanced techniques, including pigment, reactive, discharge, disperse, and burnout printing.",
+    Title: "Printing Capacity: 180 tons Per Month",
   },
   {
     id: 2,
@@ -124,6 +125,11 @@ export default function Caraosal() {
                     fontSize={{ lg: "1rem", md: "0.9rem", xs: "0.8rem" }}
                   >
                     {el.data}
+                  </Typography>
+                  <Typography
+                    fontSize={{ lg: "1rem", md: "0.9rem", xs: "0.8rem" }}
+                  >
+                    {el.Title}
                   </Typography>
                 </Stack>
                 <Stack
